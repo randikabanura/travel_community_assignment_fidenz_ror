@@ -1,6 +1,10 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container">
-    <a class="navbar-brand" href="#">Navbar</a>
+    <% if user_signed_in? %>
+      <%= link_to "Logo", root_path, class: "navbar-brand" %>
+    <% else %>
+      <%= link_to "Logo", new_user_session_path, class: "navbar-brand" %>
+    <% end %>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -35,7 +39,7 @@
               <a class="dropdown-item" href="#">My Trips</a>
               <a class="dropdown-item" href="#">My Profile</a>
               <a class="dropdown-item" href="#">Messages</a>
-              <%= link_to "Logout", destroy_user_session_path,method: :delete, class: "dropdown-item" %>
+              <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
             </div>
           </li>
         </div>
