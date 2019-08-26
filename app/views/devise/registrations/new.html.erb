@@ -1,0 +1,36 @@
+<%= render :partial => 'layouts/errors' %>
+<div class="login-form signup">
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <h3 class="text-center">Sign up</h3>
+    <div class="field form_group">
+      <%= f.email_field :email, autofocus: true, autocomplete: 'off', class: "form-control", placeholder: "Email" %>
+    </div>
+    <div class="field form_group">
+      <%= f.text_field :name, autocomplete: 'off', class: "form-control", placeholder: "Name"%>
+    </div>
+    <div class="field form_group">
+      <%= f.text_field :dob, autocomplete: 'off', class: "datepicker form-control", placeholder: "Birthday"%>
+    </div>
+    <div class="field form_group">
+      <%= f.select :gender, options_for_select([["Male", "m"], ["Female", "f"]]),prompt: "Select Gender", class: "form-control gender_select", placeholder: "Gender"%>
+    </div>
+    <div class="field form_group">
+      <%= f.password_field :password, autocomplete: 'off', class: "form-control", placeholder: "Password (#{@minimum_password_length} character minimum)" %>
+    </div>
+    <div class="field form_group">
+      <%= f.password_field :password_confirmation, autocomplete: 'off', class: "form-control", placeholder: "Repeat Password" %>
+    </div>
+
+    <div class="actions form_group">
+      <%= f.submit "Sign up", class: "btn btn-primary btn-block" %>
+    </div>
+    <div class="clearfix2">
+      <p> <%= link_to "Log in", new_session_path(resource_name) %></p>
+    </div>
+  <% end %>
+  <script type="text/javascript">
+      $(document).ready(function(){
+          $('.datepicker').datepicker();
+      });
+  </script>
+</div>
