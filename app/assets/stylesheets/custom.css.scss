@@ -32,7 +32,12 @@ body{
   text-align: right;
   font-size: 12px;
 }
-
+.login-form.signin{
+  height:445px;
+}
+.container.homepage{
+  min-height: 550px;
+}
 .login-form .clearfix2{
   margin-top: 10px;
   text-align: center;
@@ -42,6 +47,7 @@ body{
 footer{
   background-color: #f8f9fa;
   position: relative;
+  z-index: 10;
   bottom: 0px;
   left: 0px;
   right: 0px;
