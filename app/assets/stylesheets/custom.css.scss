@@ -2,18 +2,20 @@
 @import "font-awesome";
 
 html, body {
-  position: relative;
-  height: 100%;
+  min-height: 100vh;
   margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  scroll-behavior: smooth;
 }
 
 .login-form {
   width: 340px;
-  margin: 50px auto -50px;
-  min-height: 100%;
+  align-self: center;
 }
+
 .login-form form {
-  margin-bottom: 15px;
   background: #f7f7f7;
   box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
   padding: 30px;
@@ -36,10 +38,6 @@ html, body {
   font-size: 12px;
 }
 
-.container.homepage{
-  margin: 50px auto -50px;
-  min-height: 100%;
-}
 .login-form .clearfix2{
   margin-top: 10px;
   text-align: center;
@@ -48,7 +46,7 @@ html, body {
 
 .footer{
   height: 100px;
-  background-color: rgb(248, 249, 250);
+  background-color: #343a40;
   position: relative;
   text-align: center;
 }
@@ -59,12 +57,13 @@ footer .container{
 }
 footer p{
   margin: 0 auto;
+  color: #aaaaaa;
 }
 
 .alert {
   max-height: 75px;
   text-align: left;
-  width:fit-content;
+  width: 100%;
   display: inline-block;
 }
 
@@ -97,4 +96,22 @@ footer p{
     width: 100%;
     height: 30px;
     margin-top: 15px;
+}
+
+.container.homepage{
+  display: flex;
+  margin: 50px auto;
+  min-height: 100vh;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+#trips{
+  width: 650px;
+  background-color: #666666;
+}
+
+#users{
+  width: 350px;
+  background-color: #666666;
 }

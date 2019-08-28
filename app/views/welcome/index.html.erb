@@ -1,5 +1,4 @@
 <div class="container homepage">
-<h1>Welcome#index</h1>
-<p>Find me in app/views/welcome/index.html.erb</p>
-<%= link_to "Logout", destroy_user_session_path, method: :delete %>
+  <%= render :partial => 'welcome/trip_section' %>
+  <%= render :partial => 'welcome/user_section' %>
 </div>
