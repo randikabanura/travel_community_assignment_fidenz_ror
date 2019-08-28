@@ -12,7 +12,11 @@ module Api
         follow_user = User.find(user_params[:id])
         current_user1.follow(follow_user)
         follow = Follow.find_by(follower: current_user1, followable: follow_user)
-        render json: {status: 'SUCCESS', message: 'Added a follow table row', data: follow}, status: :ok
+        if follow
+          render json: {status: 'SUCCESS', message: 'Added a follow table row', data: follow}, status: :ok
+        else
+          render json: {status: 'Failure', message: 'Unable to follow the user'}, status: :internal_server_error
+        end
       end
 
       def destroy
