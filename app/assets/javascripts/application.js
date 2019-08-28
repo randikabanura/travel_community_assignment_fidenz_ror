@@ -23,6 +23,9 @@
 
 $(function() {
     setTimeout(function() {
-        $(".alert").fadeOut(1000)
-    }, 5000);
+        $(".alert").fadeOut(1000, function () {
+            $(".remove_alert").remove();
+        })
+
+    }, 3000);
 });
