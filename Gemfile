@@ -11,6 +11,7 @@ gem 'hirb'
 gem 'dotenv-rails'
 gem 'font-awesome-rails'
 gem 'pg'
+gem 'acts_as_follower', github: 'tcocca/acts_as_follower', branch: 'master'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.3'
 # Use sqlite3 as the database for Active Record
