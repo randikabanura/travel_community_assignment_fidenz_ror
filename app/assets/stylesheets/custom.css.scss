@@ -107,17 +107,32 @@ footer p{
 }
 
 #trips{
-  width: 650px;
-  background-color: #666666;
+  width: 750px;
+  background-color: lightgrey;
 }
 
 #users{
-  width: 350px;
-  background-color: #666666;
+  width: 300px;
+  background-color: lightgray;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .remove_alert{
   position: absolute;
   top: 75px;
   width: 100%;
+}
+
+.userslist{
+  height: max-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+.user.user_list{
+  width: 225px;
+  height: 100px;
 }
