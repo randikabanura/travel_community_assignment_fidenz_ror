@@ -4,7 +4,7 @@ module Api
       skip_before_action :authenticate_user!, only: [:index, :show]
 
       def index
-        users = User.order("RANDOM()").limit(5)
+        users = User.limit(5)
         render json: {status: 'SUCCESS', message: 'Five random users', data: users}, status: :ok
       end
 
