@@ -8,6 +8,7 @@ Rails.application.routes.draw do
       get '/users', to: "users#index"
       resources :users, only: [:show]
       resources :follows, only: [:index, :new,:create, :destroy]
+      post '/isfollowing', to: "follows#isfollowing?"
     end
   end
 end
