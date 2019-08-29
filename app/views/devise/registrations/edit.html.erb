@@ -1,42 +1,104 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<%= render :partial => 'layouts/errors' %>
+<ul class="nav nav-tabs container">
+  <li class="active"><a href="#">Home</a></li>
+  <li><a href="#">Menu 1</a></li>
+  <li><a href="#">Menu 2</a></li>
+  <li><a href="#">Menu 3</a></li>
+</ul>
+<div class="container edit_profile">
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: {method: :put}) do |f| %>
+    <div class="form-group picture">
+      <div>
+      <%= image_tag user_avatar(resource, 150), class: "rounded" %>
+      </div>
+      <div>
+      <%= f.file_field :avatar %>
+      </div>
+    </div>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+    <div class="field form-group">
+      <div class="col-4">
+        <%= f.label :name %>
+      </div>
+      <div class="col-8">
+        <%= f.text_field :name, autofocus: true, autocomplete: "name", class: "form-control" %>
+      </div>
+    </div>
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
+    <div class="field form-group">
+      <div class="col-4">
+        <%= f.label :date_of_birthday %>
+      </div>
+      <div class="col-4">
+        <%= f.text_field :dob, autocomplete: 'off', class: "datepicker form-control", placeholder: "Birthday"%>
+        <div class="input-group-addon">
+          <span class="glyphicon glyphicon-th"></span>
+        </div>
+      </div>
+    </div>
 
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-    <% if @minimum_password_length %>
-      <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
+    <div class="field form-group">
+      <div class="col-4">
+        <%= f.label :gender %>
+      </div>
+      <div class="col-4">
+        <%= f.select :gender, options_for_select([["Male", "m"], ["Female", "f"]]),prompt: "Select Gender", class: "form-control gender_select" %>
+      </div>
+    </div>
+
+    <div class="field form-group">
+      <div class="col-4">
+        <%= f.label :email %>
+      </div>
+      <div class="col-8">
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
+      </div>
+    </div>
+
+    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+      <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
     <% end %>
-  </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
+    <div class="field form-group">
+      <div class="col-4">
+        <%= f.label :password %>
+      </div>
+      <div class="col-8">
+        <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
+      </div>
+    </div>
 
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "current-password" %>
-  </div>
+    <div class="field form-group">
+      <div class="col-4">
+        <%= f.label :password_confirmation %>
+      </div>
+      <div class="col-8">
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
+      </div>
+    </div>
 
-  <div class="actions">
-    <%= f.submit "Update" %>
-  </div>
-<% end %>
+    <div class="field form-group">
+      <div class="col-4">
+        <%= f.label :current_password %>
+      </div>
+      <div class="col-8">
+        <%= f.password_field :current_password, autocomplete: "current-password", class: "form-control" %>
+      </div>
+    </div>
 
-<h3>Cancel my account</h3>
+    <div class="actions form-group">
+      <%= f.submit "Update", class: "btn btn-primary" %>
+    </div>
+  <% end %>
+  <script type="text/javascript">
+      $(document).ready(function(){
+          $('.datepicker').datepicker()
+      });
+  </script>
+  <!--<h3>Cancel my account</h3>-->
 
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
+  <!--<p>Unhappy? <%#= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>-->
 
-<%= link_to "Back", :back %>
+<%#= link_to "Back", :back %>
+</div>

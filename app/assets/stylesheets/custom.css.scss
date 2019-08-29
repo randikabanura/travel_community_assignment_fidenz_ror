@@ -136,3 +136,24 @@ footer p{
   width: 225px;
   height: 100px;
 }
+
+.edit_profile.container{
+  min-height: 100vh;
+  background-color: lightgray;
+  margin: 0 auto 50px auto;
+  padding: 50px;
+}
+
+.edit_profile .field.form-group{
+  display: flex;
+  align-items: baseline;
+}
+
+.edit_profile .form-group.picture{
+  display: flex;
+  flex-direction: column;
+}
+
+.nav.nav-tabs.container{
+  margin-top: 50px;
+}

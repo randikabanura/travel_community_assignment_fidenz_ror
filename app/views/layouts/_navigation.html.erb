@@ -25,7 +25,7 @@
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
               <a class="dropdown-item" href="#">My Trips</a>
-              <a class="dropdown-item" href="#">My Profile</a>
+              <%= link_to "My Profile", edit_user_registration_path, class: "dropdown-item" %>
               <a class="dropdown-item" href="#">Messages</a>
               <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
             </div>
