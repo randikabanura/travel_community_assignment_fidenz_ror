@@ -20,6 +20,7 @@
     }
     var url = "/api/v1/users";
     $.get(url, function (data, status) {
+        $('#user_list').empty();
         $.each(data.data, function (i, item) {
             isfollowing($('#user_list').attr("data-userid"), item)
         });
@@ -28,5 +29,4 @@
 </script>
 
 <div id="user_list" data-userid="<%= current_user.id %>">
-  <h3>Users List</h3>
 </div>
