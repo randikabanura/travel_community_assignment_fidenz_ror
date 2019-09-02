@@ -11,8 +11,14 @@ Rails.application.routes.draw do
           delete :delete_image_attachment
         end
       end
-      resources :follows, only: [:index, :new,:create, :destroy]
+      resources :follows, only: [:index, :new, :create, :destroy] do
+        member do
+          get :allfollowers
+          get :allfollowing
+        end
+      end
       post '/isfollowing', to: "follows#isfollowing?"
+
     end
   end
 end

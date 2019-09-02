@@ -27,6 +27,7 @@ $(function () {
         })
     }, 3000);
 
+
     $(document).on('click', '.user_btn',function (e) {
         let btn = this
         console.log(btn.innerText)
@@ -43,7 +44,11 @@ $(function () {
                 current_user_id: $(this).parent().attr("data-userid"),
                 follow_user_id: $(this).attr("id")
             }, function (data, status) {
-                $(btn).text("Follow");
+                if(($(btn).data("followingbtn"))) {
+                    loadDataFollowing()
+                }else {
+                    $(btn).text("Follow");
+                }
             })
         }
     })

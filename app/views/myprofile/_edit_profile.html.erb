@@ -1,4 +1,3 @@
-
 <div class="container edit_profile">
 
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: {method: :put}) do |f| %>
@@ -25,7 +24,7 @@
         <%= f.label :date_of_birthday %>
       </div>
       <div class="col-4">
-        <%= f.text_field :dob, autocomplete: 'off', class: "datepicker form-control", placeholder: "Birthday"%>
+        <%= f.text_field :dob, autocomplete: 'off', class: "datepicker form-control", placeholder: "Birthday" %>
         <div class="input-group-addon">
           <span class="glyphicon glyphicon-th"></span>
         </div>
@@ -37,7 +36,7 @@
         <%= f.label :gender %>
       </div>
       <div class="col-4">
-        <%= f.select :gender, options_for_select([["Male", "m"], ["Female", "f"]]),prompt: "Select Gender", class: "form-control gender_select" %>
+        <%= f.select :gender, options_for_select([["Male", "m"], ["Female", "f"]]), prompt: "Select Gender", class: "form-control gender_select" %>
       </div>
     </div>
 
@@ -83,18 +82,19 @@
 
     <div class="field form-group">
       <%= f.label :images %>
-      <%= f.file_field :images, multiple: true%>
+      <%= f.file_field :images, multiple: true %>
     </div>
-<div class="field form-group images" style="display: flex; flex-direction: row">
-  <%= render partial: 'myprofile/images_edit_profile' %>
-</div>
+
+    <div class="field form-group images" style="display: flex; flex-direction: row">
+      <%= render partial: 'myprofile/images_edit_profile' %>
+    </div>
 
     <div class="actions form-group">
       <%= f.submit "Update", class: "btn btn-primary" %>
     </div>
   <% end %>
   <script type="text/javascript">
-      $(document).ready(function(){
+      $(document).ready(function () {
           $('.datepicker').datepicker()
       });
   </script>

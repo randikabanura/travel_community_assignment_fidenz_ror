@@ -2,7 +2,7 @@ module Api
   module V1
     class FollowsController < ApplicationController
       protect_from_forgery with: :null_session
-      skip_before_action :authenticate_user!, only: [:index, :create, :destroy, :isfollowing?]
+      skip_before_action :authenticate_user!, only: [:index, :create, :destroy, :isfollowing?, :allfollowers, :allfollowing]
 
       def index
       end
@@ -33,10 +33,26 @@ module Api
         render json: {status: 'SUCCESS', data: result}, status: :ok
       end
 
+      def allfollowers
+        current_user = User.find(user_params2[:id])
+        result = current_user.followers
+        render json:  result, status: :ok
+      end
+
+      def allfollowing
+        current_user = User.find(user_params2[:id])
+        result = current_user.all_following
+        render json:  result, status: :ok
+      end
+
       private
 
       def user_params
         params.permit(:current_user_id, :follow_user_id)
+      end
+
+      def user_params2
+        params.permit(:id)
       end
     end
   end

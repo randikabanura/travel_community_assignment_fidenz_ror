@@ -169,6 +169,11 @@ footer p{
   background-color: lightgray;
   margin: 0 auto 50px auto;
   padding: 50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-content: flex-start;
 }
 
 #following_tab{
@@ -176,4 +181,9 @@ footer p{
   background-color: lightgray;
   margin: 0 auto 50px auto;
   padding: 50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-content: flex-start;
 }

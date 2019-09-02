@@ -3,10 +3,10 @@
     <a class="nav-link" data-toggle="tab" href="#edit_profile">My Profile</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" data-toggle="tab" href="#followers">Followers</a>
+    <a class="nav-link" id="2" data-toggle="tab" href="#followers">Followers</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" data-toggle="tab" href="#following">Following</a>
+    <a class="nav-link" id="3" data-toggle="tab" href="#following">Following</a>
   </li>
 </ul>
 <div class="tab-content" id="tabs">
@@ -20,10 +20,73 @@
     <%= render :partial => 'myprofile/following' %>
   </div>
 </div>
+
 <script>
-    function activeTab(tab){
+    function activeTab(tab) {
         $('.nav-tabs a[href="#' + tab + '"]').tab('show');
     };
 
     activeTab('edit_profile');
+
+    function loadDataFollowers() {
+        var value;
+        Rails.ajax({
+            url: "/api/v1/follows/" + $('#followers_tab').attr("data-userid") + "/allfollowers",
+            type: "GET",
+            success: function (data) {
+                $(".tab-pane#followers #followers_tab").empty()
+                $.each(data, function (i) {
+                    $.ajax({
+                        type: "POST",
+                        url: "/api/v1/isfollowing",
+                        data: {
+                            current_user_id: $('#followers_tab').attr("data-userid"),
+                            follow_user_id: data[i].id
+                        },
+                        success: function (data2) {
+                            if (data2.data == true)
+                                value = "Unfollow"
+                            else
+                                value = "Follow"
+                            $(".tab-pane#followers #followers_tab").append('<div class="single_user"><div class="card border-dark mb-3" style="min-width: 16rem;">\n' +
+                                '  <div class="card-body text-dark" data-userid="<%= current_user.id %>">\n' +
+                                '    <h5 class="card-title">' + data[i].name + '</h5>\n' +
+                                '    <button type="button" id=' + data[i].id + ' class="btn btn-primary submit user_btn">' + value + '</button>\n' +
+                                '  </div>\n' +
+                                '</div></div>')
+                        }
+                    })
+                })
+            }
+        })
+    }
+
+    function loadDataFollowing() {
+        var value;
+        Rails.ajax({
+            url: "/api/v1/follows/" + $('#following_tab').attr("data-userid") + "/allfollowing",
+            type: "GET",
+            success: function (data) {
+                $(".tab-pane#following #following_tab").empty();
+                $.each(data, function (i) {
+                    $(".tab-pane#following #following_tab").append('<div class="single_user"><div class="card border-dark mb-3" style="min-width: 16rem;">\n' +
+                        '  <div class="card-body text-dark" data-userid="<%= current_user.id %>">\n' +
+                        '    <h5 class="card-title">' + data[i].name + '</h5>\n' +
+                        '    <button type="button" id=' + data[i].id + ' class="btn btn-primary submit user_btn" data-followingbtn="1">Unfollow</button>\n' +
+                        '  </div>\n' +
+                        '</div></div>')
+
+                })
+            }
+        })
+    }
+
+    $('.nav-item #2').on('click', function () {
+        loadDataFollowers();
+    });
+
+    $('.nav-item #3').on('click', function () {
+        loadDataFollowing();
+    });
+
 </script>
