@@ -13,6 +13,14 @@ module Api
         render json: {status: 'SUCCESS', message: 'Specific user details retrieved', data: user}, status: :ok
       end
 
+      def delete_image_attachment
+        @image = ActiveStorage::Attachment.find(params[:id])
+        @image.purge
+        respond_to do |format|
+          format.js {render :file => 'devise/registrations/edit'}
+        end
+      end
+
       private
 
       def user_params

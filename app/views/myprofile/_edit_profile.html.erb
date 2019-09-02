@@ -81,6 +81,14 @@
       </div>
     </div>
 
+    <div class="field form-group">
+      <%= f.label :images %>
+      <%= f.file_field :images, multiple: true%>
+    </div>
+<div class="field form-group images" style="display: flex; flex-direction: row">
+  <%= render partial: 'myprofile/images_edit_profile' %>
+</div>
+
     <div class="actions form-group">
       <%= f.submit "Update", class: "btn btn-primary" %>
     </div>

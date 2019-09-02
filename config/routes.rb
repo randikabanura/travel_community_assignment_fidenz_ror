@@ -6,7 +6,11 @@ Rails.application.routes.draw do
   namespace 'api' do
     namespace 'v1' do
       get '/users', to: "users#index"
-      resources :users, only: [:show]
+      resources :users, only: [:show] do
+        member do
+          delete :delete_image_attachment
+        end
+      end
       resources :follows, only: [:index, :new,:create, :destroy]
       post '/isfollowing', to: "follows#isfollowing?"
     end

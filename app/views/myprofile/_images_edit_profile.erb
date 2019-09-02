@@ -1,0 +1,4 @@
+<% (0...current_user.images.count).each do |image| %>
+  <%= image_tag(current_user.thumbnail(image)) %>
+  <%= link_to "Remove", delete_image_attachment_api_v1_user_path(current_user.images[image]), method: :delete, remote: true, data: {confirm: "Are you sure?"} %>
+<% end %>
