@@ -163,3 +163,17 @@ footer p{
   height: 30px;
   margin-top: 15px;
 }
+
+#followers_tab{
+  min-height: 100vh;
+  background-color: lightgray;
+  margin: 0 auto 50px auto;
+  padding: 50px;
+}
+
+#following_tab{
+  min-height: 100vh;
+  background-color: lightgray;
+  margin: 0 auto 50px auto;
+  padding: 50px;
+}

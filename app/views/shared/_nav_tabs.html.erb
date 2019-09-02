@@ -1,0 +1,29 @@
+<ul class="nav nav-tabs container">
+  <li class="nav-item">
+    <a class="nav-link" data-toggle="tab" href="#edit_profile">My Profile</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" data-toggle="tab" href="#followers">Followers</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" data-toggle="tab" href="#following">Following</a>
+  </li>
+</ul>
+<div class="tab-content" id="tabs">
+  <div class="tab-pane" id="edit_profile">
+    <%= render :partial => 'myprofile/edit_profile' %>
+  </div>
+  <div class="tab-pane" id="followers">
+    <%= render :partial => 'myprofile/followers' %>
+  </div>
+  <div class="tab-pane" id="following">
+    <%= render :partial => 'myprofile/following' %>
+  </div>
+</div>
+<script>
+    function activeTab(tab){
+        $('.nav-tabs a[href="#' + tab + '"]').tab('show');
+    };
+
+    activeTab('edit_profile');
+</script>
