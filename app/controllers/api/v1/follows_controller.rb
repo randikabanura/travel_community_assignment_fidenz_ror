@@ -42,6 +42,7 @@ module Api
       def allfollowing
         current_user = User.find(user_params2[:id])
         result = current_user.all_following
+        print result
         render json:  result, status: :ok
       end
 

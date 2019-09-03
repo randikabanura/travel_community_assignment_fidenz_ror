@@ -1,11 +1,11 @@
 module Api
   module V1
     class UsersController < ApplicationController
-      skip_before_action :authenticate_user!, only: [:index, :show]
+      skip_before_action :authenticate_user!, only: [:index, :show, :avatar_image_thumbnail]
 
       def index
-        users = User.order("RANDOM()").limit(5)
-        render json: {status: 'SUCCESS', message: 'Five random users', data: users}, status: :ok
+         users = User.order("RANDOM()").limit(5)
+         render json: {status: 'SUCCESS', message: 'Five random users', data: users}, status: :ok
       end
 
       def show
@@ -19,6 +19,13 @@ module Api
         respond_to do |format|
           format.js {render :file => 'devise/registrations/edit'}
         end
+      end
+
+      def avatar_image_thumbnail
+        image = nil
+        user = User.find(user_params[:id])
+        image = url_for(user.avatar.variant(resize: '60x60!')) if user.avatar.attached?
+        render json: {link: image}, status: :ok
       end
 
       private

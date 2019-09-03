@@ -203,3 +203,9 @@ footer p{
   display: flex;
   flex-direction: column;
 }
+
+.image_card{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}

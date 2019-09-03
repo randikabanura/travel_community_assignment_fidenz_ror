@@ -9,6 +9,7 @@ Rails.application.routes.draw do
       resources :users, only: [:show] do
         member do
           delete :delete_image_attachment
+          get :avatar_image_thumbnail
         end
       end
       resources :follows, only: [:index, :new, :create, :destroy] do

@@ -34,14 +34,14 @@ $(function () {
         e.preventDefault()
         if(btn.innerText == "Follow") {
             $.post("/api/v1/follows", {
-                current_user_id: $(this).parent().attr("data-userid"),
+                current_user_id: $(this).parent().parent().attr("data-userid"),
                 follow_user_id: $(this).attr("id")
             }, function (data, status) {
                 $(btn).text("Unfollow");
             })
         }else if(btn.innerText == "Unfollow"){
             $.delete("/api/v1/follows/"+Math.random()*10, {
-                current_user_id: $(this).parent().attr("data-userid"),
+                current_user_id: $(this).parent().parent().attr("data-userid"),
                 follow_user_id: $(this).attr("id")
             }, function (data, status) {
                 if(($(btn).data("followingbtn"))) {

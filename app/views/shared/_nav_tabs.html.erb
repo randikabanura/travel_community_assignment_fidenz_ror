@@ -72,12 +72,19 @@
                                 value = "Unfollow"
                             else
                                 value = "Follow"
-                            $(".tab-pane#followers #followers_tab").append('<div class="single_user"><div class="card border-dark mb-3" style="min-width: 16rem;">\n' +
-                                '  <div class="card-body text-dark" data-userid="<%= current_user.id %>">\n' +
-                                '     <a href="/profile/users/'+ data[i].id +'" ><h5 class="card-title">' + data[i].name + '</h5></a>\n' +
-                                '    <button type="button" id=' + data[i].id + ' class="btn btn-primary submit user_btn">' + value + '</button>\n' +
-                                '  </div>\n' +
-                                '</div></div>')
+                            $.get("/api/v1/users/" + data[i].id+ "/avatar_image_thumbnail", function (image, status) {
+                                var link
+                                if (image.link != null)
+                                    link = image.link
+                                else
+                                    link = "http://www.gravatar.com/avatar?s=50"
+                                $(".tab-pane#followers #followers_tab").append('<div class="single_user"><div class="card border-dark mb-3" style="min-width: 16rem;">\n' +
+                                    '  <div class="card-body text-dark" data-userid="<%= current_user.id %>">\n' +
+                                    '      <div><img src="' + link + '" style="border-radius: 50%"/></div><div><a href="/profile/users/' + data[i].id + '" ><h5 class="card-title">' + data[i].name + '</h5></a>\n' +
+                                    '    <button type="button" id=' + data[i].id + ' class="btn btn-primary submit user_btn">' + value + '</button>\n' +
+                                    '  </div>\n' +
+                                    '</div></div></div>')
+                            })
                         }
                     })
                 })
@@ -93,11 +100,18 @@
             success: function (data) {
                 $(".tab-pane#followers #user_followers_tab").empty()
                 $.each(data, function (i) {
-                            $(".tab-pane#followers #user_followers_tab").append('<div class="single_user"><div class="card border-dark mb-3" style="min-width: 16rem;">\n' +
-                                '  <div class="card-body text-dark">\n' +
-                                '     <a href="/profile/users/'+ data[i].id +'" ><h5 class="card-title">' + data[i].name + '</h5></a>\n' +
-                                '  </div>\n' +
-                                '</div></div>')
+                    $.get("/api/v1/users/" + data[i].id+ "/avatar_image_thumbnail", function (image, status) {
+                        var link
+                        if (image.link != null)
+                            link = image.link
+                        else
+                            link = "http://www.gravatar.com/avatar?s=50"
+                        $(".tab-pane#followers #user_followers_tab").append('<div class="single_user"><div class="card border-dark mb-3" style="min-width: 16rem;">\n' +
+                            '  <div class="card-body text-dark">\n' +
+                            '     <div><img src="'+ link +'" style="border-radius: 50%"/></div><div><a href="/profile/users/' + data[i].id + '" ><h5 class="card-title">' + data[i].name + '</h5></a>\n' +
+                            '  </div>\n' +
+                            '</div></div></div>')
+                    })
                         }
                 )}
             })
@@ -111,13 +125,19 @@
             success: function (data) {
                 $(".tab-pane#following #following_tab").empty();
                 $.each(data, function (i) {
-                    $(".tab-pane#following #following_tab").append('<div class="single_user"><div class="card border-dark mb-3" style="min-width: 16rem;">\n' +
-                        '  <div class="card-body text-dark" data-userid="<%= current_user.id %>">\n' +
-                        '     <a href="/profile/users/'+ data[i].id +'" ><h5 class="card-title">' + data[i].name + '</h5></a>\n' +
-                        '    <button type="button" id=' + data[i].id + ' class="btn btn-primary submit user_btn" data-followingbtn="1">Unfollow</button>\n' +
-                        '  </div>\n' +
-                        '</div></div>')
-
+                    $.get("/api/v1/users/" + data[i].id+ "/avatar_image_thumbnail", function (image, status) {
+                        var link
+                        if (image.link != null)
+                            link = image.link
+                        else
+                            link = "http://www.gravatar.com/avatar?s=50"
+                        $(".tab-pane#following #following_tab").append('<div class="single_user"><div class="card border-dark mb-3" style="min-width: 16rem;">\n' +
+                            '  <div class="card-body text-dark" data-userid="<%= current_user.id %>">\n' +
+                            '     <div><img src="' + link + '" style="border-radius: 50%"/></div><div><a href="/profile/users/' + data[i].id + '" ><h5 class="card-title">' + data[i].name + '</h5></a>\n' +
+                            '    <button type="button" id=' + data[i].id + ' class="btn btn-primary submit user_btn" data-followingbtn="1">Unfollow</button>\n' +
+                            '  </div>\n' +
+                            '</div></div></div>')
+                    })
                 })
             }
         })
@@ -131,12 +151,18 @@
             success: function (data) {
                 $(".tab-pane#following #user_following_tab").empty();
                 $.each(data, function (i) {
-                    $(".tab-pane#following #user_following_tab").append('<div class="single_user"><div class="card border-dark mb-3" style="min-width: 16rem;">\n' +
-                        '  <div class="card-body text-dark">\n' +
-                        '    <a href="/profile/users/'+ data[i].id +'" ><h5 class="card-title">' + data[i].name + '</h5></a>\n' +
-                        '  </div>\n' +
-                        '</div></div>')
-
+                    $.get("/api/v1/users/" + data[i].id+ "/avatar_image_thumbnail", function (image, status) {
+                        var link
+                        if (image.link != null)
+                            link = image.link
+                        else
+                            link = "http://www.gravatar.com/avatar?s=50"
+                        $(".tab-pane#following #user_following_tab").append('<div class="single_user"><div class="card border-dark mb-3" style="min-width: 16rem;">\n' +
+                            '  <div class="card-body text-dark">\n' +
+                            '    <div><img src="'+ link +'" style="border-radius: 50%"/></div><div><a href="/profile/users/' + data[i].id + '" ><h5 class="card-title">' + data[i].name + '</h5></a>\n' +
+                            '  </div>\n' +
+                            '</div></div></div>')
+                    })
                 })
             }
         })
