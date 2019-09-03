@@ -10,7 +10,7 @@ module Api
 
       def show
         user = User.find(user_params[:id])
-        render json: {status: 'SUCCESS', message: 'Specific user details retrieved', data: user}, status: :ok
+        render json: {user: user}, status: :ok
       end
 
       def delete_image_attachment

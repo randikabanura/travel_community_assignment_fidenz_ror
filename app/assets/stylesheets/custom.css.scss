@@ -164,7 +164,7 @@ footer p{
   margin-top: 15px;
 }
 
-#followers_tab{
+#followers_tab, #user_followers_tab{
   min-height: 100vh;
   background-color: lightgray;
   margin: 0 auto 50px auto;
@@ -176,7 +176,7 @@ footer p{
   align-content: flex-start;
 }
 
-#following_tab{
+#following_tab, #user_following_tab{
   min-height: 100vh;
   background-color: lightgray;
   margin: 0 auto 50px auto;
@@ -186,4 +186,20 @@ footer p{
   justify-content: space-between;
   flex-wrap: wrap;
   align-content: flex-start;
+}
+
+.container#user_profile{
+  min-height: 100vh;
+  background-color: lightgray;
+  margin: 0 auto 50px auto;
+  padding: 50px;
+}
+.container#user_profile .field.form-group{
+  display: flex;
+  align-items: baseline;
+}
+
+.container#user_profile.form-group.picture{
+  display: flex;
+  flex-direction: column;
 }
