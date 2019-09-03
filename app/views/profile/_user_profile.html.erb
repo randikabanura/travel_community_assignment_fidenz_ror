@@ -1,0 +1,46 @@
+<div class="container" id="user_profile">
+<div class="form-group picture">
+  <%= image_tag user_avatar(user,150), class: "rounded" %>
+</div>
+
+  <div class="field form-group">
+    <div class="col-4">
+      <%=label_tag("Name") %>
+    </div>
+    <div class="col-8">
+      <%= simple_format(user.name.capitalize) %>
+    </div>
+  </div>
+
+  <div class="field form-group">
+    <div class="col-4">
+      <%=label_tag("Email") %>
+    </div>
+    <div class="col-8">
+      <%= simple_format(user.email) %>
+    </div>
+  </div>
+
+  <div class="field form-group">
+    <div class="col-4">
+      <%=label_tag("Gender") %>
+    </div>
+    <div class="col-8">
+      <%=   user.gender =="m" ? simple_format("Male") : simple_format("Female") %>
+    </div>
+  </div>
+
+  <div class="field form-group">
+    <div class="col-4">
+      <%=label_tag("Date of birthday:") %>
+    </div>
+    <div class="col-8">
+      <%= simple_format(user.dob) %>
+    </div>
+  </div>
+  <div class="field form-group images" style="display: flex; flex-direction: row">
+  <% (0...user.images.count).each do |image| %>
+    <%= image_tag(user.thumbnail(image)) %>
+  <% end %>
+  </div>
+</div>
