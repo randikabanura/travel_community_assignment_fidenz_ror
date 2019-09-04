@@ -5,8 +5,11 @@
       <div>
         <%= image_tag user_avatar(resource, 150), class: "rounded" %>
       </div>
-      <div>
-        <%= f.file_field :avatar %>
+      <div style="margin-top: 10px">
+        <span class="btn btn-large btn-warning btn-file">
+          Upload picture
+          <%= f.file_field :avatar %>
+        </span>
       </div>
     </div>
 
@@ -80,15 +83,20 @@
       </div>
     </div>
 
-    <div class="field form-group">
-      <%= f.label :images %>
-      <%= f.file_field :images, multiple: true %>
+    <%= f.label :photos_of_you %>
+    <div class="image_section">
+      <div class="field form-group">
+        <span class="btn btn-large btn-warning btn-file user_images">
+          Add images
+        <%= f.file_field :images, multiple: true %>
+        </span>
+      </div>
+      <div class="field form-group images" style="display: flex; flex-direction: row; padding: 10px">
+        <div style="display: flex">
+        <%= render partial: 'myprofile/images_edit_profile' %>
+        </div>
+      </div>
     </div>
-
-    <div class="field form-group images" style="display: flex; flex-direction: row">
-      <%= render partial: 'myprofile/images_edit_profile' %>
-    </div>
-
     <div class="actions form-group">
       <%= f.submit "Update", class: "btn btn-primary" %>
     </div>

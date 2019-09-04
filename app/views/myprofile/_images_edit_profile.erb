@@ -1,4 +1,6 @@
 <% (0...current_user.images.count).each do |image| %>
+
   <%= image_tag(current_user.thumbnail(image)) %>
-  <%= link_to "Remove", delete_image_attachment_api_v1_user_path(current_user.images[image]), method: :delete, remote: true, data: {confirm: "Are you sure?"} %>
+  <%= link_to image_tag("times-circle-regular.png", size: '20x20'), delete_image_attachment_api_v1_user_path(current_user.images[image]), style: 'margin-top:-10px; margin-left:-10px', method: :delete, remote: true, data: {confirm: "Are you sure?"}%>
+
 <% end %>
