@@ -1,4 +1,12 @@
 GIT
+  remote: https://github.com/faker-ruby/faker.git
+  revision: 4247080eb5ea1856a12860eedb08cf36ef8e2219
+  branch: master
+  specs:
+    faker (2.2.1)
+      i18n (~> 1.6.0)
+
+GIT
   remote: https://github.com/tcocca/acts_as_follower.git
   revision: c5ac7b9601c4af01eb4d9112330b27be4d694ecc
   branch: master
@@ -253,6 +261,7 @@ DEPENDENCIES
   coffee-rails (~> 4.2)
   devise
   dotenv-rails
+  faker!
   font-awesome-rails
   gravatar_image_tag (~> 1.2)
   hirb
