@@ -2,6 +2,7 @@ class User < ApplicationRecord
 
   validate :image_type
   validates_length_of :images, maximum: 5
+
   def thumbnail input
     return self.images[input].variant(resize: '200x200!').processed
   end
@@ -20,11 +21,13 @@ class User < ApplicationRecord
 
   def image_type
     if images.attached? == true
-      images.each do |image|
-        if !image.content_type.in?(%('image/jpeg image/png'))
-          errors.add(:images, 'needs to be a JPEG or PNG')
+        images.each do |image|
+          if !image.content_type.in?(%('image/jpeg image/png'))
+            errors.add(:images, 'needs to be a JPEG or PNG')
+          end
         end
-      end
     end
   end
+
+
 end
