@@ -249,3 +249,19 @@ footer p{
   cursor: inherit;
   display: block;
 }
+
+.image_section{
+  background-color: #EFEFEF;
+}
+.image_section > div:nth-child(1){
+  display: flex;
+  justify-content: flex-end;
+}
+
+.image_section > div:nth-child(1) > span{
+  margin-right: 20px;
+}
+
+.btn-file.user_images  label{
+  margin: 0
+}
