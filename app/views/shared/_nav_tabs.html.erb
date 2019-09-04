@@ -14,10 +14,11 @@
   <li class="nav-item">
     <a class="nav-link" id="3" data-toggle="tab" href="#following">Following</a>
   </li>
+  <div class="stylediv"></div>
   <% if defined? user %>
-    <li class="nav-item follow_btn-front">
+    <div class="nav-item follow_btn-front">
     <button type="button" id="<%= user.id %>" data-userid="<%= current_user.id %>" class="btn btn-primary submit user_btn_front"></button>
-    </li>
+    </div>
   <% end %>
 </ul>
 <div class="tab-content" id="tabs">
@@ -52,9 +53,9 @@
     };
 
     <%if defined? user %>
-    activeTab('user_profile');
+      activeTab('user_profile');
     <% else %>
-    activeTab('edit_profile');
+      activeTab('edit_profile');
     <% end %>
 
     function loadDataFollowers() {
@@ -84,7 +85,7 @@
                                 else
                                     link = "http://www.gravatar.com/avatar?s=50"
                                 $(".tab-pane#followers #followers_tab").append('<div class="single_user"><div class="card border-dark mb-3" style="min-width: 16rem;">\n' +
-                                    '  <div class="card-body text-dark" data-userid="<%= current_user.id %>">\n' +
+                                    '  <div class="card-body text-dark image_card" data-userid="<%= current_user.id %>">\n' +
                                     '      <div><img src="' + link + '" style="border-radius: 50%"/></div><div><a href="/profile/users/' + data[i].id + '" ><h5 class="card-title">' + data[i].name + '</h5></a>\n' +
                                     '    <button type="button" id=' + data[i].id + ' class="btn btn-primary submit user_btn">' + value + '</button>\n' +
                                     '  </div>\n' +
@@ -112,7 +113,7 @@
                             else
                                 link = "http://www.gravatar.com/avatar?s=50"
                             $(".tab-pane#followers #user_followers_tab").append('<div class="single_user"><div class="card border-dark mb-3" style="min-width: 16rem;">\n' +
-                                '  <div class="card-body text-dark">\n' +
+                                '  <div class="card-body text-dark image_card">\n' +
                                 '     <div><img src="' + link + '" style="border-radius: 50%"/></div><div><a href="/profile/users/' + data[i].id + '" ><h5 class="card-title">' + data[i].name + '</h5></a>\n' +
                                 '  </div>\n' +
                                 '</div></div></div>')
@@ -138,7 +139,7 @@
                         else
                             link = "http://www.gravatar.com/avatar?s=50"
                         $(".tab-pane#following #following_tab").append('<div class="single_user"><div class="card border-dark mb-3" style="min-width: 16rem;">\n' +
-                            '  <div class="card-body text-dark" data-userid="<%= current_user.id %>">\n' +
+                            '  <div class="card-body text-dark image_card" data-userid="<%= current_user.id %>">\n' +
                             '     <div><img src="' + link + '" style="border-radius: 50%"/></div><div><a href="/profile/users/' + data[i].id + '" ><h5 class="card-title">' + data[i].name + '</h5></a>\n' +
                             '    <button type="button" id=' + data[i].id + ' class="btn btn-primary submit user_btn" data-followingbtn="1">Unfollow</button>\n' +
                             '  </div>\n' +
@@ -164,7 +165,7 @@
                         else
                             link = "http://www.gravatar.com/avatar?s=50"
                         $(".tab-pane#following #user_following_tab").append('<div class="single_user"><div class="card border-dark mb-3" style="min-width: 16rem;">\n' +
-                            '  <div class="card-body text-dark">\n' +
+                            '  <div class="card-body text-dark image_card">\n' +
                             '    <div><img src="' + link + '" style="border-radius: 50%"/></div><div><a href="/profile/users/' + data[i].id + '" ><h5 class="card-title">' + data[i].name + '</h5></a>\n' +
                             '  </div>\n' +
                             '</div></div></div>')
@@ -212,8 +213,6 @@
     });
 
     function loadFollowStatus() {
-        console.log($('.user_btn_front').attr("data-userid"))
-        console.log($('.user_btn_front').attr("id"))
         $.ajax({
             type: "POST",
             url: "http://localhost:3000/api/v1/isfollowing",

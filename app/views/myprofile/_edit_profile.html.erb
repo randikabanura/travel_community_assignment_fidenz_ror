@@ -5,8 +5,11 @@
       <div>
         <%= image_tag user_avatar(resource, 150), class: "rounded" %>
       </div>
-      <div>
+      <div style="margin-top: 10px">
+        <span class="btn btn-large btn-warning btn-file">
+          Upload picture
         <%= f.file_field :avatar %>
+        </span>
       </div>
     </div>
 

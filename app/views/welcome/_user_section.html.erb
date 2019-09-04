@@ -26,10 +26,8 @@
     }
     var url = "/api/v1/users";
     $.get(url, function (data, status) {
-
         $('#user_list').empty();
         $.each(data.data, function (i, item) {
-            console.log(i+" djivovzj");
             isfollowing($('#user_list').attr("data-userid"), item)
         });
     });

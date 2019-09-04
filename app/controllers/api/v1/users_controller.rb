@@ -1,7 +1,6 @@
 module Api
   module V1
     class UsersController < ApplicationController
-      skip_before_action :authenticate_user!, only: [:index, :show, :avatar_image_thumbnail]
 
       def index
          users = User.order("RANDOM()").limit(5)

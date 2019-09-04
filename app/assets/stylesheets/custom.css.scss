@@ -132,9 +132,14 @@ footer p{
   align-items: center;
   justify-content: space-around;
 }
+
 .user.user_list{
   width: 225px;
   height: 100px;
+}
+
+#user_list .single_user{
+  max-width: 18rem;
 }
 
 .edit_profile.container{
@@ -156,6 +161,7 @@ footer p{
 
 .nav.nav-tabs.container{
   margin-top: 50px;
+  display: flex;
 }
 
 .form-group select{
@@ -171,9 +177,12 @@ footer p{
   padding: 50px;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
   flex-wrap: wrap;
   align-content: flex-start;
+}
+
+.tab-pane .single_user{
+  margin-right:20px;
 }
 
 #following_tab, #user_following_tab{
@@ -183,7 +192,6 @@ footer p{
   padding: 50px;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
   flex-wrap: wrap;
   align-content: flex-start;
 }
@@ -208,4 +216,36 @@ footer p{
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+}
+.image_card > div:nth-child(2){
+  padding-left: 20px;
+}
+
+.user_btn_front{
+  margin-top: 0;
+}
+
+.stylediv{
+  flex-grow: 1;
+}
+
+.btn-file {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-file input[type=file] {
+  position: absolute;
+  top: 0;
+  right: 0;
+  min-width: 100%;
+  min-height: 100%;
+  font-size: 100px;
+  text-align: right;
+  filter: alpha(opacity=0);
+  opacity: 0;
+  outline: none;
+  background: white;
+  cursor: inherit;
+  display: block;
 }
