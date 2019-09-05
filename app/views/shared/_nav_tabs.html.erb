@@ -84,7 +84,7 @@
         <% if defined? user %>
         loadUserDataFollowers(<%= user.id %>);
         <% else %>
-        loadDataFollowers();
+        loadDataFollowers(<%= current_user.id %>);
         <% end %>
     });
 
@@ -92,7 +92,7 @@
         <% if defined? user %>
         loadUserDataFollowing(<%= user.id %>);
         <% else %>
-        loadDataFollowing();
+        loadDataFollowing(<%= current_user.id %>);
         <% end %>
     });
 
@@ -116,6 +116,7 @@
             }
         })
     }
+
 <% if defined? user%>
     loadFollowStatus()
   <% end %>

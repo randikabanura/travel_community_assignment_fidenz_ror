@@ -45,7 +45,8 @@ $(function () {
                 follow_user_id: $(this).attr("id")
             }, function (data, status) {
                 if(($(btn).data("followingbtn"))) {
-                    loadDataFollowing()
+                    alert($(btn).data("userid"))
+                    loadDataFollowing($(btn).data("userid"))
                 }else {
                     $(btn).text("Follow");
                 }
