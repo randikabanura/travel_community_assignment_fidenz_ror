@@ -58,122 +58,6 @@
       activeTab('edit_profile');
     <% end %>
 
-    function loadDataFollowers() {
-        var value;
-        Rails.ajax({
-            url: "/api/v1/follows/" + $('#followers_tab').attr("data-userid") + "/allfollowers",
-            type: "GET",
-            success: function (data) {
-                $(".tab-pane#followers #followers_tab").empty()
-                $.each(data, function (i) {
-                    $.ajax({
-                        type: "POST",
-                        url: "/api/v1/isfollowing",
-                        data: {
-                            current_user_id: $('#followers_tab').attr("data-userid"),
-                            follow_user_id: data[i].id
-                        },
-                        success: function (data2) {
-                            if (data2.data == true)
-                                value = "Unfollow"
-                            else
-                                value = "Follow"
-                            $.get("/api/v1/users/" + data[i].id + "/avatar_image_thumbnail", function (image, status) {
-                                var link
-                                if (image.link != null)
-                                    link = image.link
-                                else
-                                    link = "http://www.gravatar.com/avatar?s=50"
-                                $(".tab-pane#followers #followers_tab").append('<div class="single_user"><div class="card border-dark mb-3" style="min-width: 16rem;">\n' +
-                                    '  <div class="card-body text-dark image_card" data-userid="<%= current_user.id %>">\n' +
-                                    '      <div><img src="' + link + '" style="border-radius: 50%"/></div><div><a href="/profile/users/' + data[i].id + '" ><h5 class="card-title">' + data[i].name + '</h5></a>\n' +
-                                    '    <button type="button" id=' + data[i].id + ' class="btn btn-primary submit user_btn">' + value + '</button>\n' +
-                                    '  </div>\n' +
-                                    '</div></div></div>')
-                            })
-                        }
-                    })
-                })
-            }
-        })
-    }
-
-    function loadUserDataFollowers() {
-        var value;
-        Rails.ajax({
-            url: "/api/v1/follows/" + <%= user.id if defined? user%> +"/allfollowers",
-            type: "GET",
-            success: function (data) {
-                $(".tab-pane#followers #user_followers_tab").empty()
-                $.each(data, function (i) {
-                        $.get("/api/v1/users/" + data[i].id + "/avatar_image_thumbnail", function (image, status) {
-                            var link
-                            if (image.link != null)
-                                link = image.link
-                            else
-                                link = "http://www.gravatar.com/avatar?s=50"
-                            $(".tab-pane#followers #user_followers_tab").append('<div class="single_user"><div class="card border-dark mb-3" style="min-width: 16rem;">\n' +
-                                '  <div class="card-body text-dark image_card">\n' +
-                                '     <div><img src="' + link + '" style="border-radius: 50%"/></div><div><a href="/profile/users/' + data[i].id + '" ><h5 class="card-title">' + data[i].name + '</h5></a>\n' +
-                                '  </div>\n' +
-                                '</div></div></div>')
-                        })
-                    }
-                )
-            }
-        })
-    }
-
-    function loadDataFollowing() {
-        var value;
-        Rails.ajax({
-            url: "/api/v1/follows/" + $('#following_tab').attr("data-userid") + "/allfollowing",
-            type: "GET",
-            success: function (data) {
-                $(".tab-pane#following #following_tab").empty();
-                $.each(data, function (i) {
-                    $.get("/api/v1/users/" + data[i].id + "/avatar_image_thumbnail", function (image, status) {
-                        var link
-                        if (image.link != null)
-                            link = image.link
-                        else
-                            link = "http://www.gravatar.com/avatar?s=50"
-                        $(".tab-pane#following #following_tab").append('<div class="single_user"><div class="card border-dark mb-3" style="min-width: 16rem;">\n' +
-                            '  <div class="card-body text-dark image_card" data-userid="<%= current_user.id %>">\n' +
-                            '     <div><img src="' + link + '" style="border-radius: 50%"/></div><div><a href="/profile/users/' + data[i].id + '" ><h5 class="card-title">' + data[i].name + '</h5></a>\n' +
-                            '    <button type="button" id=' + data[i].id + ' class="btn btn-primary submit user_btn" data-followingbtn="1">Unfollow</button>\n' +
-                            '  </div>\n' +
-                            '</div></div></div>')
-                    })
-                })
-            }
-        })
-    }
-
-    function loadUserDataFollowing() {
-        var value;
-        Rails.ajax({
-            url: "/api/v1/follows/" + <%= user.id if defined? user%> +"/allfollowing",
-            type: "GET",
-            success: function (data) {
-                $(".tab-pane#following #user_following_tab").empty();
-                $.each(data, function (i) {
-                    $.get("/api/v1/users/" + data[i].id + "/avatar_image_thumbnail", function (image, status) {
-                        var link
-                        if (image.link != null)
-                            link = image.link
-                        else
-                            link = "http://www.gravatar.com/avatar?s=50"
-                        $(".tab-pane#following #user_following_tab").append('<div class="single_user"><div class="card border-dark mb-3" style="min-width: 16rem;">\n' +
-                            '  <div class="card-body text-dark image_card">\n' +
-                            '    <div><img src="' + link + '" style="border-radius: 50%"/></div><div><a href="/profile/users/' + data[i].id + '" ><h5 class="card-title">' + data[i].name + '</h5></a>\n' +
-                            '  </div>\n' +
-                            '</div></div></div>')
-                    })
-                })
-            }
-        })
-    }
 
     $('.user_btn_front').on('click',function (e) {
         let btn = this
@@ -198,7 +82,7 @@
 
     $('.nav-item #2').on('click', function () {
         <% if defined? user %>
-        loadUserDataFollowers()
+        loadUserDataFollowers(<%= user.id %>);
         <% else %>
         loadDataFollowers();
         <% end %>
@@ -206,7 +90,7 @@
 
     $('.nav-item #3').on('click', function () {
         <% if defined? user %>
-        loadUserDataFollowing()
+        loadUserDataFollowing(<%= user.id %>);
         <% else %>
         loadDataFollowing();
         <% end %>
@@ -222,10 +106,12 @@
             },
             success: function (data) {
                 var value
-              if(data.data ==true)
-                  value ="Unfollow"
-                else
-                    value="Follow"
+              if(data.data ==true) {
+                  value = "Unfollow"
+              }
+                else {
+                  value = "Follow"
+              }
                 $('.user_btn_front').text(value)
             }
         })
