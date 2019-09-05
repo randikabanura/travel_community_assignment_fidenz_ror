@@ -25,10 +25,36 @@ $(document).on 'turbolinks:load', ->
                     $(\'#user_list\').append(\'<div class="single_user"><div class="card border-dark mb-3" style="min-width: 16rem;">\\n\' +
                         \'  <div class="card-body text-dark image_card" data-userid="\'+ current_user_id +\'">\\n\' +
                         \'     <div><img src="\' + link + \'" style="border-radius: 50%"/></div><div><a href="/profile/users/\' + follow_user.id + \'" ><h5 class="card-title">\' + follow_user.name + \'</h5></a>\\n\' +
-                        \'    <button type="button" id=\' + follow_user.id + \' class="btn btn-primary submit user_btn">\' + value + \'</button>\\n\' +
+                        \'    <button type="button" id=\' + follow_user.id + \' class="btn btn-primary submit user_btn" data-remote="true" data-method="post" data-url="/api/v1/follows" data-params="current_user_id=\'+ current_user_id +\'&follow_user_id=\'+ follow_user.id +\'">\' + value + \'</button>\\n\' +
                         \'  </div>\\n\' +
                         \'</div></div></div>\')
                 })
+            }, function() {
+              var u_btn = document.getElementsByClassName(\'user_btn\');
+    for(let i of u_btn){
+        u_btn[i].addEventListener(\'ajax:success\', function (event) {
+            alert("asfyugauifa");
+            if ($(this).innerText == "Follow") {
+                $.post("/api/v1/follows", {
+                    current_user_id: $(this).parent().parent().attr("data-userid"),
+                    follow_user_id: $(this).attr("id")
+                }, function (data, status) {
+                    $(this).text("Unfollow");
+                })
+            } else if (btn.innerText == "Unfollow") {
+                $.delete("/api/v1/follows/" + Math.random() * 10, {
+                    current_user_id: $(this).parent().parent().attr("data-userid"),
+                    follow_user_id: $(this).attr("id")
+                }, function (data, status) {
+                    if (($(this).data("followingbtn"))) {
+                        loadDataFollowing($(this).data("userid"))
+                    } else {
+                        $(this).text("Follow");
+                    }
+                })
+            }
+        })
+    }
             })
         }
     }
