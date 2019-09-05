@@ -16,8 +16,8 @@
   </li>
   <div class="stylediv"></div>
   <% if defined? user %>
-    <div class="nav-item follow_btn-front">
-    <button type="button" id="<%= user.id %>" data-userid="<%= current_user.id %>" class="btn btn-primary submit user_btn_front"></button>
+    <div id="follow_btn" class="nav-item follow_btn-front">
+    <button type="button" id="<%= user.id %>" data-userid="<%= current_user.id %> " data-remote="true" data-method="" data-url="" data-params="" class="btn btn-primary submit user_btn_front"></button>
     </div>
   <% end %>
 </ul>
@@ -59,26 +59,26 @@
     <% end %>
 
 
-    $('.user_btn_front').on('click',function (e) {
-        let btn = this
-        console.log(btn.innerText)
-        e.preventDefault()
-        if(btn.innerText == "Follow") {
-            $.post("/api/v1/follows", {
-                current_user_id: $(this).attr("data-userid"),
-                follow_user_id: $(this).attr("id")
-            }, function (data, status) {
-                $(btn).text("Unfollow");
-            })
-        }else if(btn.innerText == "Unfollow"){
-            $.delete("/api/v1/follows/"+Math.random()*10, {
-                current_user_id: $(this).attr("data-userid"),
-                follow_user_id: $(this).attr("id")
-            }, function (data, status) {
-                    $(btn).text("Follow");
-            })
-        }
-    })
+    // $('.user_btn_front').on('click',function (e) {
+    //     let btn = this
+    //     console.log(btn.innerText)
+    //     e.preventDefault()
+    //     if(btn.innerText == "Follow") {
+    //         $.post("/api/v1/follows", {
+    //             current_user_id: $(this).attr("data-userid"),
+    //             follow_user_id: $(this).attr("id")
+    //         }, function (data, status) {
+    //             $(btn).text("Unfollow");
+    //         })
+    //     }else if(btn.innerText == "Unfollow"){
+    //         $.delete("/api/v1/follows/"+Math.random()*10, {
+    //             current_user_id: $(this).attr("data-userid"),
+    //             follow_user_id: $(this).attr("id")
+    //         }, function (data, status) {
+    //                 $(btn).text("Follow");
+    //         })
+    //     }
+    // })
 
     $('.nav-item #2').on('click', function () {
         <% if defined? user %>
@@ -97,6 +97,7 @@
     });
 
     function loadFollowStatus() {
+
         $.ajax({
             type: "POST",
             url: "http://localhost:3000/api/v1/isfollowing",
@@ -105,19 +106,46 @@
                 follow_user_id: $('.user_btn_front').attr("id")
             },
             success: function (data) {
-                var value
-              if(data.data ==true) {
-                  value = "Unfollow"
-              }
-                else {
-                  value = "Follow"
-              }
-                $('.user_btn_front').text(value)
+                var value;
+                if (data.data == true) {
+                    value = "Unfollow";
+                    $('.user_btn_front').attr("data-method", "delete");
+                    $('.user_btn_front').attr("data-url", "/api/v1/follows/" + Math.random() * 10);
+                    $('.user_btn_front').attr("data-params", "current_user_id=" + <%= current_user.id %> +"&follow_user_id=" + <%= user.id %>);
+                } else {
+                    value = "Follow";
+                    $('.user_btn_front').attr("data-method", "post");
+                    $('.user_btn_front').attr("data-url", "/api/v1/follows/");
+                    $('.user_btn_front').attr("data-params", "current_user_id=" + <%= current_user.id %> +"&follow_user_id=" + <%= user.id %>);
+
+                }
+                $('.user_btn_front').text(value);
+                onAjaxSuccess();
             }
         })
     }
 
+    function onAjaxSuccess() {
+
+        $('.user_btn_front')[0].addEventListener('ajax:success',function () {
+
+            if ($('.user_btn_front')[0].innerText== "Follow") {
+                $('.user_btn_front').text("Unfollow");
+                $('.user_btn_front').attr("data-method", "delete");
+                $('.user_btn_front').attr("data-url", "/api/v1/follows/" + Math.random() * 10);
+                $('.user_btn_front').attr("data-params", "current_user_id=" + <%= current_user.id %> +"&follow_user_id=" + <%= user.id %>);
+            } else {
+                $('.user_btn_front').text("Follow");
+                $('.user_btn_front').attr("data-method", "post");
+                $('.user_btn_front').attr("data-url", "/api/v1/follows/");
+                $('.user_btn_front').attr("data-params", "current_user_id=" + <%= current_user.id %> +"&follow_user_id=" + <%= user.id %>);
+            }
+        })
+    }
+
+
+
 <% if defined? user%>
-    loadFollowStatus()
+    loadFollowStatus();
   <% end %>
 </script>
