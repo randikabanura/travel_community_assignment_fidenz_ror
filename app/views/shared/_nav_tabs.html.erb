@@ -111,12 +111,12 @@
                     value = "Unfollow";
                     $('.user_btn_front').attr("data-method", "delete");
                     $('.user_btn_front').attr("data-url", "/api/v1/follows/" + Math.random() * 10);
-                    $('.user_btn_front').attr("data-params", "current_user_id=" + <%= current_user.id %> +"&follow_user_id=" + <%= user.id %>);
+                    $('.user_btn_front').attr("data-params", "current_user_id=" + <%= current_user.id %> +"&follow_user_id=" + $('.user_btn_front').attr("id"));
                 } else {
                     value = "Follow";
                     $('.user_btn_front').attr("data-method", "post");
                     $('.user_btn_front').attr("data-url", "/api/v1/follows/");
-                    $('.user_btn_front').attr("data-params", "current_user_id=" + <%= current_user.id %> +"&follow_user_id=" + <%= user.id %>);
+                    $('.user_btn_front').attr("data-params", "current_user_id=" + <%= current_user.id %> +"&follow_user_id=" + $('.user_btn_front').attr("id"));
 
                 }
                 $('.user_btn_front').text(value);
@@ -133,12 +133,12 @@
                 $('.user_btn_front').text("Unfollow");
                 $('.user_btn_front').attr("data-method", "delete");
                 $('.user_btn_front').attr("data-url", "/api/v1/follows/" + Math.random() * 10);
-                $('.user_btn_front').attr("data-params", "current_user_id=" + <%= current_user.id %> +"&follow_user_id=" + <%= user.id %>);
+                $('.user_btn_front').attr("data-params", "current_user_id=" + <%= current_user.id %> +"&follow_user_id=" + $('.user_btn_front').attr("id"));
             } else {
                 $('.user_btn_front').text("Follow");
                 $('.user_btn_front').attr("data-method", "post");
                 $('.user_btn_front').attr("data-url", "/api/v1/follows/");
-                $('.user_btn_front').attr("data-params", "current_user_id=" + <%= current_user.id %> +"&follow_user_id=" + <%= user.id %>);
+                $('.user_btn_front').attr("data-params", "current_user_id=" + <%= current_user.id %> +"&follow_user_id=" + $('.user_btn_front').attr("id"));
             }
         })
     }
