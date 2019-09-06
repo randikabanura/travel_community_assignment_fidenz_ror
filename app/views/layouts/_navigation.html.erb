@@ -24,7 +24,7 @@
               <%= current_user.name.titlecase %>
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <a class="dropdown-item" href="#">My Trips</a>
+              <%= link_to "My Trips", new_trip_path, class: "dropdown-item" %>
               <%= link_to "My Profile", edit_user_registration_path, class: "dropdown-item" %>
               <a class="dropdown-item" href="#">Messages</a>
               <div class="dropdown-divider"></div>

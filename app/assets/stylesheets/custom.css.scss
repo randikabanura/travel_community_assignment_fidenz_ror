@@ -265,3 +265,31 @@ footer p{
 .btn-file.user_images  label{
   margin: 0
 }
+
+.mytrips{
+  margin: 50px 0;
+  width: 100%;
+  min-height: 100vh;
+  background-color: lightgray;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.mytrips > div:nth-child(1){
+  width: 450px;
+  background-color: #EFEFEF;
+  margin: 20px 0;
+}
+
+.mytrips > div:nth-child(2){
+  width: 600px;
+  background-color: #EFEFEF;
+  margin: 20px 0;
+}
+
+.mytrips .date{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
