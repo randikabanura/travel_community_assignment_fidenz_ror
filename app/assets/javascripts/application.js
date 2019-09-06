@@ -28,31 +28,6 @@ $(function () {
     }, 3000);
 
 
-    $(document).on('click', '.user_btn',function (e) {
-        let btn = this
-        console.log(btn.innerText)
-        e.preventDefault()
-        if(btn.innerText == "Follow") {
-            $.post("/api/v1/follows", {
-                current_user_id: $(this).parent().parent().attr("data-userid"),
-                follow_user_id: $(this).attr("id")
-            }, function (data, status) {
-                $(btn).text("Unfollow");
-            })
-        }else if(btn.innerText == "Unfollow"){
-            $.delete("/api/v1/follows/"+Math.random()*10, {
-                current_user_id: $(this).parent().parent().attr("data-userid"),
-                follow_user_id: $(this).attr("id")
-            }, function (data, status) {
-                if(($(btn).data("followingbtn"))) {
-                    loadDataFollowing()
-                }else {
-                    $(btn).text("Follow");
-                }
-            })
-        }
-    })
-
     jQuery.each( [ "put", "delete" ], function( i, method ) {
         jQuery[ method ] = function( url, data, callback, type ) {
             if ( jQuery.isFunction( data ) ) {

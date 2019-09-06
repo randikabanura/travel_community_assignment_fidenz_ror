@@ -2,7 +2,12 @@ class ProfileController < ApplicationController
   before_action :show, :user_params
 
   def show
-    @user = User.find(params[:id])
+    if current_user.id == params[:id].to_i
+      redirect_to edit_user_registration_path
+    else
+      @user = User.find(params[:id])
+    end
+
   end
 
   private

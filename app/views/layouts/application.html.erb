@@ -1,20 +1,19 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>TravelApp</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+<head>
+  <title>TravelApp</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <%= tag :meta, name: :psj, action: action_name, controller: controller_name %>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <meta name="turbolinks-cache-control" content="no-preview">
+</head>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <meta name="turbolinks-cache-control" content="no-preview">
-  </head>
-
-  <body>
-  <%= render :partial => 'layouts/navigation'%>
+<body class="<%= controller_name %> <%= action_name %>">
+  <%= render :partial => 'layouts/navigation' %>
   <%= render :partial => 'layouts/alerts' %>
-    <%= yield %>
+  <%= yield %>
   <%= render :partial => 'layouts/footer' %>
-
-  </body>
+</body>
 </html>
