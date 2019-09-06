@@ -58,28 +58,6 @@
       activeTab('edit_profile');
     <% end %>
 
-
-    // $('.user_btn_front').on('click',function (e) {
-    //     let btn = this
-    //     console.log(btn.innerText)
-    //     e.preventDefault()
-    //     if(btn.innerText == "Follow") {
-    //         $.post("/api/v1/follows", {
-    //             current_user_id: $(this).attr("data-userid"),
-    //             follow_user_id: $(this).attr("id")
-    //         }, function (data, status) {
-    //             $(btn).text("Unfollow");
-    //         })
-    //     }else if(btn.innerText == "Unfollow"){
-    //         $.delete("/api/v1/follows/"+Math.random()*10, {
-    //             current_user_id: $(this).attr("data-userid"),
-    //             follow_user_id: $(this).attr("id")
-    //         }, function (data, status) {
-    //                 $(btn).text("Follow");
-    //         })
-    //     }
-    // })
-
     $('.nav-item #2').on('click', function () {
         <% if defined? user %>
         loadUserDataFollowers(<%= user.id %>);

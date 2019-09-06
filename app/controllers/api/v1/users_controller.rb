@@ -23,8 +23,11 @@ module Api
       def avatar_image_thumbnail
         image = nil
         user = User.find(user_params[:id])
-        image = url_for(user.avatar.variant(resize: '60x60!')) if user.avatar.attached?
+        if user.avatar.attached? && user.avatar.content_type.in?(%('image/jpeg image/png'))
+          image = url_for(user.avatar.variant(resize: '60x60!'))
+          end
         render json: {link: image}, status: :ok
+
       end
 
       private
