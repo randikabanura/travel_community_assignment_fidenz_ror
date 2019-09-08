@@ -269,7 +269,7 @@ footer p{
 .mytrips{
   margin: 50px 0;
   width: 100%;
-  min-height: 100vh;
+  height: max-content;
   background-color: lightgray;
   display: flex;
   flex-direction: row;
@@ -292,4 +292,15 @@ footer p{
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+}
+
+#trip_list_empty{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  p {
+    font-size: 20px;
+    font-weight: bold;
+  }
 }

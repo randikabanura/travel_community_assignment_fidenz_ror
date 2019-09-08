@@ -1,3 +1,11 @@
+<% if !@my_trips.nil? %>
 <div id="trip_list">
-
+  <% @my_trips.each do |trip| %>
+    <p><%= trip.location %></p>
+  <% end %>
 </div>
+  <% else %>
+  <div id="trip_list_empty">
+    <p>There is not trips available.<br/> Add a trip trip to see it in here</p>
+  </div>
+<% end %>

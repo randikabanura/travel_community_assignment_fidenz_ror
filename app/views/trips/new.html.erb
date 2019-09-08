@@ -1,7 +1,7 @@
 
 <div class="container">
   <div class="mytrips">
-    <%= render :partial => 'list_trip' %>
+    <%= render :partial => 'list_trip', locals: { my_trips: @my_trips } %>
     <%= render :partial => 'form_new_trip', locals: { trip: @trip } %>
   </div>
 </div>
