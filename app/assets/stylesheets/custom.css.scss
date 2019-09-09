@@ -304,3 +304,31 @@ footer p{
     font-weight: bold;
   }
 }
+
+#trip_list{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 20px 0;
+  .card{
+    display: flex;
+    flex-direction: row;
+    border-radius: 5px;
+  }
+}
+
+.trip_card{
+  display: flex;
+  flex-direction: row;
+  width: 22rem;
+  max-height: fit-content;
+  justify-content: space-around;
+  align-items: center;
+  background-color: white;
+  .icon_flag img{
+    height: 30px;
+    width: 40px;
+    filter: invert(0.5);
+  }
+}

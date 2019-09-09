@@ -1,7 +1,17 @@
 <% if !@my_trips.nil? %>
 <div id="trip_list">
   <% @my_trips.each do |trip| %>
-    <p><%= trip.location %></p>
+    <div class="card border-light mb-3">
+    <div class="trip_card card-body text-dark">
+      <div class="icon_flag">
+      <%= image_tag("flag_trip.png") %>
+      </div>
+      <div class="trip_details">
+    <h5 class="card-title"><%= trip.location %></h5>
+      <p><%= trip.date_s %> - <%= trip.date_e %></p>
+      </div>
+    </div>
+    </div>
   <% end %>
 </div>
   <% else %>
