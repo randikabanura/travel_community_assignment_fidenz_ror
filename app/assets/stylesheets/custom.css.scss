@@ -369,3 +369,23 @@ footer p{
 .trip_links{
   cursor: pointer;
 }
+
+#trips .card-body li:nth-child(1) div {
+  display: flex;
+  flex-direction: row;
+}
+
+#trips .card-body{
+  padding: 0;
+}
+
+#trips{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 20px;
+}
+
+#trips .card{
+  height: max-content;
+}

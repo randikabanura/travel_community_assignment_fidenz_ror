@@ -45,7 +45,9 @@
   <% end %>
   <script type="text/javascript">
       $(document).ready(function () {
-          $('.datepicker').datepicker();
+          $('.datepicker').datepicker({
+             format: 'dd/mm/yyyy'
+          });
       });
       function activatePlacesSearch() {
           var input = document.getElementById('search_location');
