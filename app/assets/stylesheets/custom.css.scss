@@ -316,6 +316,21 @@ footer p{
     flex-direction: row;
     border-radius: 5px;
   }
+  a:link {
+    text-decoration: none;
+  }
+
+  a:visited {
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: none;
+  }
+
+  a:active {
+    text-decoration: none;
+  }
 }
 
 .trip_card{
@@ -331,4 +346,26 @@ footer p{
     width: 40px;
     filter: invert(0.5);
   }
+}
+
+.map{
+  width: 100%;
+  height: 500px;
+  background-color: whitesmoke;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  .trip_list_profile{
+    width: 45%;
+    height: 90%;
+  }
+  #map{
+    width: 45% !important;
+    height: 90% !important;
+  }
+}
+
+.trip_links{
+  cursor: pointer;
 }

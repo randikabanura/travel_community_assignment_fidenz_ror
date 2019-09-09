@@ -1,6 +1,9 @@
 class Trip < ApplicationRecord
   validates :location, presence: true
-  validate :image_type
+  validate :image_type, if: :location_changed?
+
+  geocoded_by :location
+  after_validation :geocode
 
   has_many_attached :photos
   belongs_to :user
