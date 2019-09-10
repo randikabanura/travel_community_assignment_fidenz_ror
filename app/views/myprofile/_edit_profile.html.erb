@@ -113,11 +113,19 @@
           <div class="card border-light mb-3">
             <div class="trip_card card-body text-dark">
               <div class="icon_flag">
-                <%= image_tag("flag_trip.png") %>
+                <%= image_tag("flag_trip.png", width: "20px", height: "20px") %>
               </div>
               <div class="trip_details">
                 <h5 class="card-title"><%= current_user.trips[trip].location %></h5>
-                <p><%= current_user.trips[trip].date_s %> - <%= current_user.trips[trip].date_e %></p>
+                <p><%= Time.new(current_user.trips[trip].date_s[6...10], current_user.trips[trip].date_s[3...5], current_user.trips[trip].date_s[0...2]).strftime("%d %b %Y") %>
+                  to <%= Time.new(current_user.trips[trip].date_e[6...10], current_user.trips[trip].date_e[3...5], current_user.trips[trip].date_e[0...2]).strftime("%d %b %Y") %></p>
+              </div>
+              <div>
+                <a href="/trips/<%= current_user.trips[trip].id %>">
+              <button type="button" class="btn btn-default btn-lg">
+                <%= image_tag("arrow-right.png", id: "arrow_icon") %>
+              </button>
+                </a>
               </div>
             </div>
           </div>
