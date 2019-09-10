@@ -1,5 +1,6 @@
 class Trip < ApplicationRecord
   validates :location, presence: true
+  validates_length_of :photos, maximum: 5
   validate :image_type, if: :location_changed?
 
   geocoded_by :location
@@ -13,7 +14,6 @@ class Trip < ApplicationRecord
   def image_type
     if photos.attached? == true
       photos.each do |photo|
-        print "image"
         if !photo.content_type.in?(%('image/jpeg image/png'))
           errors.add(:photos, 'needs to be a JPEG or PNG')
         end

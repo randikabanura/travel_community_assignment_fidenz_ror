@@ -1,33 +1,35 @@
 <div id="trips" data-userid="<%= current_user.id %>">
   <% @trips.each do |trip| %>
-    <div class="card" style="width: 18rem;">
-      <ul class="list-group list-group-flush">
-        <div class="card-body">
-          <li class="list-group-item">
-            <div>
-              <%= image_tag user_avatar(trip.user, 50), class: "rounded-circle" %>
-              <h5 class="card-title"><%= trip.user.name %></h5>
-            </div>
-          </li>
-          <li class="list-group-item">
-            <div>
-              <%= image_tag trip_image(trip), size: "245x125" %>
-            </div>
-          </li>
-          <li class="list-group-item  text-center">
-            <div>
-              <h5 class="card-title" style="margin: auto"><%= trip.location %></h5>
-              <p  style="margin: auto"><%= trip.date_s %> to <%= trip.date_e %></p>
-            </div>
-          </li>
-          <li class="list-group-item  text-center">
-            <div>
-              <p class="card-text" style="margin: auto">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            </div>
-          </li>
-          <!--    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>-->
-        </div>
-      </ul>
-    </div>
+      <div class="card" style="width: 18rem;" id="<%=trip.id %>">
+        <ul class="list-group list-group-flush">
+          <div class="card-body">
+            <li class="list-group-item">
+              <div id="first_item">
+                <%= image_tag user_avatar(trip.user, 50), class: "rounded-circle" %>
+                <a href="/profile/users/<%= trip.user.id %>"><h5 class="card-title"><%= trip.user.name %></h5></a>
+              </div>
+            </li>
+            <li class="list-group-item">
+              <div>
+                <%= image_tag trip_image(trip), size: "245x125" %>
+              </div>
+            </li>
+            <li class="list-group-item  text-center">
+              <div id="location">
+                <h5 class="card-title" style="margin: auto"><%= link_to trip.location, trip_path(trip)%></h5>
+                <p style="margin: auto"><%= Time.new(trip.date_s[6...10], trip.date_s[3...5], trip.date_s[0...2]).strftime("%d %b %Y") %>
+                  to <%= Time.new(trip.date_e[6...10], trip.date_e[3...5], trip.date_e[0...2]).strftime("%d %b %Y") %></p>
+              </div>
+            </li>
+            <li class="list-group-item  text-center">
+              <div>
+                <p class="card-text" style="margin: auto">Some quick example text to build on the card title and make up
+                  the bulk of the card's content.</p>
+              </div>
+            </li>
+            <!--    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>-->
+          </div>
+        </ul>
+      </div>
   <% end %>
 </div>

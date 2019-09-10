@@ -315,6 +315,7 @@ footer p{
     display: flex;
     flex-direction: row;
     border-radius: 5px;
+    cursor: pointer;
   }
   a:link {
     text-decoration: none;
@@ -370,9 +371,16 @@ footer p{
   cursor: pointer;
 }
 
-#trips .card-body li:nth-child(1) div {
+#first_item {
   display: flex;
   flex-direction: row;
+  a{
+    align-self: center;
+    padding-left: 20px;
+  }
+  a:hover, a:active, a:visited, a:link{
+    text-decoration: none;
+  }
 }
 
 #trips .card-body{
@@ -384,8 +392,16 @@ footer p{
   flex-direction: row;
   flex-wrap: wrap;
   padding: 20px;
+  justify-content: space-evenly;
 }
 
 #trips .card{
   height: max-content;
+  margin-bottom: 20px;
+}
+
+#location{
+  a:hover{
+    text-decoration: none;
+  }
 }

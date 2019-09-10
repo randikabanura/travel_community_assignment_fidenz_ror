@@ -53,7 +53,7 @@ $(document).on 'turbolinks:load', ->
 
     var url = "/api/v1/users";
     $.get(url, function (data, status) {
-        $(\'#user_list\').empty();
+        $("#user_list").empty();
         $.each(data.data, function (i, item) {
             isfollowing($(\'#user_list\').attr("data-userid"), item)
         })

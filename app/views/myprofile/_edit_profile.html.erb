@@ -102,6 +102,7 @@
     </div>
   <% end %>
 
+  <% if !current_user.trips.empty? %>
   <p>My Trips</p>
   <div class="map">
     <div class="trip_list_profile">
@@ -128,6 +129,7 @@
     <div id="map">
     </div>
   </div>
+    <% end %>
   <script type="text/javascript">
       $(document).ready(function () {
           $('.datepicker').datepicker()
@@ -145,21 +147,21 @@
 <script>
     $(document).on('turbolinks:load', function() {
         var map = new GMaps({
-            el: '#map',
+            el: document.getElementById('map'),
             lat: 0,
             lng: 0,
         })
-    })
 
-    $('.trip_links').on('click', function () {
-        gMap = new google.maps.Map(document.getElementById('map'));
-        gMap.setZoom(13);      // This will trigger a zoom_changed on the map
-        gMap.setCenter(new google.maps.LatLng($(this).attr("data-lat"), $(this).attr("data-lon")));
-        var myLatlng = new google.maps.LatLng($(this).attr("data-lat"), $(this).attr("data-lon"));
-        var marker = new google.maps.Marker({
-            position: myLatlng,
-            title:"Hello World!"
-        });
-        marker.setMap(gMap);
-    })
+        $('.trip_links').on('click', function () {
+            gMap = new google.maps.Map(document.getElementById('map'));
+            gMap.setZoom(13);      // This will trigger a zoom_changed on the map
+            gMap.setCenter(new google.maps.LatLng($(this).attr("data-lat"), $(this).attr("data-lon")));
+            var myLatlng = new google.maps.LatLng($(this).attr("data-lat"), $(this).attr("data-lon"));
+            var marker = new google.maps.Marker({
+                position: myLatlng,
+                title:"Hello World!"
+            });
+            marker.setMap(gMap);
+        })
+    });
 </script>
