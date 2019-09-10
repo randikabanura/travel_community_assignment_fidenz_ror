@@ -16,6 +16,7 @@ gem 'gravatar_image_tag', '~> 1.2'
 gem 'mini_magick', '~> 4.9', '>= 4.9.5'
 gem 'rack-cors'
 gem 'randumb'
+gem 'geocoder'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.3'
 # Use sqlite3 as the database for Active Record
@@ -59,6 +60,7 @@ group :development do
   gem 'web-console', '>= 3.3.0'
   gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'master'
+  gem 'seed_dump'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'

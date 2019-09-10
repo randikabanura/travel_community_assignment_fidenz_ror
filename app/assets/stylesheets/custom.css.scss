@@ -265,3 +265,191 @@ footer p{
 .btn-file.user_images  label{
   margin: 0
 }
+
+.mytrips{
+  margin: 50px 0;
+  width: 100%;
+  height: max-content;
+  background-color: lightgray;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.mytrips > div:nth-child(1){
+  width: 450px;
+  background-color: #EFEFEF;
+  margin: 20px 0;
+}
+
+.mytrips > div:nth-child(2){
+  width: 600px;
+  background-color: #EFEFEF;
+  margin: 20px 0;
+}
+
+.mytrips .date{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+#trip_list_empty{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  p {
+    font-size: 20px;
+    font-weight: bold;
+  }
+}
+
+#trip_list{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 20px 0;
+  .card{
+    display: flex;
+    flex-direction: row;
+    border-radius: 5px;
+    cursor: pointer;
+   #arrow_icon{
+      width: 30px;
+      height: 30px;
+    }
+  }
+  a:link {
+    text-decoration: none;
+  }
+
+  a:visited {
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: none;
+  }
+
+  a:active {
+    text-decoration: none;
+  }
+}
+
+.trip_card{
+  display: flex;
+  flex-direction: row;
+  width: 25rem;
+  max-height: fit-content;
+  justify-content: space-around;
+  align-items: center;
+  background-color: white;
+  .icon_flag img{
+    height: 30px;
+    width: 40px;
+    filter: invert(0.5);
+    margin-right: 20px;
+  }
+}
+
+.map{
+  width: 100%;
+  height: 500px;
+  background-color: whitesmoke;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  .trip_list_profile{
+    width: 45%;
+    height: 90%;
+  }
+  #map{
+    width: 45% !important;
+    height: 90% !important;
+  }
+}
+
+.trip_links{
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+#first_item {
+  display: flex;
+  flex-direction: row;
+  a{
+    align-self: center;
+    padding-left: 20px;
+  }
+  a:hover, a:active, a:visited, a:link{
+    text-decoration: none;
+  }
+}
+
+#trips .card-body{
+  padding: 0;
+}
+
+#trips{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 20px;
+  justify-content: space-evenly;
+}
+
+#trips .card{
+  height: max-content;
+  margin-bottom: 20px;
+}
+
+#location{
+  a:hover{
+    text-decoration: none;
+  }
+}
+
+.trip_show{
+  min-height: 100vh;
+  margin: 50px 0;
+  display: flex;
+  padding: 15px;
+  flex-direction: column;
+  > div{
+    margin-bottom: 15px;
+  }
+  .user_trip{
+    display: flex;
+    flex-direction: row;
+  }
+  .checked{
+    color: orange;
+  }
+  #big_image img{
+    width: 100%;
+    height: 450px;
+  }
+  .breadcrumb{
+    padding: 0;
+    background-color: transparent;
+  }
+  #name_under_photo{
+    border-left: 5px solid #666666;
+    h4{
+      font-weight: 500;
+      margin-left: 20px;
+    }
+  }
+  #name_date{
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+    p{
+      margin-top: -10px;
+    }
+  }
+}

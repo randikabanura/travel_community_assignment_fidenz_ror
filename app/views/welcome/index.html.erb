@@ -1,5 +1,5 @@
 <div class="container homepage">
-  <%= render :partial => 'welcome/trip_section' %>
+  <%= render :partial => 'welcome/trip_section', locals: {trips: @trips} %>
  <div id="users">
    <h3>Users List</h3>
    <%= render :partial => 'welcome/user_section'%>

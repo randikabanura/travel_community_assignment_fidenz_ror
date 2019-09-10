@@ -17,6 +17,7 @@ class User < ApplicationRecord
   acts_as_follower
   has_one_attached :avatar
   has_many_attached :images
+  has_many :trips
 
   private
 

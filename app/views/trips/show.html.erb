@@ -1,0 +1,50 @@
+<div class="container">
+  <div class="trip_show">
+    <div>
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="/">Home</a></li>
+      <li class="breadcrumb-item active" aria-current="page"><%= @trip.location.titleize %></li>
+    </ol>
+    </div>
+    <div class="user_trip">
+      <div>
+        <%= image_tag user_avatar(@trip.user, 50), class: "rounded-circle" %>
+      </div>
+          <div id="name_date">
+            <a href="/profile/users/<%= @trip.user.id %>"><h5 class="card-title"><%= @trip.user.name %></h5></a>
+            <p><%= Time.new(@trip.created_at.to_s[0...4],@trip.created_at.to_s[5...7], @trip.created_at.to_s[8...10]).strftime("%d %b %Y") %></p>
+          </div>
+
+    </div>
+    <div>
+      <h2><%= @trip.location.titleize %></h2>
+    </div>
+
+    <div>
+      <span class="fa fa-star checked"></span>
+      <span class="fa fa-star checked"></span>
+      <span class="fa fa-star checked"></span>
+      <span class="fa fa-star checked"></span>
+      <span class="fa fa-star checked"></span>
+    </div>
+
+    <div id="big_image">
+      <%= image_tag trip_image(@trip) %>
+    </div>
+
+    <div id="name_under_photo">
+      <h4>Samaria Gorge</h4>
+    </div>
+
+    <div id="description">
+      <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ip sum has been the
+        industry's standard dummy text ever since the 1500s, when an unk- nown printer took a galley of type and
+        scrambled it to make a type specimen book.</br></br>
+
+        It has survived not only five centuries, but also the leap into electronic typesetting, remaining
+        essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem
+        Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions
+        of Lorem Ipsum.</p>
+    </div>
+  </div>
+</div>

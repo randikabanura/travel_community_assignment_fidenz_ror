@@ -101,10 +101,48 @@
       <%= f.submit "Update", class: "btn btn-primary" %>
     </div>
   <% end %>
+
+  <% if !current_user.trips.empty? %>
+  <p>My Trips</p>
+  <div class="map">
+    <div class="trip_list_profile">
+      <div id="trip_list">
+        <% (0...3).each do |trip| %>
+          <% if !current_user.trips[trip].nil? %>
+            <a class="trip_links"  data-lat="<%= current_user.trips[trip].latitude%>" data-lon="<%= current_user.trips[trip].longitude%>">
+          <div class="card border-light mb-3">
+            <div class="trip_card card-body text-dark">
+              <div class="icon_flag">
+                <%= image_tag("flag_trip.png", width: "20px", height: "20px") %>
+              </div>
+              <div class="trip_details">
+                <h5 class="card-title"><%= current_user.trips[trip].location %></h5>
+                <p><%= Time.new(current_user.trips[trip].date_s[6...10], current_user.trips[trip].date_s[3...5], current_user.trips[trip].date_s[0...2]).strftime("%d %b %Y") %>
+                  to <%= Time.new(current_user.trips[trip].date_e[6...10], current_user.trips[trip].date_e[3...5], current_user.trips[trip].date_e[0...2]).strftime("%d %b %Y") %></p>
+              </div>
+              <div>
+                <a href="/trips/<%= current_user.trips[trip].id %>">
+              <button type="button" class="btn btn-default btn-lg">
+                <%= image_tag("arrow-right.png", id: "arrow_icon") %>
+              </button>
+                </a>
+              </div>
+            </div>
+          </div>
+            </a>
+            <% end %>
+        <% end %>
+      </div>
+    </div>
+    <div id="map">
+    </div>
+  </div>
+    <% end %>
   <script type="text/javascript">
       $(document).ready(function () {
           $('.datepicker').datepicker()
       });
+
   </script>
   <!--<h3>Cancel my account</h3>-->
 
@@ -112,3 +150,26 @@
 
 <%#= link_to "Back", :back %>
 </div>
+
+<script src="http://maps.google.com/maps/api/js"></script>
+<script>
+    $(document).on('turbolinks:load', function() {
+        var map = new GMaps({
+            el: document.getElementById('map'),
+            lat: 0,
+            lng: 0,
+        })
+
+        $('.trip_links').on('click', function () {
+            gMap = new google.maps.Map(document.getElementById('map'));
+            gMap.setZoom(13);      // This will trigger a zoom_changed on the map
+            gMap.setCenter(new google.maps.LatLng($(this).attr("data-lat"), $(this).attr("data-lon")));
+            var myLatlng = new google.maps.LatLng($(this).attr("data-lat"), $(this).attr("data-lon"));
+            var marker = new google.maps.Marker({
+                position: myLatlng,
+                title:"Hello World!"
+            });
+            marker.setMap(gMap);
+        })
+    });
+</script>
