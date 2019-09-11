@@ -21,5 +21,9 @@ Rails.application.routes.draw do
       post '/isfollowing', to: "follows#isfollowing?"
     end
   end
-  resources :trips
+  resources :trips do
+    member do
+      delete :delete_image_attachment
+    end
+  end
 end

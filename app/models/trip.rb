@@ -3,6 +3,9 @@ class Trip < ApplicationRecord
   validates_length_of :photos, maximum: 5
   validate :image_type, if: :location_changed?
 
+  def thumbnail input
+    return self.photos[input].variant(resize: '100x100!').processed
+  end
   geocoded_by :location
   after_validation :geocode
 
