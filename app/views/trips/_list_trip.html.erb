@@ -8,7 +8,9 @@
       </div>
       <div class="trip_details">
     <h5 class="card-title"><%= link_to trip.location, trip_path(trip) %></h5>
-      <p><%= trip.date_s %> - <%= trip.date_e %></p>
+      <p><%= Time.new(trip.date_s[6...10], trip.date_s[3...5], trip.date_s[0...2]).strftime("%d %b %Y") %>
+         to <%= Time.new(trip.date_e[6...10], trip.date_e[3...5], trip.date_e[0...2]).strftime("%d %b %Y") %></p>
+        <%= link_to "edit", edit_trip_path(trip), remote: true %>
       </div>
     </div>
     </div>
@@ -19,3 +21,12 @@
     <p>There is not trips available.<br/> Add a trip trip to see it in here</p>
   </div>
 <% end %>
+
+<script>
+    $(document).on('turbolinks:load', function() {
+      $('.card').on('click', function () {
+          // $(this).children('#hidden_link').click();
+          // console.log("egsuig")
+      })
+    })
+</script>

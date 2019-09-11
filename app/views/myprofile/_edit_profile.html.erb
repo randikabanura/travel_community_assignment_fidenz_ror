@@ -1,6 +1,6 @@
 <div class="container edit_profile">
 
-  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: {method: :put}) do |f| %>
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: {method: :put} ) do |f| %>
     <div class="form-group picture">
       <div>
         <%= image_tag user_avatar(resource, 150), class: "rounded" %>
@@ -8,11 +8,13 @@
       <div style="margin-top: 10px">
         <span class="btn btn-large btn-warning btn-file">
           Upload picture
-          <%= f.file_field :avatar %>
+          <%= f.file_field :avatar, :onchange => "form.submit()" %>
         </span>
       </div>
     </div>
+  <% end %>
 
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: {method: :put}) do |f| %>
     <div class="field form-group">
       <div class="col-4">
         <%= f.label :name %>
@@ -83,24 +85,28 @@
       </div>
     </div>
 
-    <%= f.label :photos_of_you %>
-    <div class="image_section">
-      <div class="field form-group">
-        <span class="btn btn-large btn-warning btn-file user_images">
-          Add images
-        <%= f.file_field :images, multiple: true %>
-        </span>
-      </div>
-      <div class="field form-group images" style="display: flex; flex-direction: row; padding: 10px">
-        <div style="display: flex">
-        <%= render partial: 'myprofile/images_edit_profile' %>
-        </div>
-      </div>
-    </div>
     <div class="actions form-group">
       <%= f.submit "Update", class: "btn btn-primary" %>
     </div>
   <% end %>
+
+  <div id="upload_menu">
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: {method: :put} ) do |f| %>
+  <div class="image_section">
+    <div class="field form-group">
+        <span class="btn btn-large btn-warning btn-file user_images">
+          Add images
+          <%= f.file_field :images, multiple: true, :id => "upload", :onchange => "form.submit()" %>
+        </span>
+    </div>
+    <div class="field form-group images" style="display: flex; flex-direction: row; padding: 10px">
+      <div style="display: flex">
+        <%= render partial: 'myprofile/images_edit_profile' %>
+      </div>
+    </div>
+  </div>
+    <% end %>
+  </div>
 
   <% if !current_user.trips.empty? %>
   <p>My Trips</p>
@@ -138,11 +144,11 @@
     </div>
   </div>
     <% end %>
+
   <script type="text/javascript">
       $(document).ready(function () {
           $('.datepicker').datepicker()
       });
-
   </script>
   <!--<h3>Cancel my account</h3>-->
 
