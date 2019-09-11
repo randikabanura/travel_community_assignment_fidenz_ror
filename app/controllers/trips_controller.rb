@@ -39,7 +39,7 @@ class TripsController < ApplicationController
   end
 
   def delete_image_attachment
-    @image = ActiveStorage::Attachment.find(params[:id])
+    @image = ActiveStorage::Attachment.find(params[:trip_id])
     @image.purge
     @trip = Trip.find(params[:id])
     respond_to do |format|

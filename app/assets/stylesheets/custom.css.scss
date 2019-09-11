@@ -123,6 +123,13 @@ footer p{
   position: absolute;
   top: 75px;
   width: 100%;
+  .alert{
+    max-height: 50px;
+    text-align: center;
+  }
+  .alert.alert-dismissible{
+    margin-top: 0;
+  }
 }
 
 .userslist{
@@ -267,7 +274,7 @@ footer p{
 }
 
 .mytrips{
-  margin: 50px 0;
+  margin: 20px 0;
   width: 100%;
   height: max-content;
   background-color: lightgray;
@@ -456,4 +463,5 @@ footer p{
 
 #new_trip{
   margin: 20px 0;
+  background-color: whitesmoke;
 }

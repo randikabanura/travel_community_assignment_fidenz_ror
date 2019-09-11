@@ -26,6 +26,18 @@
     </div>
 
     <div class="field form-group" style="display: flex">
+      <div class="col-9">
+        <span class="form-control"></span>
+      </div>
+      <div class="col-3">
+      <span class="input-group-btn">
+      <span class="btn btn-small btn-primary btn-inverse" onclick="$(this).parent().parent().find('input[type=file]').click();">Browse</span>
+        <%= f.file_field :photos, multiple: true, onchange: "$(this).parent().parent().parent().find('.form-control').html($(this).val().split(/[\\\\|/]/).pop());", style: "display: none;" %>
+      </span>
+      </div>
+    </div>
+
+    <div class="field form-group" style="display: flex">
       <div class="field form-group images" style="display: flex; flex-direction: row; padding: 10px">
         <div style="display: flex">
           <%= render :partial => "images_edit", locals: {trip: @trip} %>
@@ -33,14 +45,14 @@
       </div>
     </div>
 
-    <div>
+    <div style="display: flex">
     <div class="field form-group">
       <div class="col-6">
         <%= f.submit "Update", class: "btn btn-primary" %>
       </div>
     </div>
       <div class="field form-group">
-        <div class="col-6">
+        <div class="col-12">
           <%= link_to "Delete this trip", trip_path(@trip), method: :delete, class: "btn btn-danger",  data: {confirm: "Are you sure?"} %>
         </div>
       </div>
