@@ -1,5 +1,6 @@
 class Trip < ApplicationRecord
   validates :location, presence: true
+  validates :date_s, :date_e, presence: true
   validates_length_of :photos, maximum: 5
   validate :image_type, if: :location_changed?
 

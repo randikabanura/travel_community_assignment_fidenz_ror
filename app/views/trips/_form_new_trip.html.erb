@@ -2,10 +2,10 @@
   <%= form_for @trip do |f| %>
     <div class="field form-group">
       <div class="col-12">
-        <%= f.text_field :location, autofocus: true, autocomplete: "name", class: "form-control", id: "search_location", placeholder: "Location" %>
+        <%= f.text_field :location, autofocus: true, autocomplete: "location", class: "form-control", id: "search_location", placeholder: "Location" %>
+        <input id ="hidden_location" type="text" style="display: none">
       </div>
     </div>
-
     <div class="date">
       <div class="field form-group">
         <div class="col-12">
@@ -44,6 +44,14 @@
     </div>
   <% end %>
   <script type="text/javascript">
+      $(document).on('turbolinks:load', () => {
+          $('form').on('keypress', e => {
+              if (e.keyCode == 13) {
+                  return false;
+              }
+          });
+      });
+
       $(document).ready(function () {
           $('.datepicker').datepicker({
              format: 'dd/mm/yyyy'
@@ -51,8 +59,16 @@
       });
       function activatePlacesSearch() {
           var input = document.getElementById('search_location');
-          var autocomplete = new google.maps.places.Autocomplete(input)
+          var autocomplete = new google.maps.places.Autocomplete(input);
+          alert(autocomplete)
+          var hidden_input = document.getElementById('')
       }
+
+      // function startEndDateValidation(start,end){
+      //     return new Date(start.split('/').reverse().join('/')) <
+      //         new Date(end.split('/').reverse().join('/'));
+      // }
+      // alert(startEndDateValidation('05/01/2011','09/01/2011'));
   </script>
-  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=#{Rails.application.credentials[:google][:api_key_location]}&libraries=places&callback=activatePlacesSearch"></script>
+  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=<%= Rails.application.credentials[:google][:api_key_location]%>&libraries=places&callback=activatePlacesSearch"></script>
 </div>
