@@ -2,19 +2,19 @@
   <%= form_for @trip do |f| %>
     <div class="field form-group">
       <div class="col-12">
-        <%= f.text_field :location, autofocus: true, autocomplete: "location", class: "form-control", id: "search_location", placeholder: "Location" %>
-        <input id ="hidden_location" type="text" style="display: none">
+        <%= text_field_tag nil, nil, autofocus: true, autocomplete: "location", class: "form-control", id: "search_location", placeholder: "Location" %>
+        <%= f.hidden_field :location, id: "hidden_location" %>
       </div>
     </div>
     <div class="date">
       <div class="field form-group">
         <div class="col-12">
-          <%= f.text_field :date_s, autocomplete: "off", class: "datepicker form-control", placeholder: "Start date" %>
+          <%= f.text_field :date_s, autocomplete: "off", id: "start", class: "datepicker form-control", placeholder: "Start date" %>
         </div>
       </div>
       <div class="field form-group">
         <div class="col-12">
-          <%= f.text_field :date_e, autocomplete: "off", class: "datepicker form-control", placeholder: "End date" %>
+          <%= f.text_field :date_e, autocomplete: "off", id: "end", class: "datepicker form-control", placeholder: "End date" %>
         </div>
       </div>
     </div>
@@ -27,7 +27,7 @@
 
     <div class="field form-group" style="display: flex">
       <div class="col-9">
-      <span class="form-control"></span>
+        <span class="form-control"></span>
       </div>
       <div class="col-3">
       <span class="input-group-btn">
@@ -39,7 +39,7 @@
 
     <div class="field form-group">
       <div class="col-9">
-      <%= f.submit "Upload", class: "btn btn-primary" %>
+        <%= f.submit "Upload", class: "btn btn-primary" %>
       </div>
     </div>
   <% end %>
@@ -53,22 +53,50 @@
       });
 
       $(document).ready(function () {
-          $('.datepicker').datepicker({
-             format: 'dd/mm/yyyy'
+          var select = function () {
+              var start = $('#start').datepicker('getDate');
+              var end = $('#end').datepicker('getDate');
+              var diff = 0;
+              if (start && end) {
+                  diff = Math.floor((end.getTime() - start.getTime()) / 86400000);
+                  if(diff<1){
+                      alert("Select correct start and end date for the trip")
+                      $('.datepicker').datepicker('setDate', null);
+                  }
+              }
+          }
+
+          $("#start").datepicker({
+              showMonthAfterYear: true,
+              format: 'dd/mm/yyyy',
+              numberOfMonths: 2,
+              minDate: 0,
+              autoclose: true,
+          }).on("changeDate", function (selected) {
+              $("#end").datepicker("option", "minDate", selected);
+              select();
+          });
+          $("#end").datepicker({
+              showMonthAfterYear: true,
+              format: 'dd/mm/yyyy',
+              numberOfMonths: 2,
+              autoclose: true,
+          }).on("changeDate", function (selected) {
+              $("#start").datepicker("option", "maxDate", selected)
+              select();
           });
       });
+
       function activatePlacesSearch() {
           var input = document.getElementById('search_location');
           var autocomplete = new google.maps.places.Autocomplete(input);
-          alert(autocomplete)
-          var hidden_input = document.getElementById('')
+          google.maps.event.addListener(autocomplete, 'place_changed', function () {
+              var place = autocomplete.getPlace();
+              document.getElementById('hidden_location').value = place.name;
+          })
+
       }
 
-      // function startEndDateValidation(start,end){
-      //     return new Date(start.split('/').reverse().join('/')) <
-      //         new Date(end.split('/').reverse().join('/'));
-      // }
-      // alert(startEndDateValidation('05/01/2011','09/01/2011'));
   </script>
-  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=<%= Rails.application.credentials[:google][:api_key_location]%>&libraries=places&callback=activatePlacesSearch"></script>
+  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=<%= Rails.application.credentials[:google][:api_key_location] %>&libraries=places&callback=activatePlacesSearch"></script>
 </div>

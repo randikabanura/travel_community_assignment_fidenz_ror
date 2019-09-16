@@ -22,7 +22,7 @@ class TripsController < ApplicationController
       flash[:notice] = "Trip was saved successfully."
       redirect_to @trip
     else
-      flash.now[:alert] = "Error creating Trip. Please make sure there is a name and description."
+      flash.now[:alert] = "Error creating Trip. Please make sure there is a correct location and dates."
       render :new
     end
   end
