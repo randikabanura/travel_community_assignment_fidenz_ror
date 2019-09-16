@@ -1,5 +1,7 @@
-
 <div class="container">
+  <div style="display: flex; justify-content: flex-end">
+    <%= link_to "Add new trip", new_trip_path, class: "btn btn-primary" %>
+  </div>
   <div class="mytrips">
     <%= render :partial => 'list_trip', locals: { my_trips: @my_trips } %>
     <%= render :partial => 'form_new_trip', locals: { trip: @trip } %>

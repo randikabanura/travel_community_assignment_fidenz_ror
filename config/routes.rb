@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, controllers: { registrations: "registrations" }
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'welcome#index'
   get '/profile//users/:id', to: "profile#show"
@@ -21,5 +21,9 @@ Rails.application.routes.draw do
       post '/isfollowing', to: "follows#isfollowing?"
     end
   end
-  resources :trips
+  resources :trips do
+    member do
+      delete :delete_image_attachment
+    end
+  end
 end

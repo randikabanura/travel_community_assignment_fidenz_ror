@@ -1,5 +1,6 @@
 class User < ApplicationRecord
 
+  validates :name, :email, presence: true
   validate :image_type
   validates_length_of :images, maximum: 5
   validate :avatar_type
