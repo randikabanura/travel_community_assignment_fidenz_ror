@@ -2,19 +2,36 @@
   <%= form_for @trip do |f| %>
     <div class="field form-group">
       <div class="col-12">
+        <div class="col-8" style="display: flex; flex-direction: column; padding: 0">
+          <div>
         <%= text_field_tag nil, nil, autofocus: true, autocomplete: "location", class: "form-control", id: "search_location", placeholder: "Location" %>
         <%= f.hidden_field :location, id: "hidden_location" %>
+          </div>
+        <div style="display: none" id="location_error" class="form_errors">
+          <p>Location cannot be empty</p>
+        </div>
+        </div>
       </div>
     </div>
     <div class="date">
       <div class="field form-group">
+        <div class="col-8" style="display: flex; flex-direction: column; padding: 0">
         <div class="col-12">
           <%= f.text_field :date_s, autocomplete: "off", id: "start", class: "datepicker form-control", placeholder: "Start date" %>
         </div>
+          <div style="display: none" id="date_s_error" class="form_errors col-12">
+            <p>Start date cannot be empty</p>
+          </div>
+        </div>
       </div>
       <div class="field form-group">
+        <div class="col-8" style="display: flex; flex-direction: column; padding: 0">
         <div class="col-12">
           <%= f.text_field :date_e, autocomplete: "off", id: "end", class: "datepicker form-control", placeholder: "End date" %>
+        </div>
+          <div style="display: none" id="date_e_error" class="form_errors col-12">
+            <p>End date cannot be empty</p>
+          </div>
         </div>
       </div>
     </div>
@@ -39,7 +56,7 @@
 
     <div class="field form-group">
       <div class="col-9">
-        <%= f.submit "Upload", class: "btn btn-primary" %>
+        <%= f.submit "Upload", class: "btn btn-primary", id: "trip_submit" %>
       </div>
     </div>
   <% end %>
@@ -61,9 +78,34 @@
                   diff = Math.floor((end.getTime() - start.getTime()) / 86400000);
                   if(diff<1){
                       alert("Select correct start and end date for the trip")
-                      $('.datepicker').datepicker('setDate', null);
+                      var $dates = $('#start, #end').datepicker();
+                      $dates.datepicker('setDate', null);
                   }
               }
+          }
+
+          $('#trip_submit').on("click", function (event) {
+              if (validate())
+                  return;
+              else event.preventDefault();
+          });
+
+          function validate() {
+              $('.form_errors').css("display", "none")
+              var flag = true;
+              if ($('#search_location').val().length < 1) {
+                  flag = false;
+                  $('#location_error').css("display", "block");
+              }
+              if ($('#start').val().length < 1) {
+                  flag = false;
+                  $('#date_s_error').css("display", "block");
+              }
+              if ($('#end').val().length < 1) {
+                  flag = false;
+                  $('#date_e_error').css("display", "block");
+              }
+              return flag;
           }
 
           $("#start").datepicker({
