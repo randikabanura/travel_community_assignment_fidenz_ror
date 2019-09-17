@@ -26,6 +26,9 @@
         <div style="display: none" id="name_error" class="form_errors">
           <p>Name field must be filed out correctly</p>
         </div>
+        <% if resource.errors[:name].present? %>
+          <div class="form_errors">Name <%= resource.errors[:name].first %></div>
+        <% end %>
       </div>
 
     </div>
@@ -34,11 +37,16 @@
       <div class="col-4">
         <%= f.label :date_of_birthday %>
       </div>
-      <div class="col-4">
+      <div class="col-4" style="display: flex; flex-direction: column">
+      <div>
         <%= f.text_field :dob, autocomplete: 'off', class: "datepicker form-control", placeholder: "Birthday" %>
         <div class="input-group-addon">
           <span class="glyphicon glyphicon-th"></span>
         </div>
+      </div>
+        <% if resource.errors[:name].present? %>
+          <div class="form_errors">Name <%= resource.errors[:name].first %></div>
+        <% end %>
       </div>
     </div>
 
@@ -62,6 +70,9 @@
       <div style="display: none" id="email_error" class="form_errors">
         <p>email field must be filed out correctly</p>
       </div>
+        <% if resource.errors[:email].present? %>
+          <div class="form_errors">Email <%= resource.errors[:email].first %></div>
+        <% end %>
     </div>
     </div>
 
@@ -76,6 +87,9 @@
       <div class="col-8">
         <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
       </div>
+      <% if resource.errors[:password].present? %>
+        <div class="form_errors">Password <%= resource.errors[:password].first %></div>
+      <% end %>
     </div>
 
     <div class="field form-group">
@@ -85,6 +99,9 @@
       <div class="col-8">
         <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
       </div>
+      <% if resource.errors[:password_confirmation].present? %>
+        <div class="form_errors">Password confirmation <%= resource.errors[:password_confirmation].first %></div>
+      <% end %>
     </div>
 
     <div class="field form-group">
@@ -98,6 +115,9 @@
         <div style="display: none" id="current_password_error" class="form_errors">
           <p>Current password field must be filed out correctly</p>
         </div>
+        <% if resource.errors[:current_password].present? %>
+          <div class="form_errors">Current password <%= resource.errors[:current_password].first %></div>
+        <% end %>
       </div>
     </div>
 

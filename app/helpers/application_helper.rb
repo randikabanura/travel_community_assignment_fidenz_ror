@@ -17,11 +17,11 @@ module ApplicationHelper
 
   def trip_image(trip)
     if trip.photos.attached?
-      if !trip.photos[0].content_type.in?(%('image/jpeg image/png'))
+      if !trip.photos.content_type.in?(%('image/jpeg image/png'))
         default_image_url = "https://www.srilankatravelandtourism.com/activities-sri-lanka/railway-sri-lanka/train-tours-images/train-tours-1-sri-lanka.jpg"
         image_url(default_image_url)
       else
-        trip.photos[0]
+        trip.photos
       end
     else
       default_image_url = "https://www.srilankatravelandtourism.com/activities-sri-lanka/railway-sri-lanka/train-tours-images/train-tours-1-sri-lanka.jpg"

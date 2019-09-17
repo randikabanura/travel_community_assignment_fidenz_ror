@@ -22,8 +22,8 @@ class TripsController < ApplicationController
       flash[:notice] = "Trip was saved successfully."
       redirect_to @trip
     else
-      flash.now[:alert] = "Error creating Trip. Please make sure there is a correct location and dates."
-      render :new
+      flash[:alert] = "Error creating Trip. Please make sure there is a correct location and dates."
+      redirect_to new_trip_path
     end
   end
 
@@ -66,6 +66,6 @@ class TripsController < ApplicationController
   private
 
   def trip_params
-    params.require(:trip).permit(:location, :date_s, :date_e, :description, :photos => [])
+    params.require(:trip).permit(:location, :date_s, :date_e, :description, :photos)
   end
 end

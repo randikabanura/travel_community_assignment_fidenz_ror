@@ -3,20 +3,6 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.5.5'
 
-gem 'devise'
-gem 'bootstrap', '~> 4.3.1'
-gem 'jquery-rails'
-gem 'bootstrap-datepicker-rails'
-gem 'hirb'
-gem 'dotenv-rails'
-gem 'font-awesome-rails'
-gem 'pg'
-gem 'acts_as_follower', github: 'tcocca/acts_as_follower', branch: 'master'
-gem 'gravatar_image_tag', '~> 1.2'
-gem 'mini_magick', '~> 4.9', '>= 4.9.5'
-gem 'rack-cors'
-gem 'randumb'
-gem 'geocoder'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.3'
 # Use sqlite3 as the database for Active Record
@@ -76,3 +62,42 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+# for the authentication of the app
+gem 'devise'
+
+# bootstrap integration
+gem 'bootstrap', '~> 4.3.1'
+
+# jquery integration
+gem 'jquery-rails'
+
+# datepicker for bootstrap
+gem 'bootstrap-datepicker-rails'
+
+# for rails console view
+gem 'hirb'
+
+# for font awesome icons
+gem 'font-awesome-rails'
+
+# for og database
+gem 'pg'
+
+# for follow function
+gem 'acts_as_follower', github: 'tcocca/acts_as_follower', branch: 'master'
+
+# to get graver for user
+gem 'gravatar_image_tag', '~> 1.2'
+
+# for image upload function
+gem 'mini_magick', '~> 4.9', '>= 4.9.5'
+
+# for cross-origin resource sharing
+gem 'rack-cors'
+
+# to get random records from database
+gem 'randumb'
+
+# to get coordinates from a place
+gem 'geocoder'

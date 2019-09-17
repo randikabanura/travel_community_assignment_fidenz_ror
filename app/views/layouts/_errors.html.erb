@@ -2,10 +2,14 @@
   <div class="text-center remove_alert">
       <div class="alert alert-danger alert-dismissible fade show" role="alert">
         <p class="alert">
+          <% if resource.class.model_name.human.downcase %>
+          User profile not updated
+            <% else %>
           <%= I18n.t("errors.messages.not_saved", count: resource.errors.count, resource: resource.class.model_name.human.downcase) %>
           <% resource.errors.full_messages.each do |message| %>
             <%= message %>
           <% end %>
+            <% end %>
         </p>
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
           <span aria-hidden="true">&times;</span>
