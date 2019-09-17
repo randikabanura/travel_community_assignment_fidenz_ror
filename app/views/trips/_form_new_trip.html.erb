@@ -8,8 +8,11 @@
         <%= f.hidden_field :location, id: "hidden_location" %>
           </div>
         <div style="display: none" id="location_error" class="form_errors">
-          <p>Location cannot be empty</p>
+          <p>Location cannot be empty or be incorrect</p>
         </div>
+          <% if @trip.errors[:location].present? %>
+            <div class="form_errors">Location <%= @trip.errors[:location].first %></div>
+          <% end %>
         </div>
       </div>
     </div>
@@ -93,7 +96,7 @@
           function validate() {
               $('.form_errors').css("display", "none")
               var flag = true;
-              if ($('#search_location').val().length < 1) {
+              if ($('#hidden_location').val().length < 1) {
                   flag = false;
                   $('#location_error').css("display", "block");
               }
