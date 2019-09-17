@@ -17,6 +17,7 @@ gem 'mini_magick', '~> 4.9', '>= 4.9.5'
 gem 'rack-cors'
 gem 'randumb'
 gem 'geocoder'
+gem 'commontator'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.3'
 # Use sqlite3 as the database for Active Record
