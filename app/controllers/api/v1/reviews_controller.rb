@@ -20,7 +20,7 @@ module Api
             format.js { render 'trips/review', locals: {reviews: @reviews} }
           end
         else
-          render json: {status: 'SUCCESS', message: 'Review saved2'}, status: :internal_server_error
+          render json: {  error: review.errors.full_messages }, status: :bad_request
         end
       end
 
