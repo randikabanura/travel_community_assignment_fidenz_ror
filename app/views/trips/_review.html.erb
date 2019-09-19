@@ -14,7 +14,9 @@
   </div>
 </div>
 
-<%= render partial: 'reviews_view', locals: {reviews: @reviews} %>
+<div id="review_view">
+<%= render partial: 'trips/reviews_view', locals: {reviews: @reviews} %>
+</div>
 
 <script>
   $('#rating-form').raty({

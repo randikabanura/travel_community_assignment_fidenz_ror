@@ -66,6 +66,11 @@
                   "trip_id": <%= @trip.id %>,
                   "rating": $('#rating-form input').val(),
                   "description": $('#review_text').val()
+              },
+              success: function () {
+                  var next = $("#rating-form");
+                  next.raty('score', 0);
+                  $('#review_text').val("");
               }
           }
       });
