@@ -1,36 +1,22 @@
-<div>
+<div id="review_form_input">
+  <div>
+    <h5>Leave a Review</h5>
+  </div>
   <div id="rating-form">
     <label> Rating </label>
   </div>
-  <div>
-    <input type="text" id="review_text">
+  <div id="input_textarea">
+    <label> Review </label>
+    <textarea id="review_text"></textarea>
   </div>
-  <div>
+  <div id="submit_button">
     <input type="button" id="review_submit" value="submit">
   </div>
 </div>
 
-<% if !@reviews.nil? %>
-  <div class="reviews">
-    <% @reviews.each do |review| %>
-      <%= review.user.id %>
-      <%= review.rating %>
-      <div class="review-rating" data-score="<%= review.rating %>"></div>
-      <%= review.description %>
-      <%= commontator_thread(review) %>
-    <% end %>
-  </div>
-<% end %>
+<%= render partial: 'reviews_view', locals: {reviews: @reviews} %>
 
 <script>
-  $('.review-rating').raty({
-      readOnly: true,
-      score: function () {
-          return $(this).attr('data-score');
-      },
-      path: '/assets/'
-  });
-
   $('#rating-form').raty({
       path: '/assets/',
       scoreName: 'review[rating]'
