@@ -1,0 +1,38 @@
+<div>
+  <div id="rating-form">
+    <label> Rating </label>
+  </div>
+  <div>
+    <input type="text" id="review_text">
+  </div>
+  <div>
+    <input type="button" id="review_submit" value="submit">
+  </div>
+</div>
+
+<% if !@reviews.nil? %>
+  <div class="reviews">
+    <% @reviews.each do |review| %>
+      <%= review.user.id %>
+      <%= review.rating %>
+      <div class="review-rating" data-score="<%= review.rating %>"></div>
+      <%= review.description %>
+      <%= commontator_thread(review) %>
+    <% end %>
+  </div>
+<% end %>
+
+<script>
+  $('.review-rating').raty({
+      readOnly: true,
+      score: function () {
+          return $(this).attr('data-score');
+      },
+      path: '/assets/'
+  });
+
+  $('#rating-form').raty({
+      path: '/assets/',
+      scoreName: 'review[rating]'
+  });
+</script>
