@@ -20,7 +20,7 @@
           </form>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-              <span class="fa fa-user-circle form-control-feedback"></span>
+              <%= image_tag user_avatar(current_user,20), class: "rounded-circle" %>
               <%= current_user.name.titlecase %>
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
