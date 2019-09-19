@@ -1,3 +1,4 @@
+<% unless reviewed?(@trip.id)%>
 <div id="review_form_input">
   <div>
     <h5>Leave a Review</h5>
@@ -13,6 +14,7 @@
     <input type="button" id="review_submit" value="submit">
   </div>
 </div>
+  <% end %>
 
 <div id="review_view">
 <%= render partial: 'trips/reviews_view', locals: {reviews: @reviews} %>
