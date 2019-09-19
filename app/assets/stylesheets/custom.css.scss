@@ -8,6 +8,7 @@ html, body {
   flex-direction: column;
   justify-content: space-between;
   scroll-behavior: smooth;
+  background-color: whitesmoke;
 }
 
 .login-form {
@@ -108,15 +109,17 @@ footer p{
 
 #trips{
   width: 750px;
-  background-color: lightgrey;
 }
 
 #users{
   width: 300px;
-  background-color: lightgray;
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 20px 0;
+  .card{
+    border-color:rgba(0, 0, 0, 0.125);
+  }
 }
 
 .remove_alert{
@@ -277,15 +280,14 @@ footer p{
   margin: 20px 0;
   width: 100%;
   height: max-content;
-  background-color: lightgray;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+  border:1px solid rgba(0, 0, 0, 0.125);
 }
 
 .mytrips > div:nth-child(1){
   width: 450px;
-  background-color: #EFEFEF;
   margin: 20px 0;
 }
 
@@ -407,6 +409,11 @@ footer p{
   flex-wrap: wrap;
   padding: 20px;
   justify-content: space-between;
+  .col-6{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
 }
 
 #trips .card{
@@ -463,7 +470,6 @@ footer p{
 
 #new_trip{
   margin: 20px 0;
-  background-color: whitesmoke;
 }
 
 .form_errors{
@@ -492,7 +498,8 @@ footer p{
 }
 
 #review_form_input{
-  background-color: whitesmoke;
+  background-color: white;
+  border: 1px solid rgba(0, 0, 0, 0.125);
   padding: 50px;
   display: flex;
   flex-direction: column;
@@ -547,8 +554,19 @@ footer p{
   }
   .review_description{
     padding-top: 20px;
+    div:nth-child(1){
+      padding-bottom: 10px;
+    }
   }
   .single_review{
-    padding-bottom: 40px;
+    margin-bottom: 30px;
+    padding: 20px;
+    background-color: aliceblue;
+  }
+  #delete_review{
+    display: flex;
+    justify-content: flex-end;
+    align-self: center;
+    width: 100%;
   }
 }

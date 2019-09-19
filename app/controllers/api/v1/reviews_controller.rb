@@ -15,9 +15,9 @@ module Api
           else
             @reviews = nil
           end
-
+          @trip = Trip.find(review.trip_id)
           respond_to do |format|
-            format.js { render 'trips/review', locals: {reviews: @reviews} }
+            format.js { render 'trips/review', locals: {reviews: @reviews, trip: @trip} }
           end
         else
           render json: {  error: review.errors.full_messages }, status: :bad_request
@@ -26,6 +26,24 @@ module Api
 
       def show
 
+      end
+
+      def destroy
+        review = Review.find(params[:id])
+        if review.destroy
+          if Review.exists?(trip_id: params[:trip_id])
+            @reviews = Review.all.where(trip: Trip.find(params[:trip_id]))
+          else
+            @reviews = nil
+          end
+          @trip = Trip.find(params[:trip_id])
+
+          respond_to do |format|
+            format.js { render 'trips/review', locals: {reviews: @reviews, trip: @trip} }
+          end
+        else
+          render json: {  error: review.errors.full_messages }, status: :bad_request
+        end
       end
 
       private

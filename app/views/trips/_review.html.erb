@@ -1,28 +1,31 @@
-<% unless reviewed?(@trip.id)%>
-<div id="review_form_input">
-  <div>
-    <h5>Leave a Review</h5>
-  </div>
-  <div id="rating-form">
-    <label> Rating </label>
-  </div>
-  <div id="input_textarea">
-    <label> Review </label>
-    <textarea id="review_text"></textarea>
-  </div>
-  <div id="submit_button">
-    <input type="button" id="review_submit" value="submit">
-  </div>
-</div>
+<div id="review_section">
+  <% unless reviewed?(@trip.id) %>
+    <div id="review_form_input">
+      <div>
+        <h5>Leave a Review</h5>
+      </div>
+      <div id="rating-form">
+        <label> Rating </label>
+      </div>
+      <div id="input_textarea">
+        <label> Review </label>
+        <textarea id="review_text"></textarea>
+      </div>
+      <div id="submit_button">
+        <input type="button" id="review_submit" value="submit">
+      </div>
+    </div>
   <% end %>
 
-<div id="review_view">
-<%= render partial: 'trips/reviews_view', locals: {reviews: @reviews} %>
+  <div id="review_view">
+    <%= render partial: 'trips/reviews_view', locals: {reviews: @reviews, trip: @trip} %>
+  </div>
+
 </div>
 
 <script>
-  $('#rating-form').raty({
-      path: '/assets/',
-      scoreName: 'review[rating]'
-  });
+    $('#rating-form').raty({
+        path: '/assets/',
+        scoreName: 'review[rating]'
+    });
 </script>

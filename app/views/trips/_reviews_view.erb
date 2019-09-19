@@ -11,6 +11,11 @@
           </div>
           <div id="vertical_line_review">|</div>
           <div class="review-rating" data-score="<%= review.rating %>" id="star_rating"></div>
+          <% if current_user == review.user %>
+          <div id="delete_review">
+            <%= link_to "Delete", api_v1_review_path(id: review, trip_id: @trip.id), method: :delete, remote: true%>
+          </div>
+            <% end %>
         </div>
         <div class="review_description">
           <div>
