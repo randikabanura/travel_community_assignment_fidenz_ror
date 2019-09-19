@@ -13,5 +13,6 @@
  *= require_tree .
  *= require_self
  *= require bootstrap-datepicker
+ *= require commontator/application
  *= require font-awesome
  */

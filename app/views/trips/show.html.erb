@@ -46,5 +46,49 @@
         Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions
         of Lorem Ipsum.</p>
     </div>
+
+    <% if !@reviews.nil? %>
+    <div class="reviews">
+      <% @reviews.each do |review| %>
+        <%= review.user.id %>
+        <%= review.rating %>
+        <%= review.description %>
+        <%= commontator_thread(review) %>
+      <% end %>
+    </div>
+      <% end %>
+
+    <div>
+      <div>
+        <input type="number" id="rating_number" min="1" max="5">
+      </div>
+      <div>
+        <input type="text" id="review_text">
+      </div>
+      <div>
+        <input type="button" id="review_submit" value="submit">
+      </div>
+    </div>
   </div>
 </div>
+
+<script>
+
+  $('#review_submit').on("click", function () {
+      addComment();
+  })
+  function addComment() {
+      $.ajax({
+          url: "/api/v1/reviews",
+          type: "POST",
+          data: {
+              "review": {
+                  "user_id": <%= current_user.id %>,
+                  "trip_id": <%= @trip.id %>,
+                  "rating": $('#rating_number').val(),
+                  "description": $('#review_text').val()
+              }
+          }
+      });
+  }
+</script>

@@ -29,6 +29,13 @@ class TripsController < ApplicationController
 
   def show
     @trip = Trip.find(params[:id])
+    @review = Review.new
+
+    if Review.exists?(trip_id: params[:id])
+      @reviews = Review.all.where(trip: @trip)
+    else
+      @reviews = nil
+    end
   end
 
   def edit

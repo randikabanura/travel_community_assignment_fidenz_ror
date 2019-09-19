@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'welcome#index'
   get '/profile//users/:id', to: "profile#show"
+  mount Commontator::Engine => 'api/v1/commontator'
   namespace 'api' do
     namespace 'v1' do
       get '/users', to: "users#index"
@@ -19,6 +20,7 @@ Rails.application.routes.draw do
         end
       end
       post '/isfollowing', to: "follows#isfollowing?"
+      resources :reviews
     end
   end
   resources :trips do
