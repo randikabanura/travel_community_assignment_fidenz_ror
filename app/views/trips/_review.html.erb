@@ -28,4 +28,28 @@
         path: '/assets/',
         scoreName: 'review[rating]'
     });
+
+    $('#review_submit').on("click", function () {
+        addComment();
+    })
+    function addComment() {
+        $.ajax({
+            url: "/api/v1/reviews",
+            type: "POST",
+            data: {
+                "review": {
+                    "user_id": <%= current_user.id %>,
+                    "trip_id": <%= @trip.id %>,
+                    "rating": $('#rating-form input').val(),
+                    "description": $('#review_text').val()
+                },
+                success: function () {
+                    var next = $("#rating-form");
+                    next.raty('score', 0);
+                    $('#review_text').val("");
+                }
+            }
+        });
+    }
+
 </script>

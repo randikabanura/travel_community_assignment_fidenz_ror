@@ -11,7 +11,16 @@ class Trip < ApplicationRecord
 
   has_one_attached :photos
   belongs_to :user
+  has_many :reviews
 
+  def avarage_rating
+    reviews = self.reviews
+    if reviews.count > 0
+      reviews.sum(:rating) / reviews.count
+    else
+      return 0
+    end
+  end
   private
 
   def image_type

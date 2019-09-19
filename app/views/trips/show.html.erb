@@ -11,7 +11,7 @@
         <%= image_tag user_avatar(@trip.user, 50), class: "rounded-circle" %>
       </div>
           <div id="name_date">
-            <a href="/profile/users/<%= @trip.user.id %>"><h5 class="card-title"><%= @trip.user.name %></h5></a>
+            <a href="/profile/users/<%= @trip.user.id %>"><h5 class="card-title"><%= @trip.user.name.titleize %></h5></a>
             <p><%= Time.new(@trip.created_at.to_s[0...4],@trip.created_at.to_s[5...7], @trip.created_at.to_s[8...10]).strftime("%d %b %Y") %></p>
           </div>
 
@@ -20,13 +20,8 @@
       <h2><%= @trip.location.titleize %></h2>
     </div>
 
-    <div>
-      <span class="fa fa-star checked"></span>
-      <span class="fa fa-star checked"></span>
-      <span class="fa fa-star checked"></span>
-      <span class="fa fa-star checked"></span>
-      <span class="fa fa-star checked"></span>
-    </div>
+
+      <div class="review-rating" data-score="<%= @trip.avarage_rating %>"></div>
 
     <div id="big_image">
       <%= image_tag trip_image(@trip) %>
@@ -50,29 +45,3 @@
     <%= render :partial => 'review', locals: {reviews: @reviews, trip: @trip} %>
   </div>
 </div>
-
-<script>
-
-  $('#review_submit').on("click", function () {
-      addComment();
-  })
-  function addComment() {
-      $.ajax({
-          url: "/api/v1/reviews",
-          type: "POST",
-          data: {
-              "review": {
-                  "user_id": <%= current_user.id %>,
-                  "trip_id": <%= @trip.id %>,
-                  "rating": $('#rating-form input').val(),
-                  "description": $('#review_text').val()
-              },
-              success: function () {
-                  var next = $("#rating-form");
-                  next.raty('score', 0);
-                  $('#review_text').val("");
-              }
-          }
-      });
-  }
-</script>
