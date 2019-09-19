@@ -10,7 +10,6 @@ class Trip < ApplicationRecord
   geocoded_by :location
   after_validation :geocode
 
-  acts_as_commontable dependent: :destroy
   has_many_attached :photos
   belongs_to :user
 

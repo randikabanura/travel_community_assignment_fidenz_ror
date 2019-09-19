@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  trip: one
+  rating: 1
+  description: MyString
+
+two:
+  user: two
+  trip: two
+  rating: 1
+  description: MyString

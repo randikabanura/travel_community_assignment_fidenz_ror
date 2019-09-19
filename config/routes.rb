@@ -20,6 +20,7 @@ Rails.application.routes.draw do
         end
       end
       post '/isfollowing', to: "follows#isfollowing?"
+      resources :reviews
     end
   end
   resources :trips do
