@@ -20,7 +20,7 @@ class User < ApplicationRecord
   has_one_attached :avatar
   has_many_attached :images
   has_many :trips
-  has_many :reviews
+  has_many :reviews, dependent: :delete_all
 
   private
 

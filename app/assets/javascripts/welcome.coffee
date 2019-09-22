@@ -19,6 +19,7 @@ $(document).on 'turbolinks:load', ->
                     method = "post";
                     url = "/api/v1/follows/"
                 }
+                if(data.data!=true) {
                 $.get("/api/v1/users/" + follow_user.id + "/avatar_image_thumbnail", function (image, status) {
                     var link;
                     if (image.link != null) {
@@ -46,6 +47,7 @@ $(document).on 'turbolinks:load', ->
                         }
                     })
             })
+            }
         })
 }
 }
