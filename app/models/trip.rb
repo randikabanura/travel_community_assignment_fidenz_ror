@@ -12,6 +12,7 @@ class Trip < ApplicationRecord
   has_one_attached :photos
   belongs_to :user
   has_many :reviews, dependent: :delete_all
+  resourcify
 
   def self.search(search)
     if search

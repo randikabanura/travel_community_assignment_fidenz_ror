@@ -1,5 +1,9 @@
 module ApplicationHelper
 
+  def has_role?(role)
+    current_user && current_user.has_role?(role)
+  end
+
   def user_avatar(user, size = 40)
     if user.avatar.attached?
           if !user.avatar.content_type.in?(%('image/jpeg image/png'))

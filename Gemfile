@@ -104,3 +104,9 @@ gem 'geocoder'
 
 # for comment on review
 gem 'commontator'
+
+# for getting ability for users
+gem 'cancancan'
+
+# for getting roles for users
+gem 'rolify'
