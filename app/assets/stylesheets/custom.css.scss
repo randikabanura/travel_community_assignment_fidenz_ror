@@ -75,10 +75,12 @@ footer p{
 .navbar{
   height: 75px;
 }
-
+.form-group.has-search{
+  flex-wrap: nowrap;
+}
 .has-search .form-control {
   padding-left: 2.375rem;
-  width: 600px;
+  width: 100%;
 }
 
 .has-search .form-control-feedback {

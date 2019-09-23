@@ -12,12 +12,18 @@
     <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
       <% if user_signed_in? %>
         <div class="nav navbar-nav navbar-right">
-          <form class="form-inline">
+          <%= form_tag(search_show_path, method: :get, class: "form-inline") do |f| %>
             <div class="form-group has-search">
-              <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" style="margin-top: 0px;">
-              <span class="fa fa-search form-control-feedback"></span>
+            <%= text_field_tag(:search, params[:search], class: "form-control mr-sm-2") %>
+            <%= submit_tag("Search") %>
             </div>
-          </form>
+            <% end %>
+<!--          <form class="form-inline">-->
+<!--            <div class="form-group has-search">-->
+<!--              <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" style="margin-top: 0px;">-->
+<!--              <span class="fa fa-search form-control-feedback"></span>-->
+<!--            </div>-->
+<!--          </form>-->
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
               <%= image_tag user_avatar(current_user,20), class: "rounded-circle" %>

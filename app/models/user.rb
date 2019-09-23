@@ -22,6 +22,14 @@ class User < ApplicationRecord
   has_many :trips
   has_many :reviews, dependent: :delete_all
 
+  def self.search(search)
+    if search
+      where('name LIKE ?', "%#{search}%").to_a
+    else
+      find(:all)
+    end
+  end
+
   private
 
   def image_type

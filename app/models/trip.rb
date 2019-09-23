@@ -13,6 +13,14 @@ class Trip < ApplicationRecord
   belongs_to :user
   has_many :reviews, dependent: :delete_all
 
+  def self.search(search)
+    if search
+      where('location LIKE ?', "%#{search}%").to_a
+    else
+      find(:all)
+    end
+  end
+
   def average_rating
     reviews = self.reviews
     if reviews.count > 0
@@ -21,6 +29,7 @@ class Trip < ApplicationRecord
       return 0
     end
   end
+
   private
 
   def image_type
