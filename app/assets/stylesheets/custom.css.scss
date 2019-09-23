@@ -77,9 +77,11 @@ footer p{
 }
 .form-group.has-search{
   flex-wrap: nowrap;
+  #search{
+    margin: 0;
+  }
 }
 .has-search .form-control {
-  padding-left: 2.375rem;
   width: 100%;
 }
 
@@ -425,6 +427,10 @@ footer p{
 #trips .card{
   height: max-content;
   margin-bottom: 20px;
+  .trip_image img{
+    width: 100%;
+    height: 100px;
+  }
 }
 
 #location{
@@ -579,5 +585,38 @@ footer p{
     justify-content: flex-end;
     align-self: center;
     width: 100%;
+  }
+}
+
+.container.search_results{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  min-height: calc(100vh - 175px);
+  padding: 50px 0;
+  .search_users{
+    width: 100%;
+    padding-bottom: 20px;
+    .search_users_cards{
+      display: flex;
+      flex-direction: row;
+      div{
+        margin-right: 20px;
+      }
+    }
+  }
+  .search_trips{
+    width: 100%;
+    .card{
+      width: 18rem;
+      padding: 0;
+      li{
+        padding: 12px 0;
+        .trip_image img{
+          width: 100%;
+          height: 100px;
+        }
+      }
+    }
   }
 }
