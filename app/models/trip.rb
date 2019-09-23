@@ -6,9 +6,6 @@ class Trip < ApplicationRecord
   def thumbnail(size1 =100, size2= 100)
     if !self.photos.present?
     return self.photos.variant(resize: "#{size1}x#{size2}!").processed
-    else
-      default_image_url = "https://www.srilankatravelandtourism.com/activities-sri-lanka/railway-sri-lanka/train-tours-images/train-tours-1-sri-lanka.jpg"
-      return image_url(default_image_url)
     end
   end
   geocoded_by :location
