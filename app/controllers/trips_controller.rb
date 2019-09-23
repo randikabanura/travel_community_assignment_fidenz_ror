@@ -31,6 +31,7 @@ class TripsController < ApplicationController
     @trip = Trip.find(params[:id])
     @review = Review.new
 
+
     if Review.exists?(trip_id: params[:id])
       @reviews = Review.all.where(trip: @trip)
     else
@@ -75,4 +76,6 @@ class TripsController < ApplicationController
   def trip_params
     params.require(:trip).permit(:location, :date_s, :date_e, :description, :photos)
   end
+
+
 end

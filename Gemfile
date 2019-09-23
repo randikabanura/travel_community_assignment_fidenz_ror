@@ -101,3 +101,6 @@ gem 'randumb'
 
 # to get coordinates from a place
 gem 'geocoder'
+
+# for comment on review
+gem 'commontator'

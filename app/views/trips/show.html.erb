@@ -11,7 +11,7 @@
         <%= image_tag user_avatar(@trip.user, 50), class: "rounded-circle" %>
       </div>
           <div id="name_date">
-            <a href="/profile/users/<%= @trip.user.id %>"><h5 class="card-title"><%= @trip.user.name %></h5></a>
+            <a href="/profile/users/<%= @trip.user.id %>"><h5 class="card-title"><%= @trip.user.name.titleize %></h5></a>
             <p><%= Time.new(@trip.created_at.to_s[0...4],@trip.created_at.to_s[5...7], @trip.created_at.to_s[8...10]).strftime("%d %b %Y") %></p>
           </div>
 
@@ -20,13 +20,8 @@
       <h2><%= @trip.location.titleize %></h2>
     </div>
 
-    <div>
-      <span class="fa fa-star checked"></span>
-      <span class="fa fa-star checked"></span>
-      <span class="fa fa-star checked"></span>
-      <span class="fa fa-star checked"></span>
-      <span class="fa fa-star checked"></span>
-    </div>
+
+      <div class="review-rating" data-score="<%= @trip.average_rating %>"></div>
 
     <div id="big_image">
       <%= image_tag trip_image(@trip) %>
@@ -47,48 +42,6 @@
         of Lorem Ipsum.</p>
     </div>
 
-    <% if !@reviews.nil? %>
-    <div class="reviews">
-      <% @reviews.each do |review| %>
-        <%= review.user.id %>
-        <%= review.rating %>
-        <%= review.description %>
-        <%= commontator_thread(review) %>
-      <% end %>
-    </div>
-      <% end %>
-
-    <div>
-      <div>
-        <input type="number" id="rating_number" min="1" max="5">
-      </div>
-      <div>
-        <input type="text" id="review_text">
-      </div>
-      <div>
-        <input type="button" id="review_submit" value="submit">
-      </div>
-    </div>
+    <%= render :partial => 'review', locals: {reviews: @reviews, trip: @trip} %>
   </div>
 </div>
-
-<script>
-
-  $('#review_submit').on("click", function () {
-      addComment();
-  })
-  function addComment() {
-      $.ajax({
-          url: "/api/v1/reviews",
-          type: "POST",
-          data: {
-              "review": {
-                  "user_id": <%= current_user.id %>,
-                  "trip_id": <%= @trip.id %>,
-                  "rating": $('#rating_number').val(),
-                  "description": $('#review_text').val()
-              }
-          }
-      });
-  }
-</script>

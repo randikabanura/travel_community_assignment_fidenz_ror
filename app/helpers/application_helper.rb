@@ -29,4 +29,12 @@ module ApplicationHelper
     end
   end
 
+  def reviewed?(input)
+    if current_user
+      Review.exists?(['user_id = ? AND trip_id = ?', current_user.id, input])
+    else
+      nil
+    end
+  end
+
 end

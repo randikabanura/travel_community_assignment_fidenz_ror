@@ -8,6 +8,7 @@ html, body {
   flex-direction: column;
   justify-content: space-between;
   scroll-behavior: smooth;
+  background-color: whitesmoke;
 }
 
 .login-form {
@@ -16,8 +17,8 @@ html, body {
 }
 
 .login-form form {
-  background: #f7f7f7;
-  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+  background-color: white;
+  border:1px solid rgba(0, 0, 0, 0.125);
   padding: 30px;
 }
 .login-form h2 {
@@ -74,10 +75,14 @@ footer p{
 .navbar{
   height: 75px;
 }
-
+.form-group.has-search{
+  flex-wrap: nowrap;
+  #search{
+    margin: 0;
+  }
+}
 .has-search .form-control {
-  padding-left: 2.375rem;
-  width: 600px;
+  width: 100%;
 }
 
 .has-search .form-control-feedback {
@@ -108,15 +113,17 @@ footer p{
 
 #trips{
   width: 750px;
-  background-color: lightgrey;
 }
 
 #users{
   width: 300px;
-  background-color: lightgray;
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 20px 0;
+  .card{
+    border-color:rgba(0, 0, 0, 0.125);
+  }
 }
 
 .remove_alert{
@@ -151,9 +158,10 @@ footer p{
 
 .edit_profile.container{
   min-height: 100vh;
-  background-color: lightgray;
   margin: 0 auto 50px auto;
   padding: 50px;
+  border:1px solid rgba(0, 0, 0, 0.125);
+  background-color: white;
 }
 
 .edit_profile .field.form-group{
@@ -179,7 +187,8 @@ footer p{
 
 #followers_tab, #user_followers_tab{
   min-height: 100vh;
-  background-color: lightgray;
+  border:1px solid rgba(0, 0, 0, 0.125);
+  background-color: white;
   margin: 0 auto 50px auto;
   padding: 50px;
   display: flex;
@@ -194,7 +203,8 @@ footer p{
 
 #following_tab, #user_following_tab{
   min-height: 100vh;
-  background-color: lightgray;
+  border:1px solid rgba(0, 0, 0, 0.125);
+  background-color: white;
   margin: 0 auto 50px auto;
   padding: 50px;
   display: flex;
@@ -205,7 +215,8 @@ footer p{
 
 .container#user_profile{
   min-height: 100vh;
-  background-color: lightgray;
+  border:1px solid rgba(0, 0, 0, 0.125);
+  background-color: white;
   margin: 0 auto 50px auto;
   padding: 50px;
 }
@@ -277,15 +288,14 @@ footer p{
   margin: 20px 0;
   width: 100%;
   height: max-content;
-  background-color: lightgray;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+  border:1px solid rgba(0, 0, 0, 0.125);
 }
 
 .mytrips > div:nth-child(1){
   width: 450px;
-  background-color: #EFEFEF;
   margin: 20px 0;
 }
 
@@ -407,11 +417,20 @@ footer p{
   flex-wrap: wrap;
   padding: 20px;
   justify-content: space-between;
+  .col-6{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
 }
 
 #trips .card{
   height: max-content;
   margin-bottom: 20px;
+  .trip_image img{
+    width: 100%;
+    height: 100px;
+  }
 }
 
 #location{
@@ -463,7 +482,6 @@ footer p{
 
 #new_trip{
   margin: 20px 0;
-  background-color: whitesmoke;
 }
 
 .form_errors{
@@ -489,4 +507,116 @@ footer p{
 
 .card.my_trips{
   width: 400px;
+}
+
+#review_form_input{
+  background-color: white;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 50px;
+  #input_textarea{
+    display: flex;
+    flex-direction: row
+  }
+  textarea{
+    webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    height: 100px;
+    min-width: 400px;
+    width: 50%;
+  }
+  div{
+    margin-bottom: 20px;
+    label{
+      margin-right: 20px;
+    }
+    h5{
+      font-weight: 600;
+    }
+    input[type=button]{
+      width: max-content;
+    }
+  }
+  #submit_button{
+    margin-left: 70px;
+  }
+}
+
+.reviews{
+  display: flex;
+  flex-direction: column;
+  .review_title{
+    display: flex;
+    flex-direction: row;
+    div{
+      padding-right: 20px;
+    }
+    #name{
+      align-self: center;
+    }
+    #star_rating{
+      align-self: center;
+    }
+    #vertical_line_review{
+      align-self: center;
+    }
+  }
+  .review_description{
+    padding: 15px;
+    div:nth-child(1){
+      padding-bottom: 10px;
+    }
+  }
+  .single_review{
+    margin-bottom: 30px;
+    padding: 20px;
+    background-color: aliceblue;
+  }
+  #delete_review{
+    display: flex;
+    justify-content: flex-end;
+    align-self: center;
+  }
+  #edit_review{
+    display: flex;
+    justify-content: flex-end;
+    align-self: center;
+    width: 100%;
+  }
+}
+
+.container.search_results{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  min-height: calc(100vh - 175px);
+  padding: 50px 0;
+  .search_users{
+    width: 100%;
+    padding-bottom: 20px;
+    .search_users_cards{
+      display: flex;
+      flex-direction: row;
+      div{
+        margin-right: 20px;
+      }
+    }
+  }
+  .search_trips{
+    width: 100%;
+    .card{
+      width: 18rem;
+      padding: 0;
+      li{
+        padding: 12px 0;
+        .trip_image img{
+          width: 100%;
+          height: 100px;
+        }
+      }
+    }
+  }
 }

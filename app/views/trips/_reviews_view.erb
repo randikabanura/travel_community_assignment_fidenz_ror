@@ -1,0 +1,44 @@
+<% if !@reviews.nil? %>
+  <div class="reviews">
+    <% @reviews.each do |review| %>
+      <div class="single_review">
+        <div class="review_title">
+          <div id="review_avatar">
+            <%= image_tag user_avatar(review.user, 40), class: "rounded-circle" %>
+          </div>
+          <div id="name">
+            <%= review.user.name.titleize %>
+          </div>
+          <div id="vertical_line_review">|</div>
+          <div class="review-rating" data-score="<%= review.rating %>" id="star_rating"></div>
+          <% if current_user == review.user %>
+            <div id="edit_review">
+              <%= link_to "Edit", edit_api_v1_review_path(id: review, trip_id: @trip.id), remote:true %>
+            </div>
+          <div id="delete_review">
+            <%= link_to "Delete", api_v1_review_path(id: review, trip_id: @trip.id), method: :delete, remote: true%>
+          </div>
+            <% end %>
+        </div>
+        <div class="review_description">
+          <div id="review_description_text">
+            <%= review.description %>
+          </div>
+          <div>
+            <%= commontator_thread(review) %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>
+
+<script>
+    $('.review-rating').raty({
+        readOnly: true,
+        score: function () {
+            return $(this).attr('data-score');
+        },
+        path: '/assets/'
+    });
+</script>

@@ -1,0 +1,48 @@
+<div id="review_form_input">
+  <div>
+    <h5>Edit this Review</h5>
+  </div>
+  <div id="rating-form">
+    <label> Rating </label>
+  </div>
+  <div id="input_textarea">
+    <label> Review </label>
+    <textarea id="review_text"><%= @review.description %></textarea>
+  </div>
+  <div id="submit_button">
+    <input type="button" id="review_update_submit" value="Update">
+    <input type="button" id="review_update_cancel" value="Cancel">
+  </div>
+</div>
+
+<script>
+    $('#rating-form').raty({
+        path: '/assets/',
+        scoreName: 'review[rating]',
+        score: <%= review.rating %>
+    });
+
+    $('#review_update_submit').on("click", function () {
+        updateComment();
+    })
+    function updateComment() {
+        $.ajax({
+            url: "/api/v1/reviews/<%= @review.id %>",
+            type: "PUT",
+            data: {
+                "review": {
+                    "id": <%= @review.id %>,
+                    "user_id": <%= current_user.id %>,
+                    "trip_id": <%= @trip.id %>,
+                    "rating": $('#rating-form input').val(),
+                    "description": $('#review_text').val()
+                }
+            }
+        });
+    }
+    
+    $('#review_update_cancel').on("click", function () {
+        $(this).parent().parent().parent().children('div').show()
+        $(this).parent().parent().remove()
+    })
+</script>

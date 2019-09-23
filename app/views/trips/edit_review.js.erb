@@ -1,0 +1,2 @@
+$('#delete_review').parent().siblings(".review_description").children().hide()
+$('#delete_review').parent().siblings(".review_description").append("<%= escape_javascript(render :partial => 'trips/edit_review', locals: { review: @review, trip: @trip}) %>");
