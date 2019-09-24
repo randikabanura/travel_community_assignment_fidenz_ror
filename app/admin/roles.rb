@@ -1,4 +1,4 @@
-ActiveAdmin.register Trip do
+ActiveAdmin.register Role do
 
   # See permitted parameters documentation:
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
@@ -12,13 +12,12 @@ ActiveAdmin.register Trip do
       redirect_to(root_path) unless current_user.has_role? :admin
     end
   end
-
-  permit_params :user_id, :description, :date_s, :date_e, :location, :latitude, :longitude
+   permit_params :name, :resource_type, :resource_id
   #
   # or
   #
   # permit_params do
-  #   permitted = [:user_id, :description, :date_s, :date_e, :location, :latitude, :longitude]
+  #   permitted = [:name, :resource_type, :resource_id]
   #   permitted << :other if params[:action] == 'create' && current_user.admin?
   #   permitted
   # end
