@@ -21,7 +21,7 @@
     </div>
 
 
-      <div class="review-rating" data-score="<%= @trip.average_rating %>"></div>
+      <%= render partial: 'trips/rating', locals: {trip: @trip} %>
 
     <div id="big_image">
       <%= image_tag trip_image(@trip) %>
