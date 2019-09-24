@@ -45,7 +45,7 @@ $(document).on 'turbolinks:load', ->
                                     \'  </div>\\n\' +
                                     \'</div></div></div>\')
                             }).done( function(){
-                              var u_btn = document.getElementById( data[i].id);
+                              var u_btn = document.getElementById(data[i].id);
         u_btn.addEventListener(\'ajax:success\', function (event) {
             if (u_btn.innerText == "Follow") {
                             u_btn.innerHTML = "Unfollow";
@@ -67,6 +67,7 @@ $(document).on 'turbolinks:load', ->
     }
 
     function loadDataFollowing(user_id) {
+    console.log(user_id);
         var value;
         var method;
         var url;
@@ -95,10 +96,10 @@ $(document).on 'turbolinks:load', ->
                             \'  </div>\\n\' +
                             \'</div></div></div>\')
                     }).done( function(){
+                      var following_tab = document.getElementById("following_tab");
+                      following_tab.addEventListener(\'ajax:success\', function (event) {
 
-                      var u_btn = document.getElementById(data[i].id);
-                      u_btn.addEventListener(\'ajax:success\', function (event) {
-                        loadDataFollowing($(this).data("userid"))
+                        loadDataFollowing(user_id);
             })
                     })
                 })

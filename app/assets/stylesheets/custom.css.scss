@@ -600,7 +600,7 @@ footer p{
     .search_users_cards{
       display: flex;
       flex-direction: row;
-      div{
+      >div{
         margin-right: 20px;
       }
     }

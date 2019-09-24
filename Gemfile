@@ -112,4 +112,4 @@ gem 'cancancan'
 gem 'rolify'
 
 # for activeadmin integration
-gem 'activeadmin'
+gem 'activeadmin', '~> 2.3', '>= 2.3.1'

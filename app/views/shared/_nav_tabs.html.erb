@@ -9,10 +9,10 @@
     </li>
   <% end %>
   <li class="nav-item">
-    <a class="nav-link" id="2" data-toggle="tab" href="#followers">Followers</a>
+    <a class="nav-link" id="tab2" data-toggle="tab" href="#followers">Followers</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" id="3" data-toggle="tab" href="#following">Following</a>
+    <a class="nav-link" id="tab3" data-toggle="tab" href="#following">Following</a>
   </li>
   <div class="stylediv"></div>
   <% if defined? user %>
@@ -58,7 +58,7 @@
       activeTab('edit_profile');
     <% end %>
 
-    $('.nav-item #2').on('click', function () {
+    $('.nav-item #tab2').on('click', function () {
         <% if defined? user %>
         loadUserDataFollowers(<%= user.id %>);
         <% else %>
@@ -66,7 +66,7 @@
         <% end %>
     });
 
-    $('.nav-item #3').on('click', function () {
+    $('.nav-item #tab3').on('click', function () {
         <% if defined? user %>
         loadUserDataFollowing(<%= user.id %>);
         <% else %>
