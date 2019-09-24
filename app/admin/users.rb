@@ -13,7 +13,6 @@ ActiveAdmin.register User do
     end
   end
 
-  permit_params :id, :email, :name, :gender, :dob,  :password, role_ids: []
   index do
     selectable_column
     column "Id" do |user|
@@ -23,6 +22,9 @@ ActiveAdmin.register User do
     column "Email", :email
     column "Dob", :dob
     column "Gender", :gender
+    column :roles do |user|
+      user.roles.collect {|c| c.name.capitalize }.to_sentence
+    end
     actions
   end
 
@@ -30,12 +32,17 @@ ActiveAdmin.register User do
     inputs "User Details" do
       input :name
       input :email
-      input :gender
+      input :gender, collection: ["Male", "Female"]
       input :dob
       input :password
+      input :roles, as: :check_boxes
     end
     actions
   end
+
+      permit_params :id, :email, :name, :gender, :dob,  :password, role_ids: []
+
+
   #
   # or
   #

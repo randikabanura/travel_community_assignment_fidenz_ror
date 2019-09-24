@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   rolify
 
+  after_create :assign_default_role
   validates :name, :email, presence: true
   validate :image_type
   validates_length_of :images, maximum: 5
@@ -35,20 +36,24 @@ class User < ApplicationRecord
 
   def image_type
     if images.attached? == true
-        images.each do |image|
-          if !image.content_type.in?(%('image/jpeg image/png'))
-            errors.add(:images, 'needs to be a JPEG or PNG')
-          end
+      images.each do |image|
+        if !image.content_type.in?(%('image/jpeg image/png'))
+          errors.add(:images, 'needs to be a JPEG or PNG')
         end
+      end
     end
   end
 
-def avatar_type
-  if avatar.attached? ==true
-    if !avatar.content_type.in?(%('image/jpeg image/png'))
-      errors.add(:avatar, 'needs to be a JPEG or PNG')
+  def avatar_type
+    if avatar.attached? == true
+      if !avatar.content_type.in?(%('image/jpeg image/png'))
+        errors.add(:avatar, 'needs to be a JPEG or PNG')
+      end
     end
   end
-end
+
+  def assign_default_role
+    add_role(:normal) if self.roles.blank?
+  end
 
 end
