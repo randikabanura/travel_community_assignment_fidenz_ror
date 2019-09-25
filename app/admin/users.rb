@@ -5,6 +5,15 @@ ActiveAdmin.register User do
   #
   # Uncomment all parameters which should be permitted for assignment
   #
+  scope :all
+  scope :admins
+  scope :pro_users
+  scope :normal
+
+  menu priority: 2, label: proc { "Users" }
+
+  permit_params :id, :email, :name, :gender,  :password, role_ids: []
+
   controller do
     before_action :authenticate
 
@@ -18,10 +27,18 @@ ActiveAdmin.register User do
     column "Id" do |user|
       link_to user.id, admin_user_path(user)
     end
-    column "Name", :name
+    column "Name" do |user|
+      link_to user.name, admin_user_path(user)
+    end
     column "Email", :email
     column "Dob", :dob
-    column "Gender", :gender
+    column "Gender" do |user|
+      if(user.gender == "m")
+        para "Male"
+      else
+        para "Female"
+      end
+    end
     column :roles do |user|
       user.roles.collect {|c| c.name.capitalize }.to_sentence
     end
@@ -32,15 +49,12 @@ ActiveAdmin.register User do
     inputs "User Details" do
       input :name
       input :email
-      input :gender, collection: ["Male", "Female"]
-      input :dob
+      input :gender, collection: [["Male", "m"], ["Female", "f"]]
       input :password
       input :roles, as: :check_boxes
     end
     actions
   end
-
-      permit_params :id, :email, :name, :gender, :dob,  :password, role_ids: []
 
   controller do
     def update_resource(object, attributes)

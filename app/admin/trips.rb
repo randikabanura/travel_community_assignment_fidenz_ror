@@ -5,6 +5,8 @@ ActiveAdmin.register Trip do
   #
   # Uncomment all parameters which should be permitted for assignment
   #
+  menu priority: 3, label: proc { "Trips" }
+
   controller do
     before_action :authenticate
 
