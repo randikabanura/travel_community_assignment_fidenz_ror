@@ -621,3 +621,10 @@ footer p{
     }
   }
 }
+
+.container.messages{
+  .card-body{
+    height: 60vh;
+    text-align: left;
+  }
+}
