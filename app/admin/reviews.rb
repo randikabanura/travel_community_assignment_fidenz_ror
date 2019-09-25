@@ -5,7 +5,18 @@ ActiveAdmin.register Review do
   #
   # Uncomment all parameters which should be permitted for assignment
   #
-  # permit_params :user_id, :trip_id, :rating, :description
+  permit_params :user_id, :trip_id, :rating, :description
+  actions  :index, :edit, :show, :update, :destroy
+
+  form do |f|
+    inputs "Review Details" do
+      input :user
+      input :trip
+      input :rating, as: :number
+      input :description
+    end
+    actions
+  end
   #
   # or
   #

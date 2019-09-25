@@ -6,7 +6,6 @@ class User < ApplicationRecord
   validate :image_type
   validates_length_of :images, maximum: 5
   validate :avatar_type
-  validates :roles, presence: true
 
   def thumbnail input
     return self.images[input].variant(resize: '200x200!').processed
@@ -29,9 +28,9 @@ class User < ApplicationRecord
 
   def self.search(search)
     if search
-      where('name LIKE ?', "%#{search}%").to_a
+      Role.find_by(name: 'normal').users.or(Role.find_by(name: 'pro_user').users).where('name LIKE ?', "%#{search}%").to_a
     else
-      find(:all)
+      Role.find_by(name: 'normal').users.or(Role.find_by(name: 'pro_user').users)
     end
   end
 

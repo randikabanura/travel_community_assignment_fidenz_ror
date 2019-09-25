@@ -1,18 +1,11 @@
+Role.create!([
+                 {name: "admin", resource_type: nil, resource_id: nil},
+                 {name: "normal", resource_type: nil, resource_id: nil},
+                 {name: "pro_user", resource_type: nil, resource_id: nil}
+             ])
+
 User.create!([
-  {email: "rudolph@gmail.com", encrypted_password: "$2a$11$PrOyRyt4xkeV7Pmll9I/tesD9aWaZISyMW5eORol56rOj87TaPDeq", reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil, name: "Frederick", gender: "m", dob: "12/10/1992", confirmation_token: nil, confirmed_at: nil, confirmation_sent_at: nil},
-  {email: "delilah@hotmail.com", encrypted_password: "$2a$11$qDbVvW6c/YOG9DqF9fR7tez4SSRNvcyJnl82e22y53pGSFrUYGKfK", reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil, name: "Loris", gender: "m", dob: "12/10/1992", confirmation_token: nil, confirmed_at: nil, confirmation_sent_at: nil},
-  {email: "louella.ward@yahoo.com", encrypted_password: "$2a$11$cVOvRAA88GGNvq.9nov7o.BeLEvzFs5XO6zFgTQli3dnVLS50DNrC", reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil, name: "Cristie", gender: "m", dob: "12/10/1992", confirmation_token: nil, confirmed_at: nil, confirmation_sent_at: nil},
-  {email: "mervin_parisian@yahoo.com", encrypted_password: "$2a$11$D0QbTDl6JHeYMC/BrzUpqOe4/ghBLTvE/LqfOsVcSNObLLJ.vByY.", reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil, name: "Curtis", gender: "m", dob: "12/10/1992", confirmation_token: nil, confirmed_at: nil, confirmation_sent_at: nil},
-  {email: "antwan@hotmail.com", encrypted_password: "$2a$11$Ahkxrjw/cLt7K9HKlzvoPOsA.39sK6Eb1V7hvNgUnMhs39uZdMMx2", reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil, name: "Brandon", gender: "m", dob: "12/10/1992", confirmation_token: nil, confirmed_at: nil, confirmation_sent_at: nil},
-  {email: "eusebio@gmail.com", encrypted_password: "$2a$11$wLTs7tuAeqZmG4tgZ/AVBu6fG1gx0ffiZtigcWSllM0Gv.BAGrh.m", reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil, name: "Milford", gender: "m", dob: "12/10/1992", confirmation_token: nil, confirmed_at: nil, confirmation_sent_at: nil},
-  {email: "eric_quigley@gmail.com", encrypted_password: "$2a$11$Vte4jGZk.0XpvrCraYZXJe1.nBFK7CbXHbcRXYVqOI3AccvqHh0DW", reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil, name: "Denis", gender: "m", dob: "12/10/1992", confirmation_token: nil, confirmed_at: nil, confirmation_sent_at: nil},
-  {email: "darcel@yahoo.com", encrypted_password: "$2a$11$VmMoff1EpnszwabU/DC/.uIHZmdN0OqkFCTNywpiZoXCWRIev9tlW", reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil, name: "Evalyn", gender: "m", dob: "12/10/1992", confirmation_token: nil, confirmed_at: nil, confirmation_sent_at: nil},
-  {email: "carmelo687@gmail.com", encrypted_password: "$2a$11$LIhvmH7K.i26BSrCrklZWeKFAFEHNv75lVrdEJKUCXlnVfBjcH0fe", reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil, name: "Edmond", gender: "m", dob: "12/10/1992", confirmation_token: nil, confirmed_at: nil, confirmation_sent_at: nil},
-  {email: "kay@hotmail.com", encrypted_password: "$2a$11$Nk31vQDiNfkkEuX5EpzWSe.9Kwk8M/ItT6n9.fbJLXZ6QqTJEqeIy", reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil, name: "Dustin", gender: "m", dob: "12/10/1992", confirmation_token: nil, confirmed_at: nil, confirmation_sent_at: nil}
-])
-Trip.create!([
-  {user_id: 27, description: "afasefaf", date_s: "20/09/2019", date_e: "24/09/2019", location: "Kandy, Sri Lanka", latitude: 7.2930922, longitude: 80.6350768},
-  {user_id: 21, description: "sfsdfsf", date_s: "18/09/2019", date_e: "26/09/2019", location: "Sigiriya, Sri Lanka", latitude: 7.95700065, longitude: 80.7573279667581},
-  {user_id: 21, description: "sdfzffzsdfzsd", date_s: "04/09/2019", date_e: "18/09/2019", location: "Jaffna, Sri Lanka", latitude: 9.665093, longitude: 80.0093029},
-  {user_id: 25, description: "arfafaefaf", date_s: "26/09/2019", date_e: "05/10/2019", location: "Matara, Sri Lanka", latitude: 5.947822, longitude: 80.5482919}
-])
+                 {email: "admin@gmail.com", password: "password", name: "admin", gender: "m", dob: "09/13/2019"},
+                 {email: "amy@gmail.com", password: "password", name: "amy", gender: "m", dob: "09/13/2019"},
+                 {email: "penny@gmail.com", password: "password", name: "penny", gender: "f", dob: "09/19/2019"}
+             ])
