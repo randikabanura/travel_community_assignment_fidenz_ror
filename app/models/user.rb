@@ -21,8 +21,8 @@ class User < ApplicationRecord
   acts_as_commontator
   has_one_attached :avatar
   has_many_attached :images
-  has_many :trips
-  has_many :reviews, dependent: :delete_all
+  has_many :trips, dependent: :destroy
+  has_many :reviews, dependent: :destroy
 
   def self.search(search)
     if search
