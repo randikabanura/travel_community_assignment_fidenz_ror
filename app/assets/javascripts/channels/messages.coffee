@@ -7,3 +7,4 @@ App.messages = App.cable.subscriptions.create "MessagesChannel",
 
   received: (data) ->
     $('#message_container').append data.update_message
+    scroll_bottom()
