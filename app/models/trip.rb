@@ -4,14 +4,16 @@ class Trip < ApplicationRecord
   validate :image_type, if: :location_changed?
 
   def thumbnail(size1 =100, size2= 100)
+    if !self.photos.present?
     return self.photos.variant(resize: "#{size1}x#{size2}!").processed
+    end
   end
   geocoded_by :location
   after_validation :geocode
 
   has_one_attached :photos
   belongs_to :user
-  has_many :reviews, dependent: :delete_all
+  has_many :reviews, dependent: :destroy
   resourcify
 
   def self.search(search)

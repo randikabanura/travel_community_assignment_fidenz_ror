@@ -32,7 +32,12 @@
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
               <%= link_to "My Trips", new_trip_path, class: "dropdown-item" %>
               <%= link_to "My Profile", edit_user_registration_path, class: "dropdown-item" %>
+              <% if current_user.has_role? :pro_user %>
               <a class="dropdown-item" href="#">Messages</a>
+                <% end %>
+              <% if current_user.has_role? :admin %>
+                <a class="dropdown-item" href="/admin/dashboard">Admin Panel</a>
+              <% end %>
               <div class="dropdown-divider"></div>
               <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
             </div>

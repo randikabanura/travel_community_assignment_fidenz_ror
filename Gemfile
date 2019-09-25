@@ -110,3 +110,6 @@ gem 'cancancan'
 
 # for getting roles for users
 gem 'rolify'
+
+# for activeadmin integration
+gem 'activeadmin', '~> 2.3', '>= 2.3.1'

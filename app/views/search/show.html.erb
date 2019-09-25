@@ -40,7 +40,11 @@
               </li>
               <li class="list-group-item">
                 <div class="trip_image">
-                  <%= image_tag trip.thumbnail%>
+                  <% if !trip.photos.present? %>
+                    <%= image_tag trip.thumbnail%>
+                  <% else %>
+                    <%= image_tag trip_image(trip) %>
+                  <% end %>
                 </div>
               </li>
               <li class="list-group-item  text-center">
