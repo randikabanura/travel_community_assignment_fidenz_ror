@@ -6,6 +6,7 @@ class User < ApplicationRecord
   validate :image_type
   validates_length_of :images, maximum: 5
   validate :avatar_type
+  validates :roles, presence: true
 
   def thumbnail input
     return self.images[input].variant(resize: '200x200!').processed
