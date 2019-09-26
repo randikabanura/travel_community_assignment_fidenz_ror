@@ -6,6 +6,10 @@ Rails.application.routes.draw do
   get '/profile//users/:id', to: "profile#show", as: :profile_show
   mount Commontator::Engine => 'api/v1/commontator'
   get '/search', to: "search#show", as: :search_show
+  get '/messages', to: "messages#index", as: :messages_home
+  post '/message', to: "messages#create", as: :message_create
+
+  mount ActionCable.server, at: '/cable'
 
   namespace 'api' do
     namespace 'v1' do

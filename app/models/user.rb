@@ -22,6 +22,7 @@ class User < ApplicationRecord
   has_many_attached :images
   has_many :trips, dependent: :destroy
   has_many :reviews, dependent: :destroy
+  has_many :messages, dependent: :destroy
   scope :admins, -> { Role.find_by_name('admin').users}
   scope :pro_users, -> { Role.find_by_name('pro_user').users}
   scope :normal, -> { Role.find_by_name('normal').users}
