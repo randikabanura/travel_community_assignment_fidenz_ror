@@ -13,10 +13,10 @@
           <div class="review-rating btn-group" data-score="<%= review.rating %>" id="star_rating"></div>
           <% if current_user == review.user %>
             <div id="edit_review">
-              <%= link_to "Edit", edit_api_v1_review_path(id: review, trip_id: @trip.id), class: "btn btn-secondary", remote:true %>
+              <%= link_to "Edit", edit_api_v1_user_review_path(id: review, review_user_id: @user.id), class: "btn btn-secondary", remote:true %>
             </div>
           <div id="delete_review">
-            <%= link_to "Delete", api_v1_review_path(id: review, trip_id: @trip.id), class: "btn btn-secondary", method: :delete, remote: true%>
+            <%= link_to "Delete", api_v1_user_review_path(id: review, review_user_id: @user.id), class: "btn btn-secondary", method: :delete, remote: true%>
           </div>
             <% end %>
         </div>

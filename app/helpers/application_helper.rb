@@ -41,4 +41,12 @@ module ApplicationHelper
     end
   end
 
+  def user_reviewed?(input)
+    if current_user
+      UserReview.exists?(['user_id = ? AND review_user_id = ?', current_user.id, input])
+    else
+      nil
+    end
+  end
+
 end

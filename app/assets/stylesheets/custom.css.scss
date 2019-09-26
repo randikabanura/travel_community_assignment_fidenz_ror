@@ -162,6 +162,9 @@ footer p{
   padding: 50px;
   border:1px solid rgba(0, 0, 0, 0.125);
   background-color: white;
+  #rating{
+    margin: 20px 0;
+  }
 }
 
 .edit_profile .field.form-group{
@@ -214,11 +217,13 @@ footer p{
 }
 
 .container#user_profile{
-  min-height: 100vh;
   border:1px solid rgba(0, 0, 0, 0.125);
   background-color: white;
   margin: 0 auto 50px auto;
   padding: 50px;
+  #rating{
+    margin-bottom: 20px;
+  }
 }
 .container#user_profile .field.form-group{
   display: flex;

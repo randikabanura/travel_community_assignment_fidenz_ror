@@ -2,6 +2,9 @@
 <div class="form-group picture">
   <%= image_tag user_avatar(user,150), class: "rounded" %>
 </div>
+  <div id="rating">
+    <%= render partial: 'userreview/rating', locals: {user:@user} %>
+  </div>
 
   <div class="field form-group">
     <div class="col-4">
@@ -82,6 +85,12 @@
 <% end %>
 
 </div>
+
+<div class="container">
+<%= render partial: 'userreview/review', locals: {reviews: @reviews, user:@user} %>
+</div>
+
+
 <script src="http://maps.google.com/maps/api/js"></script>
 <script>
     $(document).on('turbolinks:load', function() {
