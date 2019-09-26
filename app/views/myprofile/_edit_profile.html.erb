@@ -11,6 +11,9 @@
           <%= f.file_field :avatar, :onchange => "form.submit()" %>
         </span>
       </div>
+      <div id="rating">
+        <%= render partial: 'userreview/rating', locals: {user:current_user} %>
+      </div>
     </div>
   <% end %>
 
@@ -187,6 +190,18 @@
 
 <%#= link_to "Back", :back %>
 </div>
+
+<div class="container">
+  <%
+    @review = UserReview.new
+    if UserReview.exists?(review_user_id: current_user.id)
+      @reviews = UserReview.all.where(review_user: current_user)
+    else
+      @reviews = nil
+    end %>
+  <%= render partial: 'userreview/review', locals: {review: @reviews, user:current_user.id} %>
+</div>
+
 <script type="text/javascript">
     $(document).ready(function () {
         $('.datepicker').datepicker({

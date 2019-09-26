@@ -7,7 +7,7 @@
             <%= image_tag user_avatar(review.user, 40), class: "rounded-circle" %>
           </div>
           <div id="name">
-            <%= review.user.name.titleize %>
+            <%= link_to review.user.name.titleize, profile_show_path(review.user) %>
           </div>
           <div id="vertical_line_review">|</div>
           <div class="review-rating btn-group" data-score="<%= review.rating %>" id="star_rating"></div>
