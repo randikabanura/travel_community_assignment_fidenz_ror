@@ -1,4 +1,5 @@
 class MessagesController < ApplicationController
+  before_action :pro_user_authentication
 
   def index
     @messages = Message.custom_display
@@ -21,5 +22,12 @@ class MessagesController < ApplicationController
 
   def message_render(message)
     render(partial: 'message', locals: {message: message})
+  end
+
+  def pro_user_authentication
+    if !current_user.has_role? :pro_user
+      flash[:alert] = "You have to be paid user to access message funcationality"
+      redirect_to root_path
+    end
   end
 end
