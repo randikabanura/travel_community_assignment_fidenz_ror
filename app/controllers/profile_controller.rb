@@ -6,6 +6,12 @@ class ProfileController < ApplicationController
       redirect_to edit_user_registration_path
     else
       @user = User.find(params[:id])
+      @review = UserReview.new
+      if UserReview.exists?(review_user_id: params[:id])
+        @reviews = UserReview.all.where(review_user: @user)
+      else
+        @reviews = nil
+      end
     end
 
   end

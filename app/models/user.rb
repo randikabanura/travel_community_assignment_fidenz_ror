@@ -23,6 +23,8 @@ class User < ApplicationRecord
   has_many :trips, dependent: :destroy
   has_many :reviews, dependent: :destroy
   has_many :messages, dependent: :destroy
+  has_many :created_user_reviews, class_name: 'UserReview', foreign_key: 'user'
+  has_many :having_user_reviews, class_name: 'UserReview', foreign_key: 'review_user'
   scope :admins, -> { Role.find_by_name('admin').users}
   scope :pro_users, -> { Role.find_by_name('pro_user').users}
   scope :normal, -> { Role.find_by_name('normal').users}
@@ -32,6 +34,15 @@ class User < ApplicationRecord
       Role.find_by(name: 'normal').users.or(Role.find_by(name: 'pro_user').users).where('name LIKE ?', "%#{search}%").to_a
     else
       Role.find_by(name: 'normal').users.or(Role.find_by(name: 'pro_user').users)
+    end
+  end
+
+  def average_rating
+    reviews = self.having_user_reviews
+    if reviews.count > 0
+      reviews.sum(:rating) / reviews.count
+    else
+      return 0
     end
   end
 

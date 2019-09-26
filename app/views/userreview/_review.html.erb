@@ -1,0 +1,55 @@
+<div id="review_section">
+  <% unless user_reviewed?(@user.id) %>
+    <div id="review_form_input">
+      <div>
+        <h5>Leave a Review</h5>
+      </div>
+      <div id="rating-form">
+        <label> Rating </label>
+      </div>
+      <div id="input_textarea">
+        <label> Review </label>
+        <textarea id="review_text"></textarea>
+      </div>
+      <div id="submit_button">
+        <input type="button" id="review_submit" value="submit">
+      </div>
+    </div>
+  <% end %>
+
+  <div id="review_view">
+    <%= render partial: 'userreview/reviews_view', locals: {reviews: @reviews, user: @user} %>
+  </div>
+
+</div>
+
+<script>
+    $('#rating-form').raty({
+        path: '/assets/',
+        scoreName: 'review[rating]'
+    });
+
+    $('#review_submit').on("click", function () {
+        addComment();
+    })
+    function addComment() {
+        $.ajax({
+            url: "/api/v1/user_reviews",
+            type: "POST",
+            data: {
+                "user_review": {
+                    "user_id": <%= current_user.id %>,
+                    "review_user_id": <%= @user.id %>,
+                    "rating": $('#rating-form input').val(),
+                    "description": $('#review_text').val()
+                },
+                success: function () {
+                    var next = $("#rating-form");
+                    next.raty('score', 0);
+                    $('#review_text').val("");
+                }
+            }
+        });
+    }
+
+</script>
