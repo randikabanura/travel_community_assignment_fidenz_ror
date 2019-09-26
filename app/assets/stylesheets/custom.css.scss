@@ -623,6 +623,7 @@ footer p{
 }
 
 .container.messages{
+  padding: 20px 0;
   .card-body{
     height: 60vh;
     text-align: left;
@@ -630,4 +631,26 @@ footer p{
   #messages{
     overflow: auto;
   }
+  button{
+    display: none;
+  }
+  .msg_cotainer{
+    display: flex;
+    flex-direction: column;
+    .text_body{
+      background-color: whitesmoke;
+      margin-top: auto;
+      margin-bottom: auto;
+      margin-left: 10px;
+      padding: 10px;
+      border-radius: 25px;
+    }
+  }
+  .msg_time{
+    color: black;
+    font-size: 10px;
+    margin-left: 10px;
+    padding: 10px;
+  }
 }
+
