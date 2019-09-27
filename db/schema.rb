@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_26_092718) do
+ActiveRecord::Schema.define(version: 2019_09_27_042450) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -135,6 +135,17 @@ ActiveRecord::Schema.define(version: 2019_09_26_092718) do
     t.index ["rateable_type", "rateable_id"], name: "index_overall_averages_on_rateable_type_and_rateable_id"
   end
 
+  create_table "payments", force: :cascade do |t|
+    t.bigint "user_id"
+    t.string "card_number"
+    t.string "card_name"
+    t.string "date_exp"
+    t.integer "code"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_payments_on_user_id"
+  end
+
   create_table "rates", force: :cascade do |t|
     t.bigint "rater_id"
     t.string "rateable_type"
@@ -237,6 +248,7 @@ ActiveRecord::Schema.define(version: 2019_09_26_092718) do
   add_foreign_key "commontator_comments", "commontator_threads", column: "thread_id", on_update: :cascade, on_delete: :cascade
   add_foreign_key "commontator_subscriptions", "commontator_threads", column: "thread_id", on_update: :cascade, on_delete: :cascade
   add_foreign_key "messages", "users"
+  add_foreign_key "payments", "users"
   add_foreign_key "reviews", "trips"
   add_foreign_key "reviews", "users"
   add_foreign_key "trips", "users"
