@@ -1,8 +1,8 @@
 <div class="container payments">
   <div class="plan_details col-md-5 col-sm-12">
-    <% if params[:id] == "pro_user_1" %>
+    <% if params[:id] == "1" %>
       <%= render partial: 'payments/pro_user_1' %>
-    <% elsif params[:id] == "pro_user_2" %>
+    <% elsif params[:id] == "2" %>
       <%= render partial: 'payments/pro_user_2' %>
     <% else %>
       <%= render partial: 'payments/pro_user_3' %>
@@ -11,8 +11,9 @@
   <div class="divider col-md-2 col-sm-0">
     <div></div>
   </div>
-  <%= form_for(@payment, html: { class: "payment_form col-md-5 col-sm-12"} ) do |f| %>
-      <div class="panel panel-default">
+  <%= form_for(@payment,url: payments_path, method: :post, html: { class: "payment_form col-md-5 col-sm-12"} ) do |f| %>
+    <%= f.hidden_field :user, value: current_user.id %>
+    <div class="panel panel-default">
         <div class="panel-heading">
           <div class="row">
             <h3 class="text-center">Payment Details</h3>
@@ -54,6 +55,16 @@
                 </div>
               </div>
             </div>
+
+            <div class="row">
+              <div class="col-xs-12">
+            <div class="form-group">
+              <label>Select Your Plan</label>
+            <%= f.select :plan, options_for_select([['Plan $5', 1], ['Plan $9', 2], ['Plan $15', 3]], selected:params[:id]),  class: "form-control" %>
+            </div>
+              </div>
+            </div>
+
           </form>
         </div>
         <div class="panel-footer">
