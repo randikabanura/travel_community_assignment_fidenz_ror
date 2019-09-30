@@ -42,10 +42,13 @@ class PaymentsController < ApplicationController
     payment.plan = params[:payment][:plan]
     if payment_params[:plan].to_i == 1
       payment.message_count += 10
+      payment.exp_date += 30.days
     elsif payment_params[:plan].to_i == 2
       payment.message_count += 100
+      payment.exp_date += 30.days
     elsif payment_params[:plan].to_i == 3
       payment.message_count = 0
+      payment.exp_date += 30.days
     end
     if payment.save
       user.remove_role :pro_user_1
