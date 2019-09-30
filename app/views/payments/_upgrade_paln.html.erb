@@ -14,6 +14,7 @@
     <label>Select Your Plan</label>
     <%= f.select :plan, options_for_select([['Plan $5', 1], ['Plan $15', 3]]),  class: "form-control" %>
   </div>
+    <%= f.submit "Change", class: "btn btn-primary" %>
   <%end %>
   <% end %>
 <% if user == :pro_user_3 %>
@@ -22,6 +23,6 @@
     <label>Select Your Plan</label>
     <%= f.select :plan, options_for_select([['Plan $5', 1], ['Plan $9', 2]]),  class: "form-control" %>
   </div>
+    <%= f.submit "Change", class: "btn btn-primary" %>
     <% end %>
   <% end %>
-<%#= link_to "Change", payment_path(current_user.id), class: "btn btn-primary", method: :put, remote: true %>

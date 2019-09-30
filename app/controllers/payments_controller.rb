@@ -48,7 +48,7 @@ class PaymentsController < ApplicationController
       payment.exp_date += 30.days
     elsif payment_params[:plan].to_i == 3
       payment.message_count = 0
-      payment.exp_date += 30.days
+      payment.exp_date = Time.now + 30.days
     end
     if payment.save
       user.remove_role :pro_user_1
