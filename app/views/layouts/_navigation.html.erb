@@ -14,31 +14,38 @@
         <div class="nav navbar-nav navbar-right">
           <%= form_tag(search_show_path, method: :get, class: "form-inline") do |f| %>
             <div class="form-group has-search">
-            <%= text_field_tag(:search, params[:search], class: "form-control mr-sm-2") %>
-            <%= submit_tag("Search", class: "btn btn-success my-2 my-sm-0") %>
+              <%= text_field_tag(:search, params[:search], class: "form-control mr-sm-2") %>
+              <%= submit_tag("Search", class: "btn btn-success my-2 my-sm-0") %>
             </div>
-            <% end %>
-<!--          <form class="form-inline">-->
-<!--            <div class="form-group has-search">-->
-<!--              <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" style="margin-top: 0px;">-->
-<!--              <span class="fa fa-search form-control-feedback"></span>-->
-<!--            </div>-->
-<!--          </form>-->
+          <% end %>
+          <!--          <form class="form-inline">-->
+          <!--            <div class="form-group has-search">-->
+          <!--              <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" style="margin-top: 0px;">-->
+          <!--              <span class="fa fa-search form-control-feedback"></span>-->
+          <!--            </div>-->
+          <!--          </form>-->
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-              <%= image_tag user_avatar(current_user,20), class: "rounded-circle" %>
+              <%= image_tag user_avatar(current_user, 20), class: "rounded-circle" %>
               <%= current_user.name.titlecase %>
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
               <%= link_to "My Trips", new_trip_path, class: "dropdown-item" %>
               <%= link_to "My Profile", edit_user_registration_path, class: "dropdown-item" %>
-              <% if current_user.has_role? :pro_user %>
+              <% if current_user.has_role? :pro_user_1 %>
                 <%= link_to "Messages", messages_home_path, class: "dropdown-item" %>
-                <% else %>
+                <%= link_to "My Plan", payments_path, class: "dropdown-item" %>
+              <% elsif current_user.has_role? :pro_user_2 %>
+                <%= link_to "Messages", messages_home_path, class: "dropdown-item" %>
+                <%= link_to "My Plan", payments_path, class: "dropdown-item" %>
+              <% elsif current_user.has_role? :pro_user_3 %>
+                <%= link_to "Messages", messages_home_path, class: "dropdown-item" %>
+                <%= link_to "My Plan", payments_path, class: "dropdown-item" %>
+              <% else %>
                 <a class="dropdown-item" data-toggle="modal" data-target="#exampleModal">
                   Messages
                 </a>
-                <% end %>
+              <% end %>
               <% if current_user.has_role? :admin %>
                 <a class="dropdown-item" href="/admin/dashboard">Admin Panel</a>
               <% end %>

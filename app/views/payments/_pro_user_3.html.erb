@@ -14,7 +14,12 @@
         <li><span class="fa-li"><i class="fas fa-check"></i></span><strong>Unlimited</strong> Free Subdomains</li>
         <li><span class="fa-li"><i class="fas fa-check"></i></span>Monthly Status Reports</li>
       </ul>
+      <% if current_user.has_role? :pro_user_1 %>
+      <% elsif current_user.has_role? :pro_user_2 %>
+      <% elsif current_user.has_role? :pro_user_3 %>
+      <% else %>
       <%= link_to "Buy now", new_payment_path(id: "3"), class: "btn btn-block btn-primary text-uppercase"  %>
+        <% end %>
     </div>
   </div>
 </div>

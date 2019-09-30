@@ -38,4 +38,5 @@ Rails.application.routes.draw do
   end
 
   resources :payments
+  resources :features
 end

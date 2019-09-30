@@ -1,3 +1,6 @@
+<% unless current_user.has_role? :pro_user_1%>
+  <% unless current_user.has_role? :pro_user_2%>
+    <% unless current_user.has_role? :pro_user_3%>
 <div class="container pricing">
   <div class="row">
     <!-- Free Tier -->
@@ -8,3 +11,42 @@
     <%= render partial: 'payments/pro_user_3' %>
   </div>
 </div>
+      <% end %>
+    <% end %>
+<% end %>
+
+
+  <% if current_user.has_role? :pro_user_1 %>
+  <div class="container user_premium_user">
+    <div class="plan_card col-6">
+      <div class="row">
+    <%= render partial: 'payments/pro_user_1' %>
+      </div>
+    </div>
+    <div class="upgrade_card col-6">
+      <%= render partial: 'payments/upgrade_paln', locals: {user: :pro_user_1} %>
+    </div>
+  </div>
+  <% elsif current_user.has_role? :pro_user_2 %>
+  <div class="container user_premium_user">
+    <div class="plan_card col-6">
+      <div class="row">
+    <%= render partial: 'payments/pro_user_2' %>
+      </div>
+    </div>
+    <div class="upgrade_card col-6">
+      <%= render partial: 'payments/upgrade_paln', locals: {user: :pro_user_2} %>
+    </div>
+  </div>
+  <% elsif current_user.has_role? :pro_user_3 %>
+  <div class="container user_premium_user">
+    <div class="plan_card col-6">
+      <div class="row">
+    <%= render partial: 'payments/pro_user_3' %>
+      </div>
+    </div>
+    <div class="upgrade_card col-6">
+      <%= render partial: 'payments/upgrade_paln', locals: {user: :pro_user_3} %>
+    </div>
+  </div>
+  <% end %>

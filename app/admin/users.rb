@@ -7,7 +7,9 @@ ActiveAdmin.register User do
   #
   scope :all
   scope :admins
-  scope :pro_users
+  scope :pro_user_1
+  scope :pro_user_2
+  scope :pro_user_3
   scope :normal
 
   menu priority: 2, label: proc { "Users" }

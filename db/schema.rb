@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_30_041734) do
+ActiveRecord::Schema.define(version: 2019_09_30_113007) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -104,6 +104,17 @@ ActiveRecord::Schema.define(version: 2019_09_30_041734) do
     t.index ["commontable_type", "commontable_id"], name: "index_commontator_threads_on_c_id_and_c_type", unique: true
   end
 
+  create_table "features", force: :cascade do |t|
+    t.bigint "user_id"
+    t.integer "plan"
+    t.integer "messages_count"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "payment_id"
+    t.index ["payment_id"], name: "index_features_on_payment_id"
+    t.index ["user_id"], name: "index_features_on_user_id"
+  end
+
   create_table "follows", force: :cascade do |t|
     t.string "followable_type", null: false
     t.bigint "followable_id", null: false
@@ -144,6 +155,8 @@ ActiveRecord::Schema.define(version: 2019_09_30_041734) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "plan"
+    t.integer "message_count"
+    t.date "exp_date"
     t.index ["user_id"], name: "index_payments_on_user_id"
   end
 
@@ -248,6 +261,8 @@ ActiveRecord::Schema.define(version: 2019_09_30_041734) do
   add_foreign_key "commontator_comments", "commontator_comments", column: "parent_id", on_update: :restrict, on_delete: :cascade
   add_foreign_key "commontator_comments", "commontator_threads", column: "thread_id", on_update: :cascade, on_delete: :cascade
   add_foreign_key "commontator_subscriptions", "commontator_threads", column: "thread_id", on_update: :cascade, on_delete: :cascade
+  add_foreign_key "features", "payments"
+  add_foreign_key "features", "users"
   add_foreign_key "messages", "users"
   add_foreign_key "payments", "users"
   add_foreign_key "reviews", "trips"
