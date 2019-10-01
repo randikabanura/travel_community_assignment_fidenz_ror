@@ -17,10 +17,12 @@ class MessagesController < ApplicationController
           ActionCable.server.broadcast "messages_channel", update_message: message_render(message)
         end
       end
-    elsif payment.message_count == 0
+    elsif payment.message_count == -1
         if message.save
           ActionCable.server.broadcast "messages_channel", update_message: message_render(message)
         end
+    elsif payment.message_count == 0
+      flash[:notice] = "You are out of messages"
     end
   end
 

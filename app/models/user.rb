@@ -33,9 +33,9 @@ class User < ApplicationRecord
 
   def self.search(search)
     if search
-      Role.find_by(name: 'normal').users.or(Role.find_by(name: 'pro_user_1').users).or(Role.find_by(name: 'pro_user_2').users).or(Role.find_by(name: 'pro_user_3').users).where('name LIKE ?', "%#{search}%").to_a
+      User.without_role(:admin).where('name LIKE ?', "%#{search}%").to_a
     else
-      Role.find_by(name: 'normal').users.or(Role.find_by(name: 'pro_user_1').users).or(Role.find_by(name: 'pro_user_2').users).or(Role.find_by(name: 'pro_user_3').users)
+      User.without_role(:admin).to_a
     end
   end
 

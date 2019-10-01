@@ -3,7 +3,7 @@ module Api
     class UsersController < ApplicationController
       skip_before_action :authenticate_user!, only: [:index]
       def index
-         users = Role.find_by(name: 'normal').users.or(Role.find_by(name: 'pro_user_1').users).or(Role.find_by(name: 'pro_user_2').users).or(Role.find_by(name: 'pro_user_3').users).order_by_rand.limit(5)
+         users = User.without_role(:admin).order_by_rand.limit(5)
          render json: {status: 'SUCCESS', message: 'Five random users', data: users}, status: :ok
       end
 

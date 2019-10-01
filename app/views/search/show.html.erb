@@ -26,8 +26,8 @@
   <% end %>
 
   <% if !@trips.empty? %>
+    <h4>Trip search results for "<%= @search_term %>"</h4>
     <div class="search_trips">
-      <h4>Trip search results for "<%= @search_term %>"</h4>
     <% @trips.each do |trip| %>
         <div class="card col-3"  id="<%=trip.id %>">
           <ul class="list-group list-group-flush">
