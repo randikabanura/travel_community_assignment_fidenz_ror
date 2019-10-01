@@ -37,6 +37,9 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :payments
-  resources :features
+  resources :payments do
+    member do
+      put :extend_my_plan
+    end
+  end
 end

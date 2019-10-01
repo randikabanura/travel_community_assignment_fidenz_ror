@@ -26,7 +26,7 @@
                 <div class="form-group">
                   <label>CARD NUMBER</label>
                   <div class="input-group">
-                    <%= f.text_field :card_number, class: "form-control", placeholder: "Valid Card Number" %>
+                    <%= f.text_field :card_number,  type: "Number", class: "form-control", placeholder: "Valid Card Number" %>
                     <span class="input-group-addon"><span class="fa fa-credit-card"></span></span>
                   </div>
                 </div>
@@ -37,13 +37,13 @@
                 <div class="form-group">
                   <label><span class="hidden-xs">EXPIRATION</span><span class="visible-xs-inline">EXP</span>
                     DATE</label>
-                  <%= f.text_field :date_exp, class: "form-control", placeholder: "MM/YY" %>
+                  <%= f.text_field :date_exp, placeholder: "MM/YY", autocomplete: "off", id: "start", class: "datepicker form-control" %>
                 </div>
               </div>
               <div class="col-xs-5 col-md-5 pull-right">
                 <div class="form-group">
                   <label>CV CODE</label>
-                  <%= f.text_field :code, class: "form-control", placeholder: "CVC" %>
+                  <%= f.text_field :code, type: "Number", class: "form-control", placeholder: "CVC" %>
                 </div>
               </div>
             </div>
@@ -78,3 +78,16 @@
   <% end %>
 
 </div>
+
+<script>
+    $(function() {
+        $(function()
+        {   $( ".datepicker" ).datepicker({
+            changeMonth:true,
+            changeYear:true,
+            yearRange:"-50:+50",
+            dateFormat:"yy-mm-dd" });
+        });
+
+    });
+</script>

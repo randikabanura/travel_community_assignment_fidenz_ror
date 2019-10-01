@@ -614,9 +614,14 @@ footer p{
   }
   .search_trips{
     width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
     .card{
       width: 18rem;
       padding: 0;
+      margin-right: 20px;
+      margin-bottom: 20px;
       li{
         padding: 12px 0;
         .trip_image img{
@@ -877,4 +882,8 @@ footer p{
       }
     }
   }
+}
+
+.review-rating{
+  width: 300px;
 }

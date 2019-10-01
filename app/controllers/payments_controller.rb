@@ -44,10 +44,10 @@ class PaymentsController < ApplicationController
     if current_plan != 3
       if payment_params[:plan].to_i == 1
         payment.message_count += 10
-        payment.exp_date += 30.days
+        payment.exp_date = Time.now + 30.days
       elsif payment_params[:plan].to_i == 2
         payment.message_count += 100
-        payment.exp_date += 30.days
+        payment.exp_date = Time.now + 30.days
       elsif payment_params[:plan].to_i == 3
         payment.message_count = -1
         payment.exp_date = Time.now + 30.days
@@ -68,9 +68,36 @@ class PaymentsController < ApplicationController
       user.revoke :pro_user_3 if user.has_role? :pro_user_3
       user.grant "pro_user_" + params[:payment][:plan]
       if user.save
-        flash[:notice] = "You now have "+payment.message_count.to_s+" messages and your account will expire on "+payment.exp_date.to_s
+        if payment.message_count != -1
+          flash[:notice] = "You now have "+payment.message_count.to_s+" messages and your account will expire on "+payment.exp_date.to_s
+        else
+          flash[:notice] = "You now have unlimited messages and your account will expire on "+payment.exp_date.to_s
+        end
         redirect_to messages_home_path
       end
+    end
+  end
+
+  def extend_my_plan
+    user_id = params[:id]
+    user = User.find(user_id)
+    payment = Payment.find_by(user: user)
+    payment.exp_date += 30.days
+    current_plan = payment.plan
+      if current_plan.to_i == 1
+        payment.message_count += 10
+      elsif current_plan.to_i == 2
+        payment.message_count += 100
+      elsif current_plan.to_i == 3
+        payment.message_count = -1
+      end
+    if payment.save
+      if payment.message_count != -1
+        flash[:notice] = "You now have "+payment.message_count.to_s+" messages and your account will expire on "+payment.exp_date.to_s
+      else
+        flash[:notice] = "You now have unlimited messages and your account will expire on "+payment.exp_date.to_s
+      end
+      redirect_to messages_home_path
     end
   end
 

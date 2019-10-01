@@ -4,8 +4,8 @@ class Trip < ApplicationRecord
   validate :image_type, if: :location_changed?
 
   def thumbnail(size1 =100, size2= 100)
-    if !self.photos.present?
-    return self.photos.variant(resize: "#{size1}x#{size2}!").processed
+    if self.photos.present?
+      return self.photos.variant(resize: "#{size1}x#{size2}!").processed
     end
   end
   geocoded_by :location
@@ -19,8 +19,6 @@ class Trip < ApplicationRecord
   def self.search(search)
     if search
       where('lower(location) LIKE ?', "%#{search}%").to_a
-    else
-      find(:all)
     end
   end
 

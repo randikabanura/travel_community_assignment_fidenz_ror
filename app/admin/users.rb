@@ -53,7 +53,6 @@ ActiveAdmin.register User do
       input :email
       input :gender, collection: [["Male", "m"], ["Female", "f"]]
       input :password
-      input :roles, as: :check_boxes
     end
     actions
   end
