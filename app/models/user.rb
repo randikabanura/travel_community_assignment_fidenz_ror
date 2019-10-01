@@ -26,14 +26,16 @@ class User < ApplicationRecord
   has_many :created_user_reviews, class_name: 'UserReview', foreign_key: 'user'
   has_many :having_user_reviews, class_name: 'UserReview', foreign_key: 'review_user'
   scope :admins, -> { Role.find_by_name('admin').users}
-  scope :pro_users, -> { Role.find_by_name('pro_user').users}
+  scope :pro_user_1, -> { Role.find_by_name('pro_user_1').users}
+  scope :pro_user_2, -> { Role.find_by_name('pro_user_2').users}
+  scope :pro_user_3, -> { Role.find_by_name('pro_user_3').users}
   scope :normal, -> { Role.find_by_name('normal').users}
 
   def self.search(search)
     if search
-      Role.find_by(name: 'normal').users.or(Role.find_by(name: 'pro_user').users).where('name LIKE ?', "%#{search}%").to_a
+      User.without_role(:admin).where('name LIKE ?', "%#{search}%").to_a
     else
-      Role.find_by(name: 'normal').users.or(Role.find_by(name: 'pro_user').users)
+      User.without_role(:admin).to_a
     end
   end
 

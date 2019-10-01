@@ -7,7 +7,9 @@ ActiveAdmin.register User do
   #
   scope :all
   scope :admins
-  scope :pro_users
+  scope :pro_user_1
+  scope :pro_user_2
+  scope :pro_user_3
   scope :normal
 
   menu priority: 2, label: proc { "Users" }
@@ -51,7 +53,6 @@ ActiveAdmin.register User do
       input :email
       input :gender, collection: [["Male", "m"], ["Female", "f"]]
       input :password
-      input :roles, as: :check_boxes
     end
     actions
   end

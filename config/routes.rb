@@ -36,4 +36,10 @@ Rails.application.routes.draw do
       delete :delete_image_attachment
     end
   end
+
+  resources :payments do
+    member do
+      put :extend_my_plan
+    end
+  end
 end

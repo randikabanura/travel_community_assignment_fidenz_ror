@@ -113,3 +113,6 @@ gem 'rolify'
 
 # for activeadmin integration
 gem 'activeadmin', '~> 2.3', '>= 2.3.1'
+
+# for job of membership validation
+gem 'sucker_punch', '~> 2.0'
