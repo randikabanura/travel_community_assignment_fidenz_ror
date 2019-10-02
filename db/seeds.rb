@@ -11,3 +11,7 @@ User.create!([
                  {email: "amy@gmail.com", password: "password", name: "amy", gender: "m", dob: "09/13/2019"},
                  {email: "penny@gmail.com", password: "password", name: "penny", gender: "f", dob: "09/19/2019"}
              ])
+
+user = User.create(email: "admin2@gmail.com", password: "password", name: "admin", gender: "m", dob: "09/13/2019")
+user.grant "admin"
+user.save

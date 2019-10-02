@@ -11,6 +11,7 @@
 
     <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
       <% if user_signed_in? %>
+
         <div class="nav navbar-nav navbar-right">
           <%= form_tag(search_show_path, method: :get, class: "form-inline") do |f| %>
             <div class="form-group has-search">

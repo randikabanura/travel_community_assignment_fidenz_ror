@@ -1,6 +1,6 @@
-<div id="trips" class="row" data-userid="<%= current_user.id %>">
+<div id="trips" class="row col-md-8 col-sm-12" data-userid="<%= current_user.id %>">
   <% @trips.each do |trip| %>
-    <div class="col-6">
+    <div class="col-lg-6">
       <div class="card" style="width: 18rem;" id="<%= trip.id %>">
         <ul class="list-group list-group-flush">
           <div class="card-body">
