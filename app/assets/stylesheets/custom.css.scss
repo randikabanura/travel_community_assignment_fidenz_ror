@@ -910,6 +910,10 @@ footer p{
     flex-wrap: wrap;
     justify-content: center;
   }
+
+  .container.pricing .row{
+    justify-content: center;
+  }
 }
 
 @media (max-width:768px) {
