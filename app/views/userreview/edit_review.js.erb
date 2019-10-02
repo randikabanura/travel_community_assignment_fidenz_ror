@@ -1,3 +1,3 @@
-$('#average_rating').replaceWith("<%= escape_javascript(render :partial => 'userreview/rating', locals: {user:@user}) %>")
+$('#average_rating').replaceWith("<%= escape_javascript(render :partial => 'userreview/rating', locals: { user:@user }) %>")
 $('#delete_review').parent().siblings(".review_description").children().hide()
-$('#delete_review').parent().siblings(".review_description").append("<%= escape_javascript(render :partial => 'userreview/edit_review', locals: { review: @review, user: @user}) %>");
+$('#delete_review').parent().siblings(".review_description").append("<%= escape_javascript(render :partial => 'userreview/edit_review', locals: { review: @review, user: @user }) %>");

@@ -6,7 +6,7 @@ class MembershipValidation
       payment = Payment.find_by(user_id: user_id)
       if Date.today > payment.exp_date
         user = User.find(user_id)
-        user.revoke "pro_user_"+payment.plan.to_s
+        user.revoke 'pro_user_' + payment.plan.to_s
         user.save
         payment.destroy
       end

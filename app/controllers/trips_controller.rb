@@ -1,9 +1,8 @@
 class TripsController < ApplicationController
-
   before_action :trip_params, only: [:create]
 
   def index
-
+    # index of trip controller
   end
 
   def new
@@ -19,10 +18,10 @@ class TripsController < ApplicationController
     @trip = Trip.new(trip_params)
     @trip.user = current_user if current_user
     if @trip.save
-      flash[:notice] = "Trip was saved successfully."
+      flash[:notice] = 'Trip was saved successfully.'
       redirect_to @trip
     else
-      flash[:alert] = "Error creating Trip. Please make sure there is a correct location and dates."
+      flash[:alert] = 'Error creating Trip. Please make sure there is a correct location and dates.'
       redirect_to new_trip_path
     end
   end
@@ -30,8 +29,6 @@ class TripsController < ApplicationController
   def show
     @trip = Trip.find(params[:id])
     @review = Review.new
-
-
     if Review.exists?(trip_id: params[:id])
       @reviews = Review.all.where(trip: @trip)
     else
@@ -51,14 +48,14 @@ class TripsController < ApplicationController
     @image.purge
     @trip = Trip.find(params[:id])
     respond_to do |format|
-      format.js {render :file => 'trips/edit'}
+      format.js { render file: 'trips/edit' }
     end
   end
 
   def update
     @trip = Trip.find(params[:id])
     if @trip.update(trip_params)
-      flash[:notice] = "Trip successfully updated"
+      flash[:notice] = 'Trip successfully updated'
       redirect_to trip_path(@trip)
     end
   end
@@ -66,7 +63,7 @@ class TripsController < ApplicationController
   def destroy
     @trip = Trip.find(params[:id])
     if @trip.destroy
-      flash[:danger] = "Trip successfully deleted"
+      flash[:danger] = 'Trip successfully deleted'
       redirect_to new_trip_path
     end
   end
@@ -76,6 +73,4 @@ class TripsController < ApplicationController
   def trip_params
     params.require(:trip).permit(:location, :date_s, :date_e, :description, :photos)
   end
-
-
 end

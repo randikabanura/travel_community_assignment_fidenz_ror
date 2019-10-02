@@ -1,26 +1,26 @@
 <div id="review_section">
   <% unless user_reviewed?(@user.id) %>
     <% if current_user != @user %>
-    <div id="review_form_input">
-      <div>
-        <h5>Leave a Review</h5>
+      <div id="review_form_input">
+        <div>
+          <h5>Leave a Review</h5>
+        </div>
+        <div id="rating-form">
+          <label> Rating </label>
+        </div>
+        <div id="input_textarea">
+          <label> Review </label>
+          <textarea id="review_text"></textarea>
+        </div>
+        <div id="submit_button">
+          <input type="button" id="review_submit" value="submit">
+        </div>
       </div>
-      <div id="rating-form">
-        <label> Rating </label>
-      </div>
-      <div id="input_textarea">
-        <label> Review </label>
-        <textarea id="review_text"></textarea>
-      </div>
-      <div id="submit_button">
-        <input type="button" id="review_submit" value="submit">
-      </div>
-    </div>
-      <% end %>
+    <% end %>
   <% end %>
 
   <div id="review_view">
-    <%= render partial: 'userreview/reviews_view', locals: {reviews: @reviews, user: @user} %>
+    <%= render partial: 'userreview/reviews_view', locals: { reviews: @reviews, user: @user } %>
   </div>
 
 </div>
@@ -34,6 +34,7 @@
     $('#review_submit').on("click", function () {
         addComment();
     })
+
     function addComment() {
         $.ajax({
             url: "/api/v1/user_reviews",
@@ -53,5 +54,4 @@
             }
         });
     }
-
 </script>

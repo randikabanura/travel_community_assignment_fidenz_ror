@@ -1,23 +1,19 @@
 class User < ApplicationRecord
   rolify
 
-  after_create :assign_default_role
-  validates :name, :email, presence: true
-  validate :image_type
-  validates_length_of :images, maximum: 5
-  validate :avatar_type
-
-  def thumbnail input
-    return self.images[input].variant(resize: '200x200!').processed
-  end
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
   acts_as_followable
   acts_as_follower
   acts_as_commontator
+
+  after_create :assign_default_role
+  validates :name, :email, presence: true
+  validate :image_type
+  validates_length_of :images, maximum: 5
+  validate :avatar_type
+
   has_one_attached :avatar
   has_many_attached :images
   has_many :trips, dependent: :destroy
@@ -25,11 +21,16 @@ class User < ApplicationRecord
   has_many :messages, dependent: :destroy
   has_many :created_user_reviews, class_name: 'UserReview', foreign_key: 'user'
   has_many :having_user_reviews, class_name: 'UserReview', foreign_key: 'review_user'
-  scope :admins, -> { Role.find_by_name('admin').users}
-  scope :pro_user_1, -> { Role.find_by_name('pro_user_1').users}
-  scope :pro_user_2, -> { Role.find_by_name('pro_user_2').users}
-  scope :pro_user_3, -> { Role.find_by_name('pro_user_3').users}
-  scope :normal, -> { Role.find_by_name('normal').users}
+
+  scope :admins, -> { Role.find_by_name('admin').users }
+  scope :pro_user_1, -> { Role.find_by_name('pro_user_1').users }
+  scope :pro_user_2, -> { Role.find_by_name('pro_user_2').users }
+  scope :pro_user_3, -> { Role.find_by_name('pro_user_3').users }
+  scope :normal, -> { Role.find_by_name('normal').users }
+
+  def thumbnail input
+    return self.images[input].variant(resize: '200x200!').processed
+  end
 
   def self.search(search)
     if search
@@ -71,5 +72,4 @@ class User < ApplicationRecord
   def assign_default_role
     add_role(:normal) if self.roles.blank?
   end
-
 end

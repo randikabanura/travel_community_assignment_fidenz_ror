@@ -13,7 +13,6 @@ class ProfileController < ApplicationController
         @reviews = nil
       end
     end
-
   end
 
   private

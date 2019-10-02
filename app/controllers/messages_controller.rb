@@ -14,15 +14,15 @@ class MessagesController < ApplicationController
       payment.message_count -= 1 if payment.message_count > 0
       if payment.save
         if message.save
-          ActionCable.server.broadcast "messages_channel", update_message: message_render(message)
+          ActionCable.server.broadcast 'messages_channel', update_message: message_render(message)
         end
       end
     elsif payment.message_count == -1
-        if message.save
-          ActionCable.server.broadcast "messages_channel", update_message: message_render(message)
-        end
+      if message.save
+        ActionCable.server.broadcast 'messages_channel', update_message: message_render(message)
+      end
     elsif payment.message_count == 0
-      flash[:notice] = "You are out of messages"
+      flash[:notice] = 'You are out of messages'
     end
   end
 
@@ -33,7 +33,7 @@ class MessagesController < ApplicationController
   end
 
   def message_render(message)
-    render(partial: 'message', locals: {message: message})
+    render(partial: 'message', locals: { message: message })
   end
 
   def pro_user_authentication
@@ -41,7 +41,7 @@ class MessagesController < ApplicationController
     elsif !current_user.has_role? :pro_user_2
     elsif !current_user.has_role? :pro_user_3
     else
-      flash[:alert] = "You have to be paid user to access message funcationality"
+      flash[:alert] = 'You have to be paid user to access message funcationality'
       redirect_to root_path
     end
   end

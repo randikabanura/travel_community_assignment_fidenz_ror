@@ -1,39 +1,39 @@
 <div class="container">
-<h4>You already have a premium plan</h4>
-  <% payment = Payment.find_by(user_id:current_user.id) %>
+  <h4>You already have a premium plan</h4>
+  <% payment = Payment.find_by(user_id: current_user.id) %>
   <% if payment.message_count != -1 %>
-  <p>Your plan have <%= payment.message_count %> messages and it will expire on <%= payment.exp_date %></p>
-    <% else %>
+    <p>Your plan have <%= payment.message_count %> messages and it will expire on <%= payment.exp_date %></p>
+  <% else %>
     <p>Your plan have unlimited messages and it will expire on <%= payment.exp_date %></p>
-    <% end %>
+  <% end %>
 </div>
 
 <% if user == :pro_user_1 %>
-  <%= form_for(@payment,url: payment_path(current_user), html: { class: "payment_form col-md-5 col-sm-12", method: :put} ) do |f| %>
-  <div class="form-group">
-    <label>You can change your plan here</label>
-    <%= f.select :plan, options_for_select([['Plan $9', 2], ['Plan $15', 3]]),  class: "form-control" %>
-  </div>
-    <%= f.submit "Change",:onclick => "return confirm('Are you sure you want to do that?')", class: "btn btn-primary" %>
+  <%= form_for(@payment, url: payment_path(current_user), html: { class: "payment_form col-md-5 col-sm-12", method: :put }) do |f| %>
+    <div class="form-group">
+      <label>You can change your plan here</label>
+      <%= f.select :plan, options_for_select([['Plan $9', 2], ['Plan $15', 3]]), class: "form-control" %>
+    </div>
+    <%= f.submit "Change", :onclick => "return confirm('Are you sure you want to do that?')", class: "btn btn-primary" %>
   <% end %>
-  <% end %>
+<% end %>
 <% if user == :pro_user_2 %>
-  <%= form_for(@payment,url: payment_path(current_user), html: { class: "payment_form col-md-5 col-sm-12", method: :put} ) do |f| %>
-  <div class="form-group">
-    <label>Select Your Plan</label>
-    <%= f.select :plan, options_for_select([['Plan $5', 1], ['Plan $15', 3]]),  class: "form-control" %>
-  </div>
+  <%= form_for(@payment, url: payment_path(current_user), html: { class: "payment_form col-md-5 col-sm-12", method: :put }) do |f| %>
+    <div class="form-group">
+      <label>Select Your Plan</label>
+      <%= f.select :plan, options_for_select([['Plan $5', 1], ['Plan $15', 3]]), class: "form-control" %>
+    </div>
     <%= f.submit "Change", :onclick => "return confirm('Are you sure you want to do that?')", class: "btn btn-primary" %>
-  <%end %>
   <% end %>
+<% end %>
 <% if user == :pro_user_3 %>
-  <%= form_for(@payment,url: payment_path(current_user), html: { class: "payment_form col-md-5 col-sm-12", method: :put} ) do |f| %>
-  <div class="form-group">
-    <label>Select Your Plan</label>
-    <%= f.select :plan, options_for_select([['Plan $5', 1], ['Plan $9', 2]]),  class: "form-control" %>
-  </div>
+  <%= form_for(@payment, url: payment_path(current_user), html: { class: "payment_form col-md-5 col-sm-12", method: :put }) do |f| %>
+    <div class="form-group">
+      <label>Select Your Plan</label>
+      <%= f.select :plan, options_for_select([['Plan $5', 1], ['Plan $9', 2]]), class: "form-control" %>
+    </div>
     <%= f.submit "Change", :onclick => "return confirm('Are you sure you want to do that?')", class: "btn btn-primary" %>
-    <% end %>
   <% end %>
+<% end %>
 
-<%= link_to "Extend my plan", extend_my_plan_payment_path(current_user), data: { confirm: "Are you sure you want to do that?"}, method: :put, class: "btn btn-primary" %>
+<%= link_to "Extend my plan", extend_my_plan_payment_path(current_user), data: { confirm: "Are you sure you want to do that?" }, method: :put, class: "btn btn-primary" %>

@@ -18,7 +18,7 @@
   <% end %>
 
   <div id="review_view">
-    <%= render partial: 'trips/reviews_view', locals: {reviews: @reviews, trip: @trip} %>
+    <%= render partial: 'trips/reviews_view', locals: { reviews: @reviews, trip: @trip } %>
   </div>
 
 </div>
@@ -32,6 +32,7 @@
     $('#review_submit').on("click", function () {
         addComment();
     })
+
     function addComment() {
         $.ajax({
             url: "/api/v1/reviews",
@@ -51,5 +52,4 @@
             }
         });
     }
-
 </script>

@@ -8,7 +8,6 @@ module Api
         review = Review.new(review_params)
         review.user = User.find(review.user_id)
         review.trip = Trip.find(review.trip_id)
-
         if review.save
           if Review.exists?(trip_id: review.trip_id)
             @reviews = Review.all.where(trip: Trip.find(review.trip_id))
@@ -17,15 +16,15 @@ module Api
           end
           @trip = Trip.find(review.trip_id)
           respond_to do |format|
-            format.js { render 'trips/review', locals: {reviews: @reviews, trip: @trip} }
+            format.js { render 'trips/review', locals: { reviews: @reviews, trip: @trip } }
           end
         else
-          render json: {  error: review.errors.full_messages }, status: :bad_request
+          render json: { error: review.errors.full_messages }, status: :bad_request
         end
       end
 
       def show
-
+        # for showing reviews
       end
 
       def destroy
@@ -39,7 +38,7 @@ module Api
           @trip = Trip.find(params[:trip_id])
 
           respond_to do |format|
-            format.js { render 'trips/review', locals: {reviews: @reviews, trip: @trip} }
+            format.js { render 'trips/review', locals: { reviews: @reviews, trip: @trip } }
           end
         else
           render json: {  error: review.errors.full_messages }, status: :bad_request
@@ -50,7 +49,7 @@ module Api
         @review = Review.find(params[:id])
         @trip = Trip.find(params[:trip_id])
         respond_to do |format|
-          format.js { render 'trips/edit_review', locals: {review: @review, trip: @trip} }
+          format.js { render 'trips/edit_review', locals: { review: @review, trip: @trip } }
         end
       end
 
@@ -63,12 +62,11 @@ module Api
             @reviews = nil
           end
           @trip = Trip.find(update_review_params[:trip_id])
-
           respond_to do |format|
-            format.js { render 'trips/review', locals: {reviews: @reviews, trip: @trip} }
+            format.js { render 'trips/review', locals: { reviews: @reviews, trip: @trip } }
           end
         else
-          render json: {  error: review.errors.full_messages }, status: :bad_request
+          render json: { error: review.errors.full_messages }, status: :bad_request
         end
       end
 
@@ -81,7 +79,6 @@ module Api
       def update_review_params
         params.require(:review).permit(:id, :user_id, :trip_id, :rating, :description)
       end
-
     end
   end
 end

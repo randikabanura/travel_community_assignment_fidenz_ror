@@ -1,2 +1,2 @@
-$('#average_rating').replaceWith("<%= escape_javascript(render :partial => 'userreview/rating', locals: {user:@user}) %>")
-$('#review_section').html("<%= escape_javascript(render :partial => 'userreview/review', locals: { reviews: @reviews}) %>");
+$('#average_rating').replaceWith("<%= escape_javascript(render :partial => 'userreview/rating', locals: { user:@user }) %>")
+$('#review_section').html("<%= escape_javascript(render :partial => 'userreview/review', locals: { reviews: @reviews }) %>");

@@ -8,7 +8,6 @@ module Api
         review = UserReview.new(user_review_params)
         review.user = User.find(review.user_id)
         review.review_user = User.find(review.review_user_id)
-
         if review.save
           if UserReview.exists?(review_user_id: review.review_user_id)
             @reviews = UserReview.all.where(review_user: User.find(review.review_user_id))
@@ -17,15 +16,15 @@ module Api
           end
           @user = User.find(review.review_user_id)
           respond_to do |format|
-            format.js { render 'userreview/review', locals: {reviews: @reviews, user:@user} }
+            format.js { render 'userreview/review', locals: { reviews: @reviews, user:@user } }
           end
         else
-          render json: {  error: review.errors.full_messages }, status: :bad_request
+          render json: { error: review.errors.full_messages }, status: :bad_request
         end
       end
 
       def show
-
+        # show a certain user review
       end
 
       def destroy
@@ -37,9 +36,8 @@ module Api
             @reviews = nil
           end
           @user = User.find(params[:review_user_id])
-
           respond_to do |format|
-            format.js { render 'userreview/review', locals: {reviews: @reviews, user:@user} }
+            format.js { render 'userreview/review', locals: { reviews: @reviews, user:@user } }
           end
         else
           render json: {  error: review.errors.full_messages }, status: :bad_request
@@ -50,7 +48,7 @@ module Api
         @review = UserReview.find(params[:id])
         @user = User.find(params[:review_user_id])
         respond_to do |format|
-          format.js { render 'userreview/edit_review', locals: {review: @review, user:@user} }
+          format.js { render 'userreview/edit_review', locals: { review: @review, user:@user } }
         end
       end
 
@@ -63,12 +61,11 @@ module Api
             @reviews = nil
           end
           @user = User.find(update_user_review_params[:review_user_id])
-
           respond_to do |format|
-            format.js { render 'userreview/review', locals: {reviews: @reviews, trip: @trip} }
+            format.js { render 'userreview/review', locals: { reviews: @reviews, trip: @trip } }
           end
         else
-          render json: {  error: review.errors.full_messages }, status: :bad_request
+          render json: { error: review.errors.full_messages }, status: :bad_request
         end
       end
 

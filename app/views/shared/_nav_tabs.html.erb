@@ -17,14 +17,14 @@
   <div class="stylediv"></div>
   <% if defined? user %>
     <div id="follow_btn" class="nav-item follow_btn-front">
-    <button type="button" id="<%= user.id %>" data-userid="<%= current_user.id %> " data-remote="true" data-method="" data-url="" data-params="" class="btn btn-primary submit user_btn_front"></button>
+      <button type="button" id="<%= user.id %>" data-userid="<%= current_user.id %> " data-remote="true" data-method="" data-url="" data-params="" class="btn btn-primary submit user_btn_front"></button>
     </div>
   <% end %>
 </ul>
 <div class="tab-content" id="tabs">
   <% if defined? user %>
     <div class="tab-pane" id="user_profile">
-      <%= render :partial => 'profile/user_profile', locals: {user: user} %>
+      <%= render :partial => 'profile/user_profile', locals: { user: user } %>
     </div>
     <div class="tab-pane" id="followers">
       <%= render :partial => 'profile/user_followers' %>
@@ -53,9 +53,9 @@
     };
 
     <%if defined? user %>
-      activeTab('user_profile');
+    activeTab('user_profile');
     <% else %>
-      activeTab('edit_profile');
+    activeTab('edit_profile');
     <% end %>
 
     $('.nav-item #tab2').on('click', function () {
@@ -105,9 +105,9 @@
 
     function onAjaxSuccess() {
 
-        $('.user_btn_front')[0].addEventListener('ajax:success',function () {
+        $('.user_btn_front')[0].addEventListener('ajax:success', function () {
 
-            if ($('.user_btn_front')[0].innerText== "Follow") {
+            if ($('.user_btn_front')[0].innerText == "Follow") {
                 $('.user_btn_front').text("Unfollow");
                 $('.user_btn_front').attr("data-method", "delete");
                 $('.user_btn_front').attr("data-url", "/api/v1/follows/" + Math.random() * 10);
@@ -122,8 +122,7 @@
     }
 
 
-
-<% if defined? user%>
+    <% if defined? user%>
     loadFollowStatus();
-  <% end %>
+    <% end %>
 </script>

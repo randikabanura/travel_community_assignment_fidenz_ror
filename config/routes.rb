@@ -1,19 +1,18 @@
 Rails.application.routes.draw do
   ActiveAdmin.routes(self)
-  devise_for :users, controllers: { registrations: "registrations" }
+  devise_for :users, controllers: { registrations: 'registrations' }
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'welcome#index'
-  get '/profile//users/:id', to: "profile#show", as: :profile_show
+  get '/profile//users/:id', to: 'profile#show', as: :profile_show
   mount Commontator::Engine => 'api/v1/commontator'
-  get '/search', to: "search#show", as: :search_show
-  get '/messages', to: "messages#index", as: :messages_home
-  post '/message', to: "messages#create", as: :message_create
-
+  get '/search', to: 'search#show', as: :search_show
+  get '/messages', to: 'messages#index', as: :messages_home
+  post '/message', to: 'messages#create', as: :message_create
   mount ActionCable.server, at: '/cable'
 
   namespace 'api' do
     namespace 'v1' do
-      get '/users', to: "users#index"
+      get '/users', to: 'users#index'
       resources :users, only: [:show] do
         member do
           delete :delete_image_attachment
@@ -26,11 +25,12 @@ Rails.application.routes.draw do
           get :allfollowing
         end
       end
-      post '/isfollowing', to: "follows#isfollowing?"
+      post '/isfollowing', to: 'follows#isfollowing?'
       resources :reviews
       resources :user_reviews
     end
   end
+
   resources :trips do
     member do
       delete :delete_image_attachment

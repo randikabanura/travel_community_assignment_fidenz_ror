@@ -1,5 +1,4 @@
 class SearchController < ApplicationController
-
   def show
     @search_term = params[:search]
     @users = User.search(params[:search])

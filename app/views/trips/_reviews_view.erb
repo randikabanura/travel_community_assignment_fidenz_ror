@@ -13,12 +13,12 @@
           <div class="review-rating btn-group" data-score="<%= review.rating %>" id="star_rating"></div>
           <% if current_user == review.user %>
             <div id="edit_review">
-              <%= link_to "Edit", edit_api_v1_review_path(id: review, trip_id: @trip.id), class: "btn btn-secondary", remote:true %>
+              <%= link_to "Edit", edit_api_v1_review_path(id: review, trip_id: @trip.id), class: "btn btn-secondary", remote: true %>
             </div>
-          <div id="delete_review">
-            <%= link_to "Delete", api_v1_review_path(id: review, trip_id: @trip.id), class: "btn btn-secondary", data: { confirm: "Are you sure you want to do that?"}, method: :delete, remote: true%>
-          </div>
-            <% end %>
+            <div id="delete_review">
+              <%= link_to "Delete", api_v1_review_path(id: review, trip_id: @trip.id), class: "btn btn-secondary", data: { confirm: "Are you sure you want to do that?" }, method: :delete, remote: true %>
+            </div>
+          <% end %>
         </div>
         <div class="review_description">
           <div id="review_description_text">

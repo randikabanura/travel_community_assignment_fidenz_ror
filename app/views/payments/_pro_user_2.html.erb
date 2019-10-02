@@ -18,8 +18,8 @@
       <% elsif current_user.has_role? :pro_user_2 %>
       <% elsif current_user.has_role? :pro_user_3 %>
       <% else %>
-      <%= link_to "Buy now", new_payment_path(id: "2"), class: "btn btn-block btn-primary text-uppercase"  %>
-        <% end %>
+        <%= link_to "Buy now", new_payment_path(id: "2"), class: "btn btn-block btn-primary text-uppercase" %>
+      <% end %>
     </div>
   </div>
 </div>

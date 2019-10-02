@@ -25,6 +25,7 @@
     $('#review_update_submit').on("click", function () {
         updateComment();
     })
+
     function updateComment() {
         $.ajax({
             url: "/api/v1/user_reviews/<%= @review.id %>",
@@ -40,7 +41,7 @@
             }
         });
     }
-    
+
     $('#review_update_cancel').on("click", function () {
         $(this).parent().parent().parent().children('div').show()
         $(this).parent().parent().remove()

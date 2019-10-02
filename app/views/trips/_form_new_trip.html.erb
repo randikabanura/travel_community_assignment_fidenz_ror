@@ -4,12 +4,12 @@
       <div class="col-12">
         <div class="col-8" style="display: flex; flex-direction: column; padding: 0">
           <div>
-        <%= text_field_tag nil, nil, autofocus: true, autocomplete: "location", class: "form-control", id: "search_location", placeholder: "Location" %>
-        <%= f.hidden_field :location, id: "hidden_location" %>
+            <%= text_field_tag nil, nil, autofocus: true, autocomplete: "location", class: "form-control", id: "search_location", placeholder: "Location" %>
+            <%= f.hidden_field :location, id: "hidden_location" %>
           </div>
-        <div style="display: none" id="location_error" class="form_errors">
-          <p>Location cannot be empty or be incorrect</p>
-        </div>
+          <div style="display: none" id="location_error" class="form_errors">
+            <p>Location cannot be empty or be incorrect</p>
+          </div>
           <% if @trip.errors[:location].present? %>
             <div class="form_errors">Location <%= @trip.errors[:location].first %></div>
           <% end %>
@@ -19,9 +19,9 @@
     <div class="date">
       <div class="field form-group">
         <div class="col-8" style="display: flex; flex-direction: column; padding: 0">
-        <div class="col-12">
-          <%= f.text_field :date_s, autocomplete: "off", id: "start", class: "datepicker form-control", placeholder: "Start date" %>
-        </div>
+          <div class="col-12">
+            <%= f.text_field :date_s, autocomplete: "off", id: "start", class: "datepicker form-control", placeholder: "Start date" %>
+          </div>
           <div style="display: none" id="date_s_error" class="form_errors col-12">
             <p>Start date cannot be empty</p>
           </div>
@@ -29,9 +29,9 @@
       </div>
       <div class="field form-group">
         <div class="col-8" style="display: flex; flex-direction: column; padding: 0">
-        <div class="col-12">
-          <%= f.text_field :date_e, autocomplete: "off", id: "end", class: "datepicker form-control", placeholder: "End date" %>
-        </div>
+          <div class="col-12">
+            <%= f.text_field :date_e, autocomplete: "off", id: "end", class: "datepicker form-control", placeholder: "End date" %>
+          </div>
           <div style="display: none" id="date_e_error" class="form_errors col-12">
             <p>End date cannot be empty</p>
           </div>
@@ -52,7 +52,7 @@
       <div class="col-3">
       <span class="input-group-btn">
       <span class="btn btn-small btn-primary btn-inverse" onclick="$(this).parent().parent().find('input[type=file]').click();">Browse</span>
-        <%= f.file_field :photos,  onchange: "$(this).parent().parent().parent().find('.form-control').html($(this).val().split(/[\\\\|/]/).pop());", style: "display: none;" %>
+        <%= f.file_field :photos, onchange: "$(this).parent().parent().parent().find('.form-control').html($(this).val().split(/[\\\\|/]/).pop());", style: "display: none;" %>
       </span>
       </div>
     </div>
@@ -63,6 +63,7 @@
       </div>
     </div>
   <% end %>
+
   <script type="text/javascript">
       $(document).on('turbolinks:load', () => {
           $('form').on('keypress', e => {
@@ -79,7 +80,7 @@
               var diff = 0;
               if (start && end) {
                   diff = Math.floor((end.getTime() - start.getTime()) / 86400000);
-                  if(diff<1){
+                  if (diff < 1) {
                       alert("Select correct start and end date for the trip")
                       var $dates = $('#start, #end').datepicker();
                       $dates.datepicker('setDate', null);

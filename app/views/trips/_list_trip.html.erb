@@ -2,9 +2,9 @@
   <div id="trip_list">
     <% @my_trips.each do |trip| %>
       <div class="card border-light mb-3 my_trips">
-          <div class="trip_card card-body text-dark">
-            <a data-remote="true" href="/trips/<%= trip.id %>/edit">
-              <span class="link-spanner"></span>
+        <div class="trip_card card-body text-dark">
+          <a data-remote="true" href="/trips/<%= trip.id %>/edit">
+            <span class="link-spanner"></span>
             <div class="icon_flag">
               <%= image_tag("flag_trip.png") %>
             </div>
@@ -13,9 +13,9 @@
               <p><%= Time.new(trip.date_s[6...10], trip.date_s[3...5], trip.date_s[0...2]).strftime("%d %b %Y") %>
                 to <%= Time.new(trip.date_e[6...10], trip.date_e[3...5], trip.date_e[0...2]).strftime("%d %b %Y") %></p>
             </div>
-            </a>
+          </a>
 
-          </div>
+        </div>
         <div class="show_trip">
           <a href="/trips/<%= trip.id %>">
             <button type="button" class="btn btn-default btn-lg">

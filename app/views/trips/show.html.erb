@@ -1,19 +1,19 @@
 <div class="container">
   <div class="trip_show">
     <div>
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a href="/">Home</a></li>
-      <li class="breadcrumb-item active" aria-current="page"><%= @trip.location.titleize %></li>
-    </ol>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page"><%= @trip.location.titleize %></li>
+      </ol>
     </div>
     <div class="user_trip">
       <div>
         <%= image_tag user_avatar(@trip.user, 50), class: "rounded-circle" %>
       </div>
-          <div id="name_date">
-            <a href="/profile/users/<%= @trip.user.id %>"><h5 class="card-title"><%= @trip.user.name.titleize %></h5></a>
-            <p><%= Time.new(@trip.created_at.to_s[0...4],@trip.created_at.to_s[5...7], @trip.created_at.to_s[8...10]).strftime("%d %b %Y") %></p>
-          </div>
+      <div id="name_date">
+        <a href="/profile/users/<%= @trip.user.id %>"><h5 class="card-title"><%= @trip.user.name.titleize %></h5></a>
+        <p><%= Time.new(@trip.created_at.to_s[0...4], @trip.created_at.to_s[5...7], @trip.created_at.to_s[8...10]).strftime("%d %b %Y") %></p>
+      </div>
 
     </div>
     <div>
@@ -21,7 +21,7 @@
     </div>
 
 
-      <%= render partial: 'trips/rating', locals: {trip: @trip} %>
+    <%= render partial: 'trips/rating', locals: {trip: @trip} %>
 
     <div id="big_image">
       <%= image_tag trip_image(@trip) %>
@@ -42,6 +42,6 @@
         of Lorem Ipsum.</p>
     </div>
 
-    <%= render :partial => 'review', locals: {reviews: @reviews, trip: @trip} %>
+    <%= render :partial => 'review', locals: { reviews: @reviews, trip: @trip } %>
   </div>
 </div>

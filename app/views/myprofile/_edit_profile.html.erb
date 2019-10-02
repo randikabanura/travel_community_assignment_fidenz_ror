@@ -1,5 +1,4 @@
 <div class="container edit_profile">
-
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: {method: :put}) do |f| %>
     <div class="form-group picture">
       <div>
@@ -12,7 +11,7 @@
         </span>
       </div>
       <div id="rating">
-        <%= render partial: 'userreview/rating', locals: {user:current_user} %>
+        <%= render partial: 'userreview/rating', locals: { user: current_user } %>
       </div>
     </div>
   <% end %>
@@ -33,7 +32,6 @@
           <div class="form_errors">Name <%= resource.errors[:name].first %></div>
         <% end %>
       </div>
-
     </div>
 
     <div class="field form-group">
@@ -41,12 +39,12 @@
         <%= f.label :date_of_birthday %>
       </div>
       <div class="col-4" style="display: flex; flex-direction: column">
-      <div>
-        <%= f.text_field :dob, autocomplete: 'off', class: "datepicker form-control", placeholder: "Birthday" %>
-        <div class="input-group-addon">
-          <span class="glyphicon glyphicon-th"></span>
+        <div>
+          <%= f.text_field :dob, autocomplete: 'off', class: "datepicker form-control", placeholder: "Birthday" %>
+          <div class="input-group-addon">
+            <span class="glyphicon glyphicon-th"></span>
+          </div>
         </div>
-      </div>
         <% if resource.errors[:name].present? %>
           <div class="form_errors">Name <%= resource.errors[:name].first %></div>
         <% end %>
@@ -67,16 +65,16 @@
         <%= f.label :email %>
       </div>
       <div class="col-8" style="display: flex; flex-direction: column">
-      <div>
-        <%= f.text_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
-      </div>
-      <div style="display: none" id="email_error" class="form_errors">
-        <p>email field must be filed out correctly</p>
-      </div>
+        <div>
+          <%= f.text_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
+        </div>
+        <div style="display: none" id="email_error" class="form_errors">
+          <p>email field must be filed out correctly</p>
+        </div>
         <% if resource.errors[:email].present? %>
           <div class="form_errors">Email <%= resource.errors[:email].first %></div>
         <% end %>
-    </div>
+      </div>
     </div>
 
     <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
@@ -183,12 +181,6 @@
       </div>
     </div>
   <% end %>
-
-  <!--<h3>Cancel my account</h3>-->
-
-  <!--<p>Unhappy? <%#= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>-->
-
-<%#= link_to "Back", :back %>
 </div>
 
 <div class="container">
@@ -199,13 +191,13 @@
     else
       @reviews = nil
     end %>
-  <%= render partial: 'userreview/review', locals: {review: @reviews, user:current_user.id} %>
+  <%= render partial: 'userreview/review', locals: { review: @reviews, user: current_user.id } %>
 </div>
 
 <script type="text/javascript">
     $(document).ready(function () {
         $('.datepicker').datepicker({
-          format: 'dd/mm/yyyy'
+            format: 'dd/mm/yyyy'
         })
     });
 
