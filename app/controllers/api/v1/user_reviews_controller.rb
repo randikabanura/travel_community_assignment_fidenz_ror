@@ -31,7 +31,7 @@ module Api
         review = UserReview.find(params[:id])
         if review.destroy
           if UserReview.exists?(review_user_id: params[:review_user_id])
-            @reviews = Review.all.where(review_user: User.find(params[:review_user_id]))
+            @reviews = UserReview.all.where(review_user: User.find(params[:review_user_id]))
           else
             @reviews = nil
           end

@@ -18,23 +18,23 @@
 
 <% if current_user.has_role? :pro_user_1 %>
   <div class="container user_premium_user">
-    <div class="plan_card col-6">
+    <div class="plan_card col-lg-6 col-md-12 col-sm-12">
       <div class="row">
         <%= render partial: 'payments/pro_user_1' %>
       </div>
     </div>
-    <div class="upgrade_card col-6">
+    <div class="upgrade_card col-lg-6 col-md-12 col-sm-12">
       <%= render partial: 'payments/upgrade_paln', locals: { user: :pro_user_1 } %>
     </div>
   </div>
 <% elsif current_user.has_role? :pro_user_2 %>
   <div class="container user_premium_user">
-    <div class="plan_card col-6">
+    <div class="plan_card col-lg-6 col-md-12">
       <div class="row">
         <%= render partial: 'payments/pro_user_2' %>
       </div>
     </div>
-    <div class="upgrade_card col-6">
+    <div class="upgrade_card col-lg-6 col-md-12">
       <%= render partial: 'payments/upgrade_paln', locals: { user: :pro_user_2 } %>
     </div>
   </div>
@@ -45,7 +45,7 @@
         <%= render partial: 'payments/pro_user_3' %>
       </div>
     </div>
-    <div class="upgrade_card col-6">
+    <div class="upgrade_card col-lg-6 col-md-12">
       <%= render partial: 'payments/upgrade_paln', locals: {user: :pro_user_3} %>
     </div>
   </div>

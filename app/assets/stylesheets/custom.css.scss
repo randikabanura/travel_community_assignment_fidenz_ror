@@ -297,6 +297,7 @@ footer p{
   height: max-content;
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   justify-content: space-around;
   border:1px solid rgba(0, 0, 0, 0.125);
 }
@@ -608,6 +609,7 @@ footer p{
     .search_users_cards{
       display: flex;
       flex-direction: row;
+      flex-wrap: wrap;
       >div{
         margin-right: 20px;
       }
@@ -889,6 +891,9 @@ footer p{
   width: 300px;
 }
 
+.year_cvc > div{
+  padding: 0;
+}
 @media (max-width:992px) {
   .navbar{
     height:auto;
@@ -914,10 +919,68 @@ footer p{
   .container.pricing .row{
     justify-content: center;
   }
+  .map{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    height: auto;
+    #map{
+      height: 300px !important;
+    }
+  }
 }
 
 @media (max-width:768px) {
   #trips .col-lg-6 {
     justify-content: center;
+  }
+  .nav.nav-tabs.container .stylediv, .nav.nav-tabs.container #follow_btn{
+    display: none;
+  }
+  #review_form_input{
+    padding: 20px;
+    #review_text {
+      min-width: auto;
+    }
+  }
+  .reviews #edit_review{
+    width: auto;
+  }
+  .review_title{
+    flex-wrap: wrap;
+  }
+  .review-rating{
+    width: auto;
+  }
+  .search_trips{
+    justify-content: center;
+  }
+  .search_users_cards{
+    justify-content: center;
+  }
+  .map{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    height: auto;
+    #map{
+      height: 300px !important;
+      width: 100% !important;
+    }
+    .trip_list_profile{
+      width: auto;
+    }
+    .trip_card{
+      width: auto;
+    }
+    .container#user_profile{
+      padding: 0;
+    }
+  }
+  .card.my_trips{
+    width: auto;
+    .trip_card{
+      width: auto;
+    }
   }
 }
