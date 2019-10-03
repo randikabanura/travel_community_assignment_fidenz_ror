@@ -7,7 +7,7 @@
       <h4>User search results for "<%= @search_term %>"</h4>
       <div class="search_users_cards">
         <% @users.each do |user| %>
-          <div class="card col-3 text-center">
+          <div class="card col-lg-3 col-md-5 col-sm-8 text-center">
             <div class="card-body">
               <div>
                 <%= image_tag user_avatar(user, 40), class: "rounded-circle" %>
@@ -29,7 +29,7 @@
     <h4>Trip search results for "<%= @search_term %>"</h4>
     <div class="search_trips">
       <% @trips.each do |trip| %>
-        <div class="card col-3" id="<%= trip.id %>">
+        <div class="card col-lg-3 col-md-5 col-sm-8" id="<%= trip.id %>">
           <ul class="list-group list-group-flush">
             <div class="card-body">
               <li class="list-group-item">

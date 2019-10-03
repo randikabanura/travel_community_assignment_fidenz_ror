@@ -19,7 +19,7 @@ module Api
             format.js { render 'trips/review', locals: { reviews: @reviews, trip: @trip } }
           end
         else
-          render json: { error: review.errors.full_messages }, status: :bad_request
+          render json: { notice: review.errors.full_messages }, status: :bad_request
         end
       end
 

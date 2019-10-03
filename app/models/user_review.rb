@@ -5,5 +5,6 @@ class UserReview < ApplicationRecord
   attr_accessor :user_id
   attr_accessor :review_user_id
 
+  validates :rating, presence: true
   acts_as_commontable dependent: :destroy
 end

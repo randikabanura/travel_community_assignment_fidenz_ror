@@ -50,7 +50,7 @@
   <% if !user.trips.empty? %>
     <p><%= user.name %> Trips</p>
     <div class="map">
-      <div class="trip_list_profile">
+      <div class="trip_list_profile col-lg-6 col-md-12 col-sm-12 col-xs-12">
         <div id="trip_list">
           <% (0...3).each do |trip| %>
             <% if !user.trips[trip].nil? %>
@@ -79,11 +79,10 @@
           <% end %>
         </div>
       </div>
-      <div id="map">
+      <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12" id="map">
       </div>
     </div>
   <% end %>
-
 </div>
 
 <div class="container">

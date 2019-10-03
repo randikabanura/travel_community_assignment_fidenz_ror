@@ -22,11 +22,11 @@ class User < ApplicationRecord
   has_many :created_user_reviews, class_name: 'UserReview', foreign_key: 'user'
   has_many :having_user_reviews, class_name: 'UserReview', foreign_key: 'review_user'
 
-  scope :admins, -> { Role.find_by_name('admin').users }
-  scope :pro_user_1, -> { Role.find_by_name('pro_user_1').users }
-  scope :pro_user_2, -> { Role.find_by_name('pro_user_2').users }
-  scope :pro_user_3, -> { Role.find_by_name('pro_user_3').users }
-  scope :normal, -> { Role.find_by_name('normal').users }
+  scope :admins, -> { User.with_role(:admin) }
+  scope :pro_user_1, -> { User.with_role(:pro_user_1) }
+  scope :pro_user_2, -> { User.with_role(:pro_user_2) }
+  scope :pro_user_3, -> { User.with_role(:pro_user_3) }
+  scope :normal, -> { User.with_role(:normal)  }
 
   def thumbnail input
     return self.images[input].variant(resize: '200x200!').processed

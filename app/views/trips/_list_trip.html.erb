@@ -1,5 +1,5 @@
 <% if !@my_trips.nil? %>
-  <div id="trip_list">
+  <div class="col-lg-6 col-md-8 col-sm-12" id="trip_list">
     <% @my_trips.each do |trip| %>
       <div class="card border-light mb-3 my_trips">
         <div class="trip_card card-body text-dark">
@@ -27,7 +27,7 @@
     <% end %>
   </div>
 <% else %>
-  <div id="trip_list_empty">
+  <div  class="col-lg-6 col-md-8 col-sm-12" id="trip_list_empty">
     <p>There is not trips available.<br/> Add a trip trip to see it in here</p>
   </div>
 <% end %>

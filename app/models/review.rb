@@ -7,5 +7,7 @@ class Review < ApplicationRecord
   attr_accessor :user_id
   attr_accessor :trip_id
 
+  validates :rating, presence: true
+
   acts_as_commontable dependent: :destroy
 end

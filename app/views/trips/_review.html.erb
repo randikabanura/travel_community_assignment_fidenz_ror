@@ -7,6 +7,9 @@
       <div id="rating-form">
         <label> Rating </label>
       </div>
+      <div style="display: none" id="rating_error" class="form_errors">
+        <p>Ratings must be filed out correctly</p>
+      </div>
       <div id="input_textarea">
         <label> Review </label>
         <textarea id="review_text"></textarea>
@@ -34,22 +37,27 @@
     })
 
     function addComment() {
-        $.ajax({
-            url: "/api/v1/reviews",
-            type: "POST",
-            data: {
-                "review": {
-                    "user_id": <%= current_user.id %>,
-                    "trip_id": <%= @trip.id %>,
-                    "rating": $('#rating-form input').val(),
-                    "description": $('#review_text').val()
-                },
-                success: function () {
-                    var next = $("#rating-form");
-                    next.raty('score', 0);
-                    $('#review_text').val("");
+        $('.form_errors').css("display", "none");
+        if($('#rating-form input').val()!="") {
+            $.ajax({
+                url: "/api/v1/reviews",
+                type: "POST",
+                data: {
+                    "review": {
+                        "user_id": <%= current_user.id %>,
+                        "trip_id": <%= @trip.id %>,
+                        "rating": $('#rating-form input').val(),
+                        "description": $('#review_text').val()
+                    },
+                    success: function () {
+                        var next = $("#rating-form");
+                        next.raty('score', 0);
+                        $('#review_text').val("");
+                    }
                 }
-            }
-        });
+            });
+        }else{
+            $('.form_errors').css("display", "block");
+        }
     }
 </script>
