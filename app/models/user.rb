@@ -2,7 +2,7 @@ class User < ApplicationRecord
   rolify
 
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+         :recoverable, :rememberable, :validatable, :confirmable
 
   acts_as_followable
   acts_as_follower
