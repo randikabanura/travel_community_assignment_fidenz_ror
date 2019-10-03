@@ -14,7 +14,7 @@
       <label>You can change your plan here</label>
       <%= f.select :plan, options_for_select([['Plan $9', 2], ['Plan $15', 3]]), class: "form-control" %>
     </div>
-    <%= f.submit "Change", :onclick => "return confirm('Are you sure you want to do that?')", class: "btn btn-primary" %>
+    <%= f.submit "Change", :onclick => "return confirm('Are you sure you want to do that?')", class: "btn btn-danger" %>
   <% end %>
 <% end %>
 <% if user == :pro_user_2 %>
@@ -23,7 +23,7 @@
       <label>Select Your Plan</label>
       <%= f.select :plan, options_for_select([['Plan $5', 1], ['Plan $15', 3]]), class: "form-control" %>
     </div>
-    <%= f.submit "Change", :onclick => "return confirm('Are you sure you want to do that?')", class: "btn btn-primary" %>
+    <%= f.submit "Change", :onclick => "return confirm('Are you sure you want to do that?')", class: "btn btn-danger" %>
   <% end %>
 <% end %>
 <% if user == :pro_user_3 %>
@@ -32,7 +32,7 @@
       <label>Select Your Plan</label>
       <%= f.select :plan, options_for_select([['Plan $5', 1], ['Plan $9', 2]]), class: "form-control" %>
     </div>
-    <%= f.submit "Change", :onclick => "return confirm('Are you sure you want to do that?')", class: "btn btn-primary" %>
+    <%= f.submit "Change", :onclick => "return confirm('Are you sure you want to do that?')", class: "btn btn-danger" %>
   <% end %>
 <% end %>
 

@@ -894,6 +894,16 @@ footer p{
 .year_cvc > div{
   padding: 0;
 }
+
+.upgrade_card{
+  a.btn {
+    margin: 15px 15px;
+  }
+  input.btn{
+    width: 100%;
+  }
+}
+
 @media (max-width:992px) {
   .navbar{
     height:auto;
@@ -935,7 +945,10 @@ footer p{
     justify-content: center;
   }
   .nav.nav-tabs.container .stylediv, .nav.nav-tabs.container #follow_btn{
-    display: none;
+    width: 100%;
+    button{
+      width: 100%;
+    }
   }
   #review_form_input{
     padding: 20px;
@@ -982,5 +995,12 @@ footer p{
     .trip_card{
       width: auto;
     }
+  }
+  .nav{
+    padding-left: 15px;
+  }
+  .nav-tabs li
+  {
+    width:100%!important;
   }
 }

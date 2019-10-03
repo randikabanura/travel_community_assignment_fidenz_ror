@@ -46,10 +46,10 @@
     </div>
 
     <div class="field form-group" style="display: flex">
-      <div class="col-9">
+      <div class="col-lg-9 col-sm-6">
         <span class="form-control"></span>
       </div>
-      <div class="col-3">
+      <div class="col-lg-3 col-sm-6">
       <span class="input-group-btn">
       <span class="btn btn-small btn-primary btn-inverse" onclick="$(this).parent().parent().find('input[type=file]').click();">Browse</span>
         <%= f.file_field :photos, onchange: "$(this).parent().parent().parent().find('.form-control').html($(this).val().split(/[\\\\|/]/).pop());", style: "display: none;" %>
