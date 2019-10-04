@@ -7,7 +7,7 @@
             <li class="list-group-item">
               <div id="first_item">
                 <%= image_tag user_avatar(trip.user, 50), class: "rounded-circle" %>
-                <a href="/profile/users/<%= trip.user.id %>"><h5 class="card-title"><%= trip.user.name %></h5></a>
+                <a href="/profile/users/<%= trip.user.id %>"><h5 class="card-title" style="width: 145px;text-overflow: ellipsis;white-space: nowrap;overflow: hidden"><%= trip.user.name %></h5></a>
               </div>
             </li>
             <li class="list-group-item">
@@ -21,7 +21,7 @@
             </li>
             <li class="list-group-item  text-center">
               <div id="location">
-                <h5 class="card-title" style="margin: auto"><%= link_to trip.location, trip_path(trip) %></h5>
+                <h5 class="card-title" style="margin: auto;"><%= link_to trip.location, trip_path(trip) %></h5>
                 <p style="margin: auto"><%= Time.new(trip.date_s[6...10], trip.date_s[3...5], trip.date_s[0...2]).strftime("%d %b %Y") %>
                   to <%= Time.new(trip.date_e[6...10], trip.date_e[3...5], trip.date_e[0...2]).strftime("%d %b %Y") %></p>
               </div>

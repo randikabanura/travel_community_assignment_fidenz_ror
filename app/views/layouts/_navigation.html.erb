@@ -22,7 +22,7 @@
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
               <%= image_tag user_avatar(current_user, 20), class: "rounded-circle" %>
-              <%= current_user.name.titlecase %>
+              <%= current_user.name.titlecase%>
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
               <%= link_to "My Trips", new_trip_path, class: "dropdown-item" %>
