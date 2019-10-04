@@ -2,16 +2,16 @@
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
     <h3 class="text-center">Sign up</h3>
     <div class="field form_group">
+      <%= f.text_field :name, autocomplete: 'off', class: "form-control", required: true, placeholder: "Name (required)" %>
+      <% if resource.errors[:name].present? %>
+        <div class="form_errors">Name <%= resource.errors[:name].first %></div>
+      <% end %>
+    </div>
+    <div class="field form_group">
       <i style="position: absolute;margin-top: 10px; margin-left: 260px" class="fa fa-user fa-1x search_icon"></i>
       <%= f.email_field :email, autofocus: true, autocomplete: 'off', required: true, class: "form-control", placeholder: "Email (required)" %>
       <% if resource.errors[:email].present? %>
         <div class="form_errors">Email <%= resource.errors[:email].first %></div>
-      <% end %>
-    </div>
-    <div class="field form_group">
-      <%= f.text_field :name, autocomplete: 'off', class: "form-control", required: true, placeholder: "Name (required)" %>
-      <% if resource.errors[:name].present? %>
-        <div class="form_errors">Name <%= resource.errors[:name].first %></div>
       <% end %>
     </div>
     <div class="field form_group">

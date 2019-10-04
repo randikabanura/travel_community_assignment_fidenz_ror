@@ -25,7 +25,7 @@ $(function () {
         $(".alert").fadeOut(1000, function () {
             $(".remove_alert").remove();
         })
-    }, 3000);
+    }, 300000);
 
 
     jQuery.each( [ "put", "delete" ], function( i, method ) {

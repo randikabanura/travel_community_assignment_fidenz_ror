@@ -6,7 +6,7 @@
           <div id="review_avatar">
             <%= image_tag user_avatar(review.user, 40), class: "rounded-circle" %>
           </div>
-          <div id="name">
+          <div id="name" style="width: fit-content; white-space: nowrap;">
             <%= link_to review.user.name.titleize, profile_show_path(review.user) %>
           </div>
           <div id="vertical_line_review">|</div>

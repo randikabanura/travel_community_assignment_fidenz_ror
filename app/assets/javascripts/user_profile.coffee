@@ -21,9 +21,9 @@ $(document).on 'turbolinks:load', ->
                                 link = "http://www.gravatar.com/avatar?s=50"
                             }
                             $(".tab-pane#followers #user_followers_tab").append(\'<div class="single_user"><div class="card mb-3" style="min-width: 16rem;">\\n\' +
-                                \'  <div class="card-body text-dark image_card">\\n\' +
-                                \'     <div><img src="\' + link + \'" style="border-radius: 50%"/></div><div><a href="/profile/users/\' + data[i].id + \'" ><h5 class="card-title">\' + data[i].name + \'</h5></a>\\n\' +
-                                \'  </div>\\n\' +
+                                \'  <div class="card-body text-dark image_card" style="display: flex; flex-direction: column;">\\n\' +
+                                \'     <hr style="width:210px; order:1"><div style="order: 2;align-self: center;padding: 0;"><img src="\' + link + \'" style="border-radius: 50%"/></div><a style="align-self:center" href="/profile/users/\' + data[i].id + \'" ><h5 class="card-title">\' + data[i].name + \'</h5></a>\\n\' +
+                                \'  \\n\' +
                                 \'</div></div></div>\')
                         })
                     }
@@ -52,9 +52,9 @@ $(document).on 'turbolinks:load', ->
                             link = "http://www.gravatar.com/avatar?s=50"
                         }
                         $(".tab-pane#following #user_following_tab").append(\'<div class="single_user"><div class="card mb-3" style="min-width: 16rem;">\\n\' +
-                            \'  <div class="card-body text-dark image_card">\\n\' +
-                            \'    <div><img src="\' + link + \'" style="border-radius: 50%"/></div><div><a href="/profile/users/\' + data[i].id + \'" ><h5 class="card-title">\' + data[i].name + \'</h5></a>\\n\' +
-                            \'  </div>\\n\' +
+                            \'  <div class="card-body text-dark image_card" style="display: flex; flex-direction: column;">\\n\' +
+                            \'    <hr style="width:210px; order:1"><div style="order: 2;align-self: center;padding: 0;"><img src="\' + link + \'" style="border-radius: 50%"/></div><a style="align-self:center" href="/profile/users/\' + data[i].id + \'" ><h5 class="card-title">\' + data[i].name + \'</h5></a>\\n\' +
+                            \'  \\n\' +
                             \'</div></div></div>\')
                     })
                 })
