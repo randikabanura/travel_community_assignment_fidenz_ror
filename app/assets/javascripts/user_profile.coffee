@@ -8,6 +8,9 @@ $(document).on 'turbolinks:load', ->
             type: "GET",
             success: function (data) {
                 $(".tab-pane#followers #user_followers_tab").empty();
+                if(data.length === 0){
+                  $(".tab-pane#followers #user_followers_tab").append(\'<h4>No followers to show</h4>\')
+                }
                 $.each(data, function (i) {
                         $.get("/api/v1/users/" + data[i].id + "/avatar_image_thumbnail", function (image, status) {
                             var link;
@@ -36,6 +39,9 @@ $(document).on 'turbolinks:load', ->
             type: "GET",
             success: function (data) {
                 $(".tab-pane#following #user_following_tab").empty();
+                if(data.length === 0){
+                  $(".tab-pane#following #user_following_tab").append(\'<h4>This user not following anyone at the moment</h4>\')
+                }
                 $.each(data, function (i) {
                     $.get("/api/v1/users/" + data[i].id + "/avatar_image_thumbnail", function (image, status) {
                         var link;

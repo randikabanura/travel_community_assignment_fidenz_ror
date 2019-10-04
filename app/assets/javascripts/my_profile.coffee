@@ -10,6 +10,9 @@ $(document).on 'turbolinks:load', ->
             type: "GET",
             success: function (data) {
                 $(".tab-pane#followers #followers_tab").empty();
+                if(data.length === 0){
+                  $(".tab-pane#followers #followers_tab").append(\'<h4>No followers to show</h4>\')
+                }
                 $.each(data, function (i) {
                     $.ajax({
                         type: "POST",
@@ -78,6 +81,9 @@ $(document).on 'turbolinks:load', ->
                 method = "delete";
                 url = "/api/v1/follows/" + Math.random() * 10;
                 $(".tab-pane#following #following_tab").empty();
+                if(data.length === 0){
+                  $(".tab-pane#following #following_tab").append(\'<h4>Please follow someone to see it in here</h4>\')
+                }
                 $.each(data, function (i) {
                 console.log("dthcg"+ i);
                     $.get("/api/v1/users/" + data[i].id + "/avatar_image_thumbnail", function (image, status) {
