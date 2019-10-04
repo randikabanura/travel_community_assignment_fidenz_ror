@@ -14,21 +14,23 @@ class PaymentsController < ApplicationController
   def create
     user_id = params[:payment][:user]
     user = User.find(user_id)
-    payment = Payment.new(payment_params)
-    payment.user = user
+    @payment = Payment.new(payment_params)
+    @payment.user = user
     if payment_params[:plan].to_i == 1
-      payment.message_count = 10
+      @payment.message_count = 10
     elsif payment_params[:plan].to_i == 2
-      payment.message_count = 100
+      @payment.message_count = 100
     elsif payment_params[:plan].to_i == 3
-      payment.message_count = -1
+      @payment.message_count = -1
     end
-    if payment.save
+    if @payment.save
       user.grant 'pro_user_' + payment_params[:plan]
       if user.save
         flash[:notice] = 'You are now a premium user'
         redirect_to messages_home_path
       end
+    else
+      render action: :new
     end
   end
 
