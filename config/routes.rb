@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
   ActiveAdmin.routes(self)
   devise_for :users, controllers: { registrations: 'registrations' }
+  authenticated :user do
+    root to: 'welcome#index', as: :authenticated_root
+  end
+  root to: redirect('/users/sign_in')
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  root 'welcome#index'
   get '/profile//users/:id', to: 'profile#show', as: :profile_show
   mount Commontator::Engine => 'api/v1/commontator'
   get '/search', to: 'search#show', as: :search_show

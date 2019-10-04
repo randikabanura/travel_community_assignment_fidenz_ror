@@ -1,24 +1,41 @@
-<%= render :partial => 'layouts/errors' %>
 <div class="login-form signup">
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
     <h3 class="text-center">Sign up</h3>
     <div class="field form_group">
-      <%= f.email_field :email, autofocus: true, autocomplete: 'off', class: "form-control", placeholder: "Email" %>
+      <%= f.email_field :email, autofocus: true, autocomplete: 'off', required: true, class: "form-control", placeholder: "Email (required)" %>
+      <% if resource.errors[:email].present? %>
+        <div class="form_errors">Email <%= resource.errors[:email].first %></div>
+      <% end %>
     </div>
     <div class="field form_group">
-      <%= f.text_field :name, autocomplete: 'off', class: "form-control", placeholder: "Name"%>
+      <%= f.text_field :name, autocomplete: 'off', class: "form-control", required: true, placeholder: "Name (required)"%>
+      <% if resource.errors[:name].present? %>
+        <div class="form_errors">Name <%= resource.errors[:name].first %></div>
+      <% end %>
     </div>
     <div class="field form_group">
-      <%= f.text_field :dob, autocomplete: 'off', class: "datepicker form-control", placeholder: "Birthday"%>
+      <%= f.text_field :dob, autocomplete: 'off', "data-date-end-date"=>"0d", class: "datepicker_dob form-control", placeholder: "Birthday"%>
+      <% if resource.errors[:dob].present? %>
+        <div class="form_errors">Birthday <%= resource.errors[:birthday].first %></div>
+      <% end %>
     </div>
     <div class="field form_group">
       <%= f.select :gender, options_for_select([["Male", "m"], ["Female", "f"]]),prompt: "Select Gender", class: "form-control gender_select", placeholder: "Gender"%>
+      <% if resource.errors[:gender].present? %>
+        <div class="form_errors">Gender <%= resource.errors[:gender].first %></div>
+      <% end %>
     </div>
     <div class="field form_group">
-      <%= f.password_field :password, autocomplete: 'off', class: "form-control", placeholder: "Password (#{@minimum_password_length} character minimum)" %>
+      <%= f.password_field :password, autocomplete: 'off', class: "form-control", required: true, placeholder: "Password (#{@minimum_password_length} min required)" %>
+      <% if resource.errors[:password].present? %>
+        <div class="form_errors">Password <%= resource.errors[:password].first %></div>
+      <% end %>
     </div>
     <div class="field form_group">
-      <%= f.password_field :password_confirmation, autocomplete: 'off', class: "form-control", placeholder: "Repeat Password" %>
+      <%= f.password_field :password_confirmation, autocomplete: 'off', required: true, class: "form-control", placeholder: "Repeat Password (required)" %>
+      <% if resource.errors[:password_confirmation].present? %>
+        <div class="form_errors">Confirm password <%= resource.errors[:password_confirmation].first %></div>
+      <% end %>
     </div>
 
     <div class="actions form_group">
@@ -30,7 +47,7 @@
   <% end %>
   <script type="text/javascript">
       $(document).ready(function(){
-          $('.datepicker').datepicker();
+          $('.datepicker_dob').datepicker();
       });
   </script>
 </div>

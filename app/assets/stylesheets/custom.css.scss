@@ -904,6 +904,15 @@ footer p{
   }
 }
 
+.payment_form{
+  .form-control, .btn{
+    margin-top: 0;
+  }
+  .form-group select{
+    margin-top: 0;
+  }
+}
+
 @media (max-width:992px) {
   .navbar{
     height:auto;
