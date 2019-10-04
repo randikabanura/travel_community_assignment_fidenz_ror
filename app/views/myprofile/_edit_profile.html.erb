@@ -4,11 +4,14 @@
       <div>
         <%= image_tag user_avatar(resource, 150), class: "rounded" %>
       </div>
-      <div style="margin-top: 10px">
-        <span class="btn btn-large btn-warning btn-file">
+      <div style="margin-top: 10px; display: flex; align-items: baseline;">
+        <span class="upload btn btn-large btn-warning btn-file">
           Upload picture
           <%= f.file_field :avatar, :onchange => "form.submit()" %>
         </span>
+        <div class="profile_picture_upload" style="display: none; margin-left: 10px;">
+          <%= image_tag("preloader.gif", height: '16', width: '16') %>
+        </div>
       </div>
       <div id="rating">
         <%= render partial: 'userreview/rating', locals: { user: current_user } %>
@@ -36,11 +39,11 @@
 
     <div class="field form-group">
       <div class="col-4">
-        <%= f.label :date_of_birthday %>
+        <%= f.label :date_of_birth %>
       </div>
       <div class="col-4" style="display: flex; flex-direction: column">
         <div>
-          <%= f.text_field :dob, autocomplete: 'off', class: "datepicker form-control", placeholder: "Birthday" %>
+          <%= f.text_field :dob, autocomplete: 'off', "data-date-end-date"=>"0d", class: "datepicker form-control", placeholder: "Birthday" %>
           <div class="input-group-addon">
             <span class="glyphicon glyphicon-th"></span>
           </div>
@@ -56,7 +59,7 @@
         <%= f.label :gender %>
       </div>
       <div class="col-4">
-        <%= f.select :gender, options_for_select([["Male", "m"], ["Female", "f"]]), prompt: "Select Gender", class: "form-control gender_select", placeholder: "Gender" %>
+        <%= f.select :gender, options_for_select([["Male", "m"], ["Female", "f"]], selected: current_user.gender), prompt: "Select Gender", class: "form-control gender_select", placeholder: "Gender" %>
       </div>
     </div>
 
@@ -131,6 +134,9 @@
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: {method: :put}) do |f| %>
       <div class="image_section">
         <div class="field form-group">
+          <div class="images_upload" style="display: none; margin-right: 10px;">
+            <%= image_tag("preloader.gif", height: '16', width: '16') %>
+          </div>
         <span class="btn btn-large btn-warning btn-file user_images">
           Add images
           <%= f.file_field :images, multiple: true, :id => "upload", :onchange => "form.submit()" %>
@@ -199,7 +205,16 @@
         $('.datepicker').datepicker({
             format: 'dd/mm/yyyy'
         })
+
     });
+
+    $('.upload.btn-file').on("change", function () {
+        $('.profile_picture_upload').show()
+    })
+
+    $('.user_images.btn-file').on("change", function () {
+        $('.images_upload').show()
+    })
 
     $('#user_profile_submit').on("click", function (event) {
         if (validate())
